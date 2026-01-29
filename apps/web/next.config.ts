@@ -1,9 +1,9 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  // Using standard deployment (not static export) to support API routes
-  // Vercel will handle this automatically with serverless functions
+  output: 'export',
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',

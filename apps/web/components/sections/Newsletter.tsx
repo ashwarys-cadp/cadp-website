@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { Send, CheckCircle } from 'lucide-react';
 import { Container, Section, Button, Input } from '@/components/ui';
 
+const WEB3FORMS_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || '';
+
 export function Newsletter() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>(
@@ -16,16 +18,27 @@ export function Newsletter() {
     setStatus('loading');
 
     try {
-      const response = await fetch('/api/newsletter', {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: 'New Newsletter Subscription - CADP',
+          from_name: 'CADP Website',
+          email: email,
+          message: `New newsletter subscription from: ${email}`,
+        }),
       });
 
-      if (!response.ok) throw new Error('Failed to subscribe');
+      const result = await response.json();
+
+      if (!result.success) throw new Error('Failed to subscribe');
 
       setStatus('success');
-      setMessage('Thanks for subscribing! Check your email for confirmation.');
+      setMessage('Thanks for subscribing! You\'ll receive our updates.');
       setEmail('');
     } catch {
       setStatus('error');
@@ -46,7 +59,7 @@ export function Newsletter() {
           </p>
 
           {status === 'success' ? (
-            <div className="flex items-center justify-center gap-2 text-accent-400 bg-white/10 rounded-lg py-4 px-6">
+            <div className="flex items-center justify-center gap-2 text-accent-400 bg-white/10 border border-white/20 py-4 px-6">
               <CheckCircle className="w-5 h-5" />
               <span>{message}</span>
             </div>
@@ -55,6 +68,9 @@ export function Newsletter() {
               onSubmit={handleSubmit}
               className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
             >
+              {/* Honeypot for spam protection */}
+              <input type="checkbox" name="botcheck" className="hidden" />
+
               <Input
                 type="email"
                 placeholder="Enter your email"

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Crimson_Text } from 'next/font/google';
 import './globals.css';
 import { defaultMetadata } from '@/lib/seo/metadata';
 import { OrganizationJsonLd } from '@/components/seo/JsonLd';
@@ -11,6 +11,13 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
+const crimsonText = Crimson_Text({
+  weight: ['400', '600', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-serif',
+});
+
 export const metadata: Metadata = defaultMetadata;
 
 export default function RootLayout({
@@ -19,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${inter.variable} ${crimsonText.variable}`}>
       <body className="min-h-screen flex flex-col">
         <OrganizationJsonLd />
         <Header />

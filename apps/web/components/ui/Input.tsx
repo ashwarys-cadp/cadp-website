@@ -25,11 +25,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           id={inputId}
           className={cn(
-            'w-full px-4 py-2.5 rounded-lg border transition-colors duration-200',
-            'focus:outline-none focus:ring-2 focus:ring-offset-0',
+            'w-full px-4 py-3 border-2 transition-colors duration-150',
+            'focus:outline-none focus:ring-1 focus:ring-offset-0',
             error
-              ? 'border-red-500 focus:ring-red-500 focus:border-red-500'
-              : 'border-neutral-300 focus:ring-primary-500 focus:border-primary-500',
+              ? 'border-red-500 focus:ring-red-500 focus:border-red-600'
+              : 'border-neutral-300 focus:ring-primary-700 focus:border-primary-700',
             className
           )}
           {...props}
@@ -70,11 +70,11 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           ref={ref}
           id={inputId}
           className={cn(
-            'w-full px-4 py-2.5 rounded-lg border transition-colors duration-200 resize-y min-h-[120px]',
-            'focus:outline-none focus:ring-2 focus:ring-offset-0',
+            'w-full px-4 py-3 border-2 transition-colors duration-150 resize-y min-h-[140px]',
+            'focus:outline-none focus:ring-1 focus:ring-offset-0',
             error
-              ? 'border-red-500 focus:ring-red-500 focus:border-red-500'
-              : 'border-neutral-300 focus:ring-primary-500 focus:border-primary-500',
+              ? 'border-red-500 focus:ring-red-500 focus:border-red-600'
+              : 'border-neutral-300 focus:ring-primary-700 focus:border-primary-700',
             className
           )}
           {...props}
@@ -114,11 +114,11 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           ref={ref}
           id={inputId}
           className={cn(
-            'w-full px-4 py-2.5 rounded-lg border transition-colors duration-200',
-            'focus:outline-none focus:ring-2 focus:ring-offset-0',
+            'w-full px-4 py-3 border-2 transition-colors duration-150',
+            'focus:outline-none focus:ring-1 focus:ring-offset-0',
             error
-              ? 'border-red-500 focus:ring-red-500 focus:border-red-500'
-              : 'border-neutral-300 focus:ring-primary-500 focus:border-primary-500',
+              ? 'border-red-500 focus:ring-red-500 focus:border-red-600'
+              : 'border-neutral-300 focus:ring-primary-700 focus:border-primary-700',
             className
           )}
           {...props}

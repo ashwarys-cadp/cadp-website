@@ -15,7 +15,7 @@ export function Section({
 }: SectionProps) {
   const bgStyles = {
     white: 'bg-white',
-    gray: 'bg-neutral-50',
+    gray: 'bg-neutral-100 border-y border-neutral-200',
     primary: 'bg-primary-900 text-white',
   };
 

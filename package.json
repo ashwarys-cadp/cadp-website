@@ -13,6 +13,7 @@
     "build:studio": "turbo build --filter=@cadp/studio"
   },
   "devDependencies": {
+    "@types/node": "^25.1.0",
     "turbo": "^2.3.0"
   }
 }

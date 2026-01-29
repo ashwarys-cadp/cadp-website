@@ -44,14 +44,14 @@ export function TrustSignals() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {signals.map((signal) => (
-            <div key={signal.title} className="text-center">
-              <div className="w-14 h-14 bg-primary-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <signal.icon className="w-7 h-7 text-primary-600" />
+            <div key={signal.title} className="text-center group">
+              <div className="w-16 h-16 bg-primary-800 border-2 border-primary-900 flex items-center justify-center mx-auto mb-4 transition-colors group-hover:bg-primary-900">
+                <signal.icon className="w-8 h-8 text-accent-400" />
               </div>
-              <h3 className="font-semibold text-neutral-900 mb-2">
+              <h3 className="font-semibold text-neutral-900 mb-3" style={{fontFamily: 'var(--font-heading)'}}>
                 {signal.title}
               </h3>
-              <p className="text-sm text-neutral-600">{signal.description}</p>
+              <p className="text-sm text-neutral-700 leading-relaxed">{signal.description}</p>
             </div>
           ))}
         </div>

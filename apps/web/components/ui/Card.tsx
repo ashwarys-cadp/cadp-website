@@ -16,8 +16,8 @@ export function Card({
   hover = true,
 }: CardProps) {
   const cardStyles = cn(
-    'bg-white rounded-xl border border-neutral-200 overflow-hidden',
-    hover && 'transition-shadow duration-200 hover:shadow-lg',
+    'bg-white border border-neutral-300 overflow-hidden',
+    hover && 'transition-all duration-150 hover:border-primary-600 hover:shadow-md',
     className
   );
 

@@ -36,24 +36,24 @@ export function Header() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-neutral-200">
+    <header className="sticky top-0 z-50 bg-white border-b-2 border-neutral-300">
       <Container size="wide">
-        <nav className="flex items-center justify-between h-16 lg:h-20">
+        <nav className="flex items-center justify-between h-18 lg:h-22">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">C</span>
+          <Link href="/" className="flex items-center gap-3">
+            <div className="w-12 h-12 bg-primary-800 border-2 border-primary-900 flex items-center justify-center">
+              <span className="text-white font-bold text-xl" style={{fontFamily: 'var(--font-heading)'}}>C</span>
             </div>
             <div className="hidden sm:block">
-              <div className="font-bold text-lg text-neutral-900">CADP</div>
-              <div className="text-xs text-neutral-500 -mt-0.5">
+              <div className="font-semibold text-lg text-neutral-900" style={{fontFamily: 'var(--font-heading)'}}>CADP</div>
+              <div className="text-xs text-neutral-600 -mt-0.5 tracking-wide">
                 Centre for Applied Data Protection
               </div>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-0.5">
             {navigation.map((item) => (
               <div
                 key={item.name}
@@ -64,20 +64,21 @@ export function Header() {
                 <Link
                   href={item.href}
                   className={cn(
-                    'px-4 py-2 text-sm font-medium rounded-lg transition-colors',
-                    'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100'
+                    'px-4 py-2 text-sm font-medium transition-colors',
+                    'text-neutral-700 hover:text-primary-800 hover:bg-neutral-50',
+                    'border-b-2 border-transparent hover:border-primary-700'
                   )}
                 >
                   {item.name}
                 </Link>
                 {item.children && openDropdown === item.name && (
                   <div className="absolute top-full left-0 pt-2">
-                    <div className="bg-white rounded-lg shadow-lg border border-neutral-200 py-2 min-w-[200px]">
+                    <div className="bg-white shadow-lg border-2 border-neutral-300 py-1 min-w-[220px]">
                       {item.children.map((child) => (
                         <Link
                           key={child.name}
                           href={child.href}
-                          className="block px-4 py-2 text-sm text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50"
+                          className="block px-4 py-3 text-sm text-neutral-700 hover:text-primary-800 hover:bg-neutral-50 border-l-4 border-transparent hover:border-primary-700"
                         >
                           {child.name}
                         </Link>
@@ -93,15 +94,15 @@ export function Header() {
           <div className="hidden lg:block">
             <Link
               href="/contact"
-              className="inline-flex items-center px-5 py-2.5 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700 transition-colors"
+              className="inline-flex items-center px-6 py-2.5 bg-primary-800 text-white text-sm font-medium border border-primary-900 hover:bg-primary-900 transition-all uppercase tracking-wide"
             >
-              Get in Touch
+              Contact Us
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 rounded-lg hover:bg-neutral-100"
+            className="lg:hidden p-2 hover:bg-neutral-100"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           >
@@ -115,24 +116,24 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-neutral-200">
-            <div className="flex flex-col gap-1">
+          <div className="lg:hidden py-4 border-t-2 border-neutral-300">
+            <div className="flex flex-col gap-0.5">
               {navigation.map((item) => (
                 <div key={item.name}>
                   <Link
                     href={item.href}
-                    className="block px-4 py-2 text-base font-medium text-neutral-900 rounded-lg hover:bg-neutral-100"
+                    className="block px-4 py-3 text-base font-medium text-neutral-900 hover:bg-neutral-50 border-l-4 border-transparent hover:border-primary-700"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}
                   </Link>
                   {item.children && (
-                    <div className="pl-4">
+                    <div className="pl-4 bg-neutral-50">
                       {item.children.map((child) => (
                         <Link
                           key={child.name}
                           href={child.href}
-                          className="block px-4 py-2 text-sm text-neutral-600 rounded-lg hover:bg-neutral-100"
+                          className="block px-4 py-2.5 text-sm text-neutral-700 hover:bg-white border-l-4 border-transparent hover:border-primary-600"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           {child.name}
@@ -145,10 +146,10 @@ export function Header() {
               <div className="pt-4 px-4">
                 <Link
                   href="/contact"
-                  className="block w-full text-center px-5 py-2.5 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700 transition-colors"
+                  className="block w-full text-center px-6 py-3 bg-primary-800 text-white text-sm font-medium border border-primary-900 hover:bg-primary-900 transition-all uppercase tracking-wide"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Get in Touch
+                  Contact Us
                 </Link>
               </div>
             </div>

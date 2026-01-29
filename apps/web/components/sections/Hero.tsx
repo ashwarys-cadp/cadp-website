@@ -10,61 +10,56 @@ const stats = [
 
 export function Hero() {
   return (
-    <section className="relative bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center" />
-      </div>
-
+    <section className="relative bg-primary-900 text-white border-b-4 border-accent-600">
       <Container size="wide" className="relative">
-        <div className="py-20 md:py-28 lg:py-32">
-          <div className="max-w-3xl">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-sm mb-6">
-              <Shield className="w-4 h-4" />
-              <span>KLE Law College, Bengaluru</span>
+        <div className="py-16 md:py-20 lg:py-24">
+          <div className="max-w-4xl">
+            {/* Institution */}
+            <div className="text-accent-400 font-medium text-sm uppercase tracking-wider mb-4">
+              KLE Law College, Bengaluru
             </div>
 
             {/* Headline */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance">
-              Building India&apos;s Data Protection Capability
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight mb-6">
+              Centre for Applied Data Protection
             </h1>
 
             {/* Subheadline */}
-            <p className="mt-6 text-lg md:text-xl text-primary-100 max-w-2xl">
-              CADP provides expert DPDP Act compliance training, advisory
-              services, and research to help organisations navigate India&apos;s
-              evolving data protection landscape.
+            <p className="text-lg md:text-xl text-primary-100 max-w-3xl leading-relaxed mb-10">
+              Leading research and professional training in data protection law.
+              We provide expert guidance on DPDP Act compliance, advisory services,
+              and publish authoritative research to advance India&apos;s data protection framework.
             </p>
 
             {/* CTAs */}
-            <div className="mt-8 flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <Button href="/services" size="lg" variant="secondary">
-                Explore Services
-                <ArrowRight className="w-5 h-5 ml-2" />
+                Our Services
               </Button>
               <Button
                 href="/resources/guides"
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white/10"
+                className="border-2 border-white text-white hover:bg-white hover:text-primary-900"
               >
-                Read Our Guides
+                Research & Publications
               </Button>
             </div>
 
             {/* Stats */}
-            <div className="mt-12 grid grid-cols-3 gap-8 pt-8 border-t border-white/20">
-              {stats.map((stat) => (
-                <div key={stat.label}>
-                  <div className="text-2xl md:text-3xl font-bold">
-                    {stat.value}
+            <div className="mt-16 pt-8 border-t border-primary-700">
+              <div className="grid grid-cols-3 gap-8">
+                {stats.map((stat) => (
+                  <div key={stat.label} className="text-center sm:text-left">
+                    <div className="text-3xl md:text-4xl font-semibold text-accent-400">
+                      {stat.value}
+                    </div>
+                    <div className="text-sm text-primary-200 mt-2 uppercase tracking-wide">
+                      {stat.label}
+                    </div>
                   </div>
-                  <div className="text-sm text-primary-200 mt-1">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>

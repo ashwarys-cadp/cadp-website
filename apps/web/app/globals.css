@@ -1,58 +1,61 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Colors - CADP Brand */
-  --color-primary-50: oklch(0.97 0.01 250);
-  --color-primary-100: oklch(0.94 0.02 250);
-  --color-primary-200: oklch(0.88 0.04 250);
-  --color-primary-300: oklch(0.78 0.08 250);
-  --color-primary-400: oklch(0.65 0.12 250);
-  --color-primary-500: oklch(0.55 0.15 250);
-  --color-primary-600: oklch(0.45 0.15 250);
-  --color-primary-700: oklch(0.38 0.12 250);
-  --color-primary-800: oklch(0.32 0.10 250);
-  --color-primary-900: oklch(0.27 0.08 250);
-  --color-primary-950: oklch(0.20 0.06 250);
+  /* Colors - Professional Academic Palette */
+  /* Deep Navy Blue - authoritative, trustworthy */
+  --color-primary-50: oklch(0.97 0.01 240);
+  --color-primary-100: oklch(0.93 0.02 240);
+  --color-primary-200: oklch(0.85 0.03 240);
+  --color-primary-300: oklch(0.72 0.04 240);
+  --color-primary-400: oklch(0.55 0.05 240);
+  --color-primary-500: oklch(0.42 0.06 240);
+  --color-primary-600: oklch(0.32 0.05 240);
+  --color-primary-700: oklch(0.25 0.04 240);
+  --color-primary-800: oklch(0.19 0.03 240);
+  --color-primary-900: oklch(0.14 0.02 240);
+  --color-primary-950: oklch(0.10 0.01 240);
 
-  /* Accent Colors */
-  --color-accent-50: oklch(0.98 0.01 85);
-  --color-accent-100: oklch(0.95 0.03 85);
-  --color-accent-200: oklch(0.90 0.06 85);
-  --color-accent-300: oklch(0.82 0.10 85);
-  --color-accent-400: oklch(0.72 0.14 85);
-  --color-accent-500: oklch(0.65 0.16 85);
-  --color-accent-600: oklch(0.55 0.14 85);
-  --color-accent-700: oklch(0.45 0.12 85);
-  --color-accent-800: oklch(0.38 0.10 85);
-  --color-accent-900: oklch(0.32 0.08 85);
+  /* Muted Gold - academic distinction, legal prestige */
+  --color-accent-50: oklch(0.98 0.01 75);
+  --color-accent-100: oklch(0.95 0.02 75);
+  --color-accent-200: oklch(0.88 0.04 75);
+  --color-accent-300: oklch(0.78 0.06 75);
+  --color-accent-400: oklch(0.68 0.08 75);
+  --color-accent-500: oklch(0.58 0.09 75);
+  --color-accent-600: oklch(0.48 0.08 75);
+  --color-accent-700: oklch(0.38 0.06 75);
+  --color-accent-800: oklch(0.30 0.04 75);
+  --color-accent-900: oklch(0.24 0.03 75);
 
-  /* Neutral Colors */
-  --color-neutral-50: oklch(0.98 0 0);
-  --color-neutral-100: oklch(0.96 0 0);
-  --color-neutral-200: oklch(0.92 0 0);
-  --color-neutral-300: oklch(0.87 0 0);
-  --color-neutral-400: oklch(0.70 0 0);
-  --color-neutral-500: oklch(0.55 0 0);
-  --color-neutral-600: oklch(0.45 0 0);
-  --color-neutral-700: oklch(0.37 0 0);
-  --color-neutral-800: oklch(0.27 0 0);
-  --color-neutral-900: oklch(0.20 0 0);
-  --color-neutral-950: oklch(0.14 0 0);
+  /* Warm Neutrals - scholarly warmth */
+  --color-neutral-50: oklch(0.98 0.002 75);
+  --color-neutral-100: oklch(0.96 0.003 75);
+  --color-neutral-200: oklch(0.91 0.004 75);
+  --color-neutral-300: oklch(0.85 0.005 75);
+  --color-neutral-400: oklch(0.68 0.005 75);
+  --color-neutral-500: oklch(0.52 0.005 75);
+  --color-neutral-600: oklch(0.42 0.005 75);
+  --color-neutral-700: oklch(0.35 0.005 75);
+  --color-neutral-800: oklch(0.26 0.005 75);
+  --color-neutral-900: oklch(0.18 0.004 75);
+  --color-neutral-950: oklch(0.12 0.003 75);
 
-  /* Typography */
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-heading: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  /* Typography - Professional serif for authority */
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Crimson Text', 'Georgia', 'Times New Roman', serif;
+  --font-heading: 'Crimson Text', 'Georgia', serif;
+  --font-body: ui-sans-serif, system-ui, sans-serif;
 
-  /* Spacing */
-  --spacing-section: 6rem;
-  --spacing-section-sm: 4rem;
+  /* Spacing - More generous for readability */
+  --spacing-section: 5rem;
+  --spacing-section-sm: 3rem;
 
-  /* Border Radius */
-  --radius-sm: 0.375rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
-  --radius-2xl: 1.5rem;
+  /* Border Radius - Minimal, more formal */
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.375rem;
+  --radius-xl: 0.5rem;
+  --radius-2xl: 0.75rem;
 }
 
 /* Base styles */
@@ -62,8 +65,10 @@
   }
 
   body {
-    @apply bg-neutral-50 text-neutral-900 antialiased;
-    font-family: var(--font-sans);
+    @apply bg-white text-neutral-900 antialiased;
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.75;
   }
 
   h1,
@@ -73,58 +78,74 @@
   h5,
   h6 {
     font-family: var(--font-heading);
-    @apply font-semibold tracking-tight text-neutral-900;
+    @apply font-semibold text-neutral-900;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
   }
 
   h1 {
     @apply text-4xl md:text-5xl lg:text-6xl;
+    font-weight: 600;
   }
 
   h2 {
     @apply text-3xl md:text-4xl;
+    font-weight: 600;
   }
 
   h3 {
     @apply text-2xl md:text-3xl;
+    font-weight: 600;
   }
 
   h4 {
     @apply text-xl md:text-2xl;
+    font-weight: 600;
   }
 
   p {
-    @apply text-neutral-600 leading-relaxed;
+    @apply text-neutral-700 leading-relaxed;
   }
 
   a {
-    @apply transition-colors duration-200;
+    @apply transition-colors duration-150;
   }
 }
 
-/* Prose styles for article content */
+/* Prose styles for article content - Academic style */
 .prose {
-  @apply text-neutral-700 leading-relaxed;
-  max-width: 65ch;
+  @apply text-neutral-800;
+  font-family: var(--font-serif);
+  max-width: 70ch;
+  font-size: 1.125rem;
+  line-height: 1.8;
 }
 
 .prose p {
   @apply mb-6;
+  text-align: justify;
 }
 
 .prose h2 {
-  @apply text-2xl font-bold text-neutral-900 mt-10 mb-4;
+  @apply text-2xl font-semibold text-neutral-900 mt-12 mb-4;
+  font-family: var(--font-heading);
+  border-bottom: 1px solid theme('colors.neutral.200');
+  padding-bottom: 0.5rem;
 }
 
 .prose h3 {
   @apply text-xl font-semibold text-neutral-900 mt-8 mb-3;
+  font-family: var(--font-heading);
 }
 
 .prose h4 {
   @apply text-lg font-semibold text-neutral-900 mt-6 mb-2;
+  font-family: var(--font-heading);
 }
 
 .prose a {
-  @apply text-primary-600 hover:underline;
+  @apply text-primary-700 underline decoration-1 underline-offset-2;
+  @apply hover:text-primary-900 hover:decoration-2;
 }
 
 .prose strong {
@@ -133,7 +154,7 @@
 
 .prose ul,
 .prose ol {
-  @apply pl-6 mb-6;
+  @apply pl-8 mb-6;
 }
 
 .prose ul {
@@ -145,36 +166,43 @@
 }
 
 .prose li {
-  @apply mb-2;
+  @apply mb-3;
 }
 
 .prose blockquote {
-  @apply border-l-4 border-primary-500 pl-4 italic text-neutral-600 my-6;
+  @apply border-l-4 border-primary-600 pl-6 italic text-neutral-700 my-8;
+  font-style: italic;
+  background: theme('colors.neutral.50');
+  padding: 1.5rem 1.5rem 1.5rem 2rem;
 }
 
 .prose img {
-  @apply rounded-lg my-8;
+  @apply my-8;
+  border: 1px solid theme('colors.neutral.200');
 }
 
 .prose code {
-  @apply bg-neutral-100 px-1.5 py-0.5 rounded text-sm font-mono;
+  @apply bg-neutral-100 px-2 py-0.5 text-sm font-mono;
+  border: 1px solid theme('colors.neutral.200');
 }
 
 .prose pre {
-  @apply bg-neutral-900 text-neutral-100 p-4 rounded-lg overflow-x-auto my-6;
+  @apply bg-neutral-900 text-neutral-100 p-6 overflow-x-auto my-8;
+  border-left: 4px solid theme('colors.primary.600');
 }
 
 .prose pre code {
-  @apply bg-transparent p-0;
+  @apply bg-transparent p-0 border-0;
 }
 
 .prose hr {
-  @apply border-neutral-200 my-8;
+  @apply border-neutral-300 my-12;
 }
 
 .prose-lg {
   @apply text-lg;
   max-width: none;
+  line-height: 1.85;
 }
 
 /* Utility classes */

@@ -28,13 +28,13 @@ export function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
             {/* Brand */}
             <div className="lg:col-span-2">
-              <Link href="/" className="flex items-center gap-2">
-                <div className="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">C</span>
+              <Link href="/" className="flex items-center gap-3">
+                <div className="w-12 h-12 bg-primary-700 border-2 border-primary-600 flex items-center justify-center">
+                  <span className="text-white font-bold text-xl" style={{fontFamily: 'var(--font-heading)'}}>C</span>
                 </div>
                 <div>
-                  <div className="font-bold text-lg text-white">CADP</div>
-                  <div className="text-xs text-neutral-400">
+                  <div className="font-semibold text-lg text-white" style={{fontFamily: 'var(--font-heading)'}}>CADP</div>
+                  <div className="text-xs text-neutral-400 tracking-wide">
                     Centre for Applied Data Protection
                   </div>
                 </div>
