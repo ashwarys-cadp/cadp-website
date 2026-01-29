@@ -1,0 +1,197 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Colors - CADP Brand */
+  --color-primary-50: oklch(0.97 0.01 250);
+  --color-primary-100: oklch(0.94 0.02 250);
+  --color-primary-200: oklch(0.88 0.04 250);
+  --color-primary-300: oklch(0.78 0.08 250);
+  --color-primary-400: oklch(0.65 0.12 250);
+  --color-primary-500: oklch(0.55 0.15 250);
+  --color-primary-600: oklch(0.45 0.15 250);
+  --color-primary-700: oklch(0.38 0.12 250);
+  --color-primary-800: oklch(0.32 0.10 250);
+  --color-primary-900: oklch(0.27 0.08 250);
+  --color-primary-950: oklch(0.20 0.06 250);
+
+  /* Accent Colors */
+  --color-accent-50: oklch(0.98 0.01 85);
+  --color-accent-100: oklch(0.95 0.03 85);
+  --color-accent-200: oklch(0.90 0.06 85);
+  --color-accent-300: oklch(0.82 0.10 85);
+  --color-accent-400: oklch(0.72 0.14 85);
+  --color-accent-500: oklch(0.65 0.16 85);
+  --color-accent-600: oklch(0.55 0.14 85);
+  --color-accent-700: oklch(0.45 0.12 85);
+  --color-accent-800: oklch(0.38 0.10 85);
+  --color-accent-900: oklch(0.32 0.08 85);
+
+  /* Neutral Colors */
+  --color-neutral-50: oklch(0.98 0 0);
+  --color-neutral-100: oklch(0.96 0 0);
+  --color-neutral-200: oklch(0.92 0 0);
+  --color-neutral-300: oklch(0.87 0 0);
+  --color-neutral-400: oklch(0.70 0 0);
+  --color-neutral-500: oklch(0.55 0 0);
+  --color-neutral-600: oklch(0.45 0 0);
+  --color-neutral-700: oklch(0.37 0 0);
+  --color-neutral-800: oklch(0.27 0 0);
+  --color-neutral-900: oklch(0.20 0 0);
+  --color-neutral-950: oklch(0.14 0 0);
+
+  /* Typography */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  /* Spacing */
+  --spacing-section: 6rem;
+  --spacing-section-sm: 4rem;
+
+  /* Border Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+}
+
+/* Base styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-neutral-50 text-neutral-900 antialiased;
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    @apply font-semibold tracking-tight text-neutral-900;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+
+  p {
+    @apply text-neutral-600 leading-relaxed;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+}
+
+/* Prose styles for article content */
+.prose {
+  @apply text-neutral-700 leading-relaxed;
+  max-width: 65ch;
+}
+
+.prose p {
+  @apply mb-6;
+}
+
+.prose h2 {
+  @apply text-2xl font-bold text-neutral-900 mt-10 mb-4;
+}
+
+.prose h3 {
+  @apply text-xl font-semibold text-neutral-900 mt-8 mb-3;
+}
+
+.prose h4 {
+  @apply text-lg font-semibold text-neutral-900 mt-6 mb-2;
+}
+
+.prose a {
+  @apply text-primary-600 hover:underline;
+}
+
+.prose strong {
+  @apply font-semibold text-neutral-900;
+}
+
+.prose ul,
+.prose ol {
+  @apply pl-6 mb-6;
+}
+
+.prose ul {
+  @apply list-disc;
+}
+
+.prose ol {
+  @apply list-decimal;
+}
+
+.prose li {
+  @apply mb-2;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-primary-500 pl-4 italic text-neutral-600 my-6;
+}
+
+.prose img {
+  @apply rounded-lg my-8;
+}
+
+.prose code {
+  @apply bg-neutral-100 px-1.5 py-0.5 rounded text-sm font-mono;
+}
+
+.prose pre {
+  @apply bg-neutral-900 text-neutral-100 p-4 rounded-lg overflow-x-auto my-6;
+}
+
+.prose pre code {
+  @apply bg-transparent p-0;
+}
+
+.prose hr {
+  @apply border-neutral-200 my-8;
+}
+
+.prose-lg {
+  @apply text-lg;
+  max-width: none;
+}
+
+/* Utility classes */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .container-narrow {
+    @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-wide {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
