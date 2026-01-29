@@ -11,6 +11,7 @@ import {
   Badge,
 } from '@/components/ui';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
+import { Newsletter } from '@/components/sections';
 import { generatePageMetadata } from '@/lib/seo/metadata';
 import {
   client,
@@ -334,36 +335,8 @@ export default async function ResourcesPage() {
         </Container>
       </Section>
 
-      {/* Newsletter CTA */}
-      <Section background="white">
-        <Container size="narrow">
-          <div className="border-4 border-primary-950 bg-primary-950 p-10 md:p-14 shadow-xl relative">
-            {/* Decorative corner accents */}
-            <div className="absolute top-0 right-0 w-20 h-20 bg-accent-600 opacity-20"></div>
-            <div className="absolute bottom-0 left-0 w-20 h-20 bg-accent-600 opacity-20"></div>
-
-            <div className="text-center relative z-10">
-              {/* Academic header */}
-              <div className="inline-block mb-6">
-                <div className="text-xs uppercase tracking-[0.25em] text-accent-500 font-semibold mb-3">Stay Informed</div>
-                <div className="h-px w-24 mx-auto bg-accent-600"></div>
-              </div>
-
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-5">
-                Stay Updated
-              </h2>
-              <p className="text-primary-100 text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-serif">
-                Get the latest guides, articles, and updates on DPDP compliance
-                delivered to your inbox.
-              </p>
-
-              <Button href="/contact" variant="secondary" size="lg">
-                Subscribe to Updates
-              </Button>
-            </div>
-          </div>
-        </Container>
-      </Section>
+      {/* Newsletter */}
+      <Newsletter />
     </>
   );
 }

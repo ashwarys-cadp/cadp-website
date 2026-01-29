@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { BookOpen } from 'lucide-react';
 import { Container, Section } from '@/components/ui';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
+import { Newsletter } from '@/components/sections';
 import { generatePageMetadata } from '@/lib/seo/metadata';
 import { client, allGuidesQuery, type Guide } from '@/lib/sanity';
 import { getCategoryLabel } from '@/lib/utils';
@@ -144,6 +145,9 @@ export default async function GuidesPage() {
           </div>
         </Container>
       </Section>
+
+      {/* Newsletter */}
+      <Newsletter />
     </>
   );
 }

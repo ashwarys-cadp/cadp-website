@@ -177,21 +177,21 @@ export default function ProgramsPage() {
               {/* Academic header */}
               <div className="inline-block mb-6">
                 <div className="text-xs uppercase tracking-[0.25em] text-accent-500 font-semibold mb-3">
-                  Get Started
+                  Connect with the Centre
                 </div>
                 <div className="h-px w-24 mx-auto bg-accent-600"></div>
               </div>
 
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-5">
-                Ready to Get Started?
+                Engage with CADP
               </h2>
               <p className="text-primary-100 text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-serif">
-                Let's discuss your data protection needs and find the right
-                programme for your organisation.
+                Contact the Centre to discuss professional training, advisory engagement,
+                or research collaboration aligned with your institutional requirements.
               </p>
 
               <Button href="/contact" variant="secondary" size="lg">
-                Schedule a Consultation
+                Initiate an Inquiry
               </Button>
             </div>
           </div>

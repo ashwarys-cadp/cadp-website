@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { Container, Section } from '@/components/ui';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
+import { Newsletter } from '@/components/sections';
 import { generatePageMetadata } from '@/lib/seo/metadata';
 import { client, allPostsQuery, type Post } from '@/lib/sanity';
 import { formatDateShort, getCategoryLabel } from '@/lib/utils';
@@ -138,6 +139,9 @@ export default async function ArticlesPage() {
           </div>
         </Container>
       </Section>
+
+      {/* Newsletter */}
+      <Newsletter />
     </>
   );
 }

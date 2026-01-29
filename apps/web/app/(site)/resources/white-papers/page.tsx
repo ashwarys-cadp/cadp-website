@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Download } from 'lucide-react';
 import { Container, Section } from '@/components/ui';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
+import { Newsletter } from '@/components/sections';
 import { generatePageMetadata } from '@/lib/seo/metadata';
 import { client, allWhitePapersQuery, type WhitePaper } from '@/lib/sanity';
 
@@ -124,6 +125,9 @@ export default async function WhitePapersPage() {
           </div>
         </Container>
       </Section>
+
+      {/* Newsletter */}
+      <Newsletter />
     </>
   );
 }

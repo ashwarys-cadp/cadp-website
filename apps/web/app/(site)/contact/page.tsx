@@ -85,55 +85,43 @@ export default function ContactPage() {
             </div>
 
             {/* Contact Info */}
-            <div className="space-y-6">
-              <div className="mb-6">
-                <div className="inline-block mb-3">
-                  <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">Details</div>
-                  <div className="h-px w-16 bg-accent-600"></div>
-                </div>
-                <h2 className="text-2xl font-serif font-semibold text-neutral-950">Contact Information</h2>
-              </div>
-
-              <div className="space-y-4">
-                {contactInfo.map((item) => (
-                  <div key={item.title} className="bg-white border-2 border-neutral-300 p-4 shadow-sm">
-                    <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 border-2 border-primary-900 flex items-center justify-center bg-primary-50 shrink-0">
-                        <item.icon className="w-5 h-5 text-primary-900" strokeWidth={1.5} />
-                      </div>
-                      <div className="flex-1">
-                        <p className="text-xs uppercase tracking-[0.15em] text-primary-800 font-semibold mb-1">{item.title}</p>
-                        {item.href ? (
-                          <a
-                            href={item.href}
-                            target={item.href.startsWith("http") ? "_blank" : undefined}
-                            rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                            className="text-neutral-700 hover:text-primary-900 transition-colors font-serif text-sm leading-relaxed"
-                          >
-                            {item.content}
-                          </a>
-                        ) : (
-                          <p className="text-neutral-700 font-serif text-sm leading-relaxed">{item.content}</p>
-                        )}
-                      </div>
+            <div className="lg:col-span-1">
+              <div className="bg-white border-2 border-neutral-300 shadow-sm h-full">
+                <div className="h-2 bg-accent-600"></div>
+                <div className="p-8">
+                  <div className="mb-8">
+                    <div className="inline-block mb-3">
+                      <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">Reach the Centre</div>
+                      <div className="h-px w-16 bg-accent-600"></div>
                     </div>
+                    <h2 className="text-2xl font-serif font-semibold text-neutral-950">Contact Details</h2>
                   </div>
-                ))}
-              </div>
 
-              {/* Map Placeholder */}
-              <div className="mt-8 bg-white border-2 border-neutral-300 shadow-sm">
-                <div className="h-1.5 bg-accent-600"></div>
-                <div className="aspect-square bg-neutral-50 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <div className="w-16 h-16 border-2 border-primary-900 flex items-center justify-center bg-primary-50 mx-auto mb-4">
-                      <MapPin className="w-8 h-8 text-primary-900" strokeWidth={1.5} />
-                    </div>
-                    <p className="text-neutral-700 font-serif text-sm">
-                      KLE Law College
-                      <br />
-                      Rajajinagar, Bengaluru
-                    </p>
+                  <div className="space-y-6">
+                    {contactInfo.map((item) => (
+                      <div key={item.title}>
+                        <div className="flex items-start gap-4">
+                          <div className="shrink-0 mt-1">
+                            <item.icon className="w-5 h-5 text-accent-700" strokeWidth={1.5} />
+                          </div>
+                          <div className="flex-1">
+                            <p className="text-xs uppercase tracking-[0.2em] text-neutral-600 font-semibold mb-2">{item.title}</p>
+                            {item.href ? (
+                              <a
+                                href={item.href}
+                                target={item.href.startsWith("http") ? "_blank" : undefined}
+                                rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                                className="text-neutral-800 hover:text-primary-900 transition-colors font-serif text-sm leading-relaxed border-b border-transparent hover:border-primary-900"
+                              >
+                                {item.content}
+                              </a>
+                            ) : (
+                              <p className="text-neutral-800 font-serif text-sm leading-relaxed">{item.content}</p>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

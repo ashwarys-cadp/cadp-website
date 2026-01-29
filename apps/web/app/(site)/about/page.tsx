@@ -327,25 +327,26 @@ export default async function AboutPage() {
             <div className="text-center relative z-10">
               {/* Academic header */}
               <div className="inline-block mb-6">
-                <div className="text-xs uppercase tracking-[0.25em] text-accent-500 font-semibold mb-3">Get Started</div>
+                <div className="text-xs uppercase tracking-[0.25em] text-accent-500 font-semibold mb-3">Connect with the Centre</div>
                 <div className="h-px w-24 mx-auto bg-accent-600"></div>
               </div>
 
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-5">Ready to Build Your Data Protection Capability?</h2>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-5">Engage with CADP</h2>
               <p className="text-primary-100 text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-serif">
-                Whether you need training, legal advisory, or want to partner with us on research, we&apos;re here to help.
+                Whether for professional training, advisory engagement, or research collaboration,
+                the Centre welcomes inquiries from institutions and organisations.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button href="/contact" variant="secondary" size="lg">
-                  Get in Touch
+                  Contact the Centre
                 </Button>
                 <Button
                   href="/programs-and-initiatives"
                   size="lg"
                   className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary-950 transition-colors font-semibold"
                 >
-                  Explore Services
+                  View Programmes
                 </Button>
               </div>
             </div>
