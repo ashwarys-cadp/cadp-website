@@ -158,10 +158,10 @@ export default function ContactPage() {
             <div className="bg-white border-2 border-neutral-300 shadow-sm">
               <div className="h-1.5 bg-primary-600"></div>
               <div className="p-6">
-                <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-3">What programmes does CADP offer?</h3>
+                <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-3">What are CADP&apos;s core activities?</h3>
                 <p className="text-neutral-700 leading-relaxed font-serif">
-                  CADP offers DPDP Act compliance training, legal advisory, and research publications. We work with organisations of all sizes across
-                  various sectors.
+                  The Centre conducts academic research on data protection law, delivers professional education programmes on DPDP Act compliance,
+                  provides expert advisory to public and private institutions, and publishes scholarly work on privacy jurisprudence.
                 </p>
               </div>
             </div>
@@ -169,10 +169,10 @@ export default function ContactPage() {
             <div className="bg-white border-2 border-neutral-300 shadow-sm">
               <div className="h-1.5 bg-primary-600"></div>
               <div className="p-6">
-                <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-3">How can I request a consultation?</h3>
+                <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-3">How can organisations engage with CADP?</h3>
                 <p className="text-neutral-700 leading-relaxed font-serif">
-                  Fill out the contact form above with details about your needs, and our team will get back to you within 1-2 business days to schedule
-                  a consultation.
+                  Submit an inquiry through the form above detailing your interest—whether in professional training, legal advisory, or research collaboration.
+                  The Centre will respond within 1-2 business days to discuss potential engagement.
                 </p>
               </div>
             </div>
@@ -180,9 +180,10 @@ export default function ContactPage() {
             <div className="bg-white border-2 border-neutral-300 shadow-sm">
               <div className="h-1.5 bg-primary-600"></div>
               <div className="p-6">
-                <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-3">Do you offer customised training programs?</h3>
+                <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-3">Can professional education programmes be tailored to specific needs?</h3>
                 <p className="text-neutral-700 leading-relaxed font-serif">
-                  Yes, we offer tailored training programs designed to meet the specific needs of your organisation, industry, and team.
+                  Yes. The Centre develops customised training curricula aligned with sector-specific regulatory requirements and organisational contexts,
+                  drawing on our research expertise in data protection frameworks.
                 </p>
               </div>
             </div>
@@ -190,9 +191,10 @@ export default function ContactPage() {
             <div className="bg-white border-2 border-neutral-300 shadow-sm">
               <div className="h-1.5 bg-primary-600"></div>
               <div className="p-6">
-                <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-3">Can you help with ongoing compliance monitoring?</h3>
+                <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-3">Does CADP engage in ongoing advisory relationships?</h3>
                 <p className="text-neutral-700 leading-relaxed font-serif">
-                  Absolutely. We provide ongoing compliance support to help organisations maintain compliance as regulations evolve.
+                  The Centre maintains long-term advisory engagements with organisations navigating evolving data protection regulations,
+                  providing evidence-based guidance grounded in legal scholarship and regulatory analysis.
                 </p>
               </div>
             </div>
