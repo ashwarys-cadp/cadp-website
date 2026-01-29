@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Download, FileText } from 'lucide-react';
-import { Container, Section, Card, Badge } from '@/components/ui';
+import { Download } from 'lucide-react';
+import { Container, Section } from '@/components/ui';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { generatePageMetadata } from '@/lib/seo/metadata';
 import { client, allWhitePapersQuery, type WhitePaper } from '@/lib/sanity';
@@ -51,7 +51,7 @@ export default async function WhitePapersPage() {
   return (
     <>
       {/* Hero */}
-      <Section background="gray">
+      <Section background="white">
         <Container>
           <Breadcrumbs
             items={[
@@ -60,54 +60,65 @@ export default async function WhitePapersPage() {
             ]}
           />
 
-          <div className="mt-8 max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
-              White Papers
-            </h1>
-            <p className="text-xl text-neutral-600 leading-relaxed">
-              In-depth research and analysis on DPDP Act compliance, data
-              protection frameworks, and industry best practices.
-            </p>
+          <div className="mt-8 max-w-4xl mx-auto">
+            <div className="mb-8">
+              <div className="inline-block mb-4">
+                <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">Academic Research</div>
+                <div className="h-px w-20 bg-accent-600"></div>
+              </div>
+              <h1 className="text-4xl md:text-5xl font-serif text-neutral-950 mb-6 leading-tight">
+                White Papers
+              </h1>
+              <p className="text-lg text-neutral-700 leading-relaxed font-serif">
+                In-depth research and analysis on DPDP Act compliance, data
+                protection frameworks, and industry best practices.
+              </p>
+            </div>
           </div>
         </Container>
       </Section>
 
       {/* Papers Grid */}
-      <Section background="white">
+      <Section background="gray">
         <Container>
           <div className="grid md:grid-cols-2 gap-8">
             {papers.map((paper) => (
               <Link
                 key={paper._id}
                 href={`/resources/white-papers/${paper.slug.current}`}
-                className="group"
+                className="group block bg-white border-2 border-neutral-300 hover:border-accent-600 transition-all duration-300 shadow-sm hover:shadow-lg"
               >
-                <Card hover className="h-full p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-14 h-14 bg-primary-100 rounded-xl flex items-center justify-center shrink-0">
-                      <FileText className="w-7 h-7 text-primary-600" />
-                    </div>
-                    <div className="flex-1">
-                      <h2 className="text-xl font-semibold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors">
-                        {paper.title}
-                      </h2>
-                      <p className="text-neutral-600 mb-4 line-clamp-3">
-                        {paper.abstract}
-                      </p>
-                      {paper.topics && (
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          {paper.topics.map((topic) => (
-                            <Badge key={topic}>{topic}</Badge>
-                          ))}
-                        </div>
-                      )}
-                      <div className="flex items-center gap-2 text-primary-600 text-sm font-medium">
-                        <Download className="w-4 h-4" />
-                        <span>Download PDF</span>
+                {/* Top accent bar */}
+                <div className="h-1.5 bg-accent-600 group-hover:bg-accent-700 transition-colors"></div>
+
+                <div className="p-6 flex items-start gap-4">
+                  <div className="w-14 h-14 border-2 border-primary-900 flex items-center justify-center bg-primary-50 group-hover:bg-primary-900 shrink-0 transition-all">
+                    <Download className="w-7 h-7 text-primary-900 group-hover:text-white transition-colors" strokeWidth={1.5} />
+                  </div>
+                  <div className="flex-1">
+                    <h2 className="text-lg font-serif font-semibold text-neutral-950 mb-2 group-hover:text-primary-900 transition-colors">
+                      {paper.title}
+                    </h2>
+                    <p className="text-sm text-neutral-700 leading-relaxed font-serif line-clamp-3 mb-3">
+                      {paper.abstract}
+                    </p>
+                    {paper.topics && (
+                      <div className="flex flex-wrap gap-2 pt-3 border-t border-neutral-200">
+                        {paper.topics.map((topic) => (
+                          <span key={topic} className="text-[0.6875rem] uppercase tracking-[0.15em] text-neutral-600 font-semibold bg-neutral-100 px-2 py-1 border border-neutral-300">
+                            {topic}
+                          </span>
+                        ))}
                       </div>
+                    )}
+                    <div className="mt-4 pt-4 border-t border-neutral-200">
+                      <span className="text-sm font-semibold text-primary-700 group-hover:text-primary-900 transition-colors font-serif inline-flex items-center gap-2">
+                        <Download className="w-4 h-4" />
+                        Download PDF
+                      </span>
                     </div>
                   </div>
-                </Card>
+                </div>
               </Link>
             ))}
           </div>

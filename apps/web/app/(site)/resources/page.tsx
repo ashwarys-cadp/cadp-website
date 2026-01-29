@@ -115,34 +115,43 @@ export default async function ResourcesPage() {
   return (
     <>
       {/* Hero */}
-      <Section background="gray">
+      <Section background="white">
         <Container>
           <Breadcrumbs items={[{ name: 'Resources', href: '/resources' }]} />
 
-          <div className="mt-8 max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
-              Resources
-            </h1>
-            <p className="text-xl text-neutral-600 leading-relaxed">
-              Comprehensive guides, articles, and white papers to help you
-              understand and implement DPDP Act compliance.
-            </p>
+          <div className="mt-8 max-w-4xl mx-auto">
+            <div className="mb-8">
+              <div className="inline-block mb-4">
+                <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">Research & Publications</div>
+                <div className="h-px w-20 bg-accent-600"></div>
+              </div>
+              <h1 className="text-4xl md:text-5xl font-serif text-neutral-950 mb-6 leading-tight">
+                Resources
+              </h1>
+              <p className="text-lg text-neutral-700 leading-relaxed font-serif">
+                Comprehensive guides, articles, and white papers to help you
+                understand and implement DPDP Act compliance.
+              </p>
+            </div>
           </div>
         </Container>
       </Section>
 
       {/* Featured Guides */}
-      <Section background="white">
+      <Section background="gray">
         <Container>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
-            <SectionHeader
-              title="Guides"
-              subtitle="In-depth resources on key compliance topics"
-              className="mb-0"
-            />
+            <div>
+              <div className="inline-block mb-4">
+                <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">Pillar Content</div>
+                <div className="h-px w-20 bg-accent-600"></div>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-serif text-neutral-950 mb-2">Guides</h2>
+              <p className="text-neutral-600 font-serif">In-depth resources on key compliance topics</p>
+            </div>
             <Link
               href="/resources/guides"
-              className="mt-4 md:mt-0 inline-flex items-center text-primary-600 font-medium hover:text-primary-700"
+              className="mt-4 md:mt-0 inline-flex items-center text-primary-700 hover:text-primary-900 font-semibold font-serif border-b-2 border-primary-300 hover:border-primary-700 pb-1 transition-all"
             >
               View all guides
               <ArrowRight className="w-4 h-4 ml-1" />
@@ -150,39 +159,46 @@ export default async function ResourcesPage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {guides.map((guide) => (
+            {guides.map((guide, index) => (
               <Link
                 key={guide._id}
                 href={`/resources/guides/${guide.slug.current}`}
-                className="group"
+                className="group block bg-white border-2 border-neutral-300 hover:border-accent-600 transition-all duration-300 shadow-sm hover:shadow-lg"
               >
-                <Card hover className="h-full">
-                  <div className="relative aspect-video bg-gradient-to-br from-primary-100 to-primary-50">
-                    {guide.featuredImage ? (
-                      <Image
-                        src={urlFor(guide.featuredImage).width(600).height(340).url()}
-                        alt={guide.featuredImage.alt || guide.title}
-                        fill
-                        className="object-cover"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <BookOpen className="w-12 h-12 text-primary-300" />
-                      </div>
-                    )}
-                    <div className="absolute top-3 left-3">
-                      <Badge variant="primary">Guide</Badge>
+                {/* Top accent bar */}
+                <div className="h-2 bg-accent-600 group-hover:bg-accent-700 transition-colors"></div>
+
+                <div className="p-7">
+                  {/* Icon and Number */}
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="w-14 h-14 border-2 border-primary-900 flex items-center justify-center bg-primary-50 group-hover:bg-primary-900 transition-all">
+                      <BookOpen className="w-7 h-7 text-primary-900 group-hover:text-white transition-colors" strokeWidth={1.5} />
+                    </div>
+                    <div className="text-5xl font-serif text-neutral-200 group-hover:text-accent-600 transition-colors leading-none">
+                      {['I', 'II', 'III'][index] || 'IV'}
                     </div>
                   </div>
-                  <div className="p-5">
-                    <h3 className="text-lg font-semibold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors">
-                      {guide.title}
-                    </h3>
-                    <p className="text-sm text-neutral-600 line-clamp-2">
-                      {guide.excerpt}
-                    </p>
+
+                  {/* Title */}
+                  <h3 className="text-xl font-serif font-semibold text-neutral-950 mb-4 leading-tight group-hover:text-primary-900 transition-colors">
+                    {guide.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-neutral-700 leading-relaxed font-serif text-[0.9375rem] line-clamp-3">
+                    {guide.excerpt}
+                  </p>
+
+                  {/* Learn more arrow */}
+                  <div className="mt-6 pt-5 border-t border-neutral-300 flex items-center justify-between">
+                    <span className="text-sm font-semibold text-primary-700 group-hover:text-primary-900 transition-colors font-serif">
+                      Read Guide
+                    </span>
+                    <div className="w-8 h-8 border-2 border-primary-700 group-hover:border-primary-900 group-hover:bg-primary-900 flex items-center justify-center transition-all">
+                      <span className="text-primary-700 group-hover:text-white transition-colors text-lg">→</span>
+                    </div>
                   </div>
-                </Card>
+                </div>
               </Link>
             ))}
           </div>
@@ -190,17 +206,20 @@ export default async function ResourcesPage() {
       </Section>
 
       {/* Latest Articles */}
-      <Section background="gray">
+      <Section background="white">
         <Container>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
-            <SectionHeader
-              title="Articles"
-              subtitle="Latest insights and updates"
-              className="mb-0"
-            />
+            <div>
+              <div className="inline-block mb-4">
+                <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">Latest Insights</div>
+                <div className="h-px w-20 bg-accent-600"></div>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-serif text-neutral-950 mb-2">Articles</h2>
+              <p className="text-neutral-600 font-serif">Latest insights and updates</p>
+            </div>
             <Link
               href="/resources/articles"
-              className="mt-4 md:mt-0 inline-flex items-center text-primary-600 font-medium hover:text-primary-700"
+              className="mt-4 md:mt-0 inline-flex items-center text-primary-700 hover:text-primary-900 font-semibold font-serif border-b-2 border-primary-300 hover:border-primary-700 pb-1 transition-all"
             >
               View all articles
               <ArrowRight className="w-4 h-4 ml-1" />
@@ -212,42 +231,44 @@ export default async function ResourcesPage() {
               <Link
                 key={post._id}
                 href={`/resources/articles/${post.slug.current}`}
-                className="group"
+                className="group block bg-white border-2 border-neutral-300 hover:border-primary-600 transition-all duration-300 shadow-sm hover:shadow-lg"
               >
-                <Card hover className="h-full">
-                  <div className="relative aspect-video bg-gradient-to-br from-neutral-100 to-neutral-50">
-                    {post.featuredImage ? (
-                      <Image
-                        src={urlFor(post.featuredImage).width(600).height(340).url()}
-                        alt={post.featuredImage.alt || post.title}
-                        fill
-                        className="object-cover"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <FileText className="w-12 h-12 text-neutral-300" />
+                {/* Top accent bar */}
+                <div className="h-1.5 bg-primary-600 group-hover:bg-primary-800 transition-colors"></div>
+
+                <div className="p-6">
+                  {/* Metadata */}
+                  <div className="flex items-center gap-3 mb-4">
+                    {post.category && (
+                      <div className="text-[0.6875rem] uppercase tracking-[0.15em] text-primary-800 font-semibold bg-primary-50 px-2.5 py-1 border border-primary-200">
+                        {getCategoryLabel(post.category)}
                       </div>
                     )}
+                    {post.publishedAt && (
+                      <span className="text-xs text-neutral-500 font-serif">
+                        {formatDateShort(post.publishedAt)}
+                      </span>
+                    )}
                   </div>
-                  <div className="p-5">
-                    <div className="flex items-center gap-3 mb-2">
-                      {post.category && (
-                        <Badge>{getCategoryLabel(post.category)}</Badge>
-                      )}
-                      {post.publishedAt && (
-                        <span className="text-xs text-neutral-500">
-                          {formatDateShort(post.publishedAt)}
-                        </span>
-                      )}
-                    </div>
-                    <h3 className="text-lg font-semibold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors">
-                      {post.title}
-                    </h3>
-                    <p className="text-sm text-neutral-600 line-clamp-2">
-                      {post.excerpt}
-                    </p>
+
+                  {/* Title */}
+                  <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-3 leading-tight group-hover:text-primary-900 transition-colors">
+                    {post.title}
+                  </h3>
+
+                  {/* Excerpt */}
+                  <p className="text-sm text-neutral-700 leading-relaxed font-serif line-clamp-3">
+                    {post.excerpt}
+                  </p>
+
+                  {/* Read more indicator */}
+                  <div className="mt-5 pt-4 border-t border-neutral-200">
+                    <span className="text-sm font-semibold text-primary-700 group-hover:text-primary-900 transition-colors font-serif inline-flex items-center gap-2">
+                      Read Article
+                      <span className="group-hover:translate-x-1 transition-transform">→</span>
+                    </span>
                   </div>
-                </Card>
+                </div>
               </Link>
             ))}
           </div>
@@ -255,17 +276,20 @@ export default async function ResourcesPage() {
       </Section>
 
       {/* White Papers */}
-      <Section background="white">
+      <Section background="gray">
         <Container>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
-            <SectionHeader
-              title="White Papers"
-              subtitle="In-depth research and analysis"
-              className="mb-0"
-            />
+            <div>
+              <div className="inline-block mb-4">
+                <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">Academic Research</div>
+                <div className="h-px w-20 bg-accent-600"></div>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-serif text-neutral-950 mb-2">White Papers</h2>
+              <p className="text-neutral-600 font-serif">In-depth research and analysis</p>
+            </div>
             <Link
               href="/resources/white-papers"
-              className="mt-4 md:mt-0 inline-flex items-center text-primary-600 font-medium hover:text-primary-700"
+              className="mt-4 md:mt-0 inline-flex items-center text-primary-700 hover:text-primary-900 font-semibold font-serif border-b-2 border-primary-300 hover:border-primary-700 pb-1 transition-all"
             >
               View all white papers
               <ArrowRight className="w-4 h-4 ml-1" />
@@ -277,30 +301,33 @@ export default async function ResourcesPage() {
               <Link
                 key={paper._id}
                 href={`/resources/white-papers/${paper.slug.current}`}
-                className="group"
+                className="group block bg-white border-2 border-neutral-300 hover:border-accent-600 transition-all duration-300 shadow-sm hover:shadow-lg"
               >
-                <Card hover className="p-6 flex items-start gap-4">
-                  <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center shrink-0">
-                    <Download className="w-6 h-6 text-primary-600" />
+                {/* Top accent bar */}
+                <div className="h-1.5 bg-accent-600 group-hover:bg-accent-700 transition-colors"></div>
+
+                <div className="p-6 flex items-start gap-4">
+                  <div className="w-14 h-14 border-2 border-primary-900 flex items-center justify-center bg-primary-50 group-hover:bg-primary-900 shrink-0 transition-all">
+                    <Download className="w-7 h-7 text-primary-900 group-hover:text-white transition-colors" strokeWidth={1.5} />
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-neutral-900 mb-1 group-hover:text-primary-600 transition-colors">
+                  <div className="flex-1">
+                    <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-2 group-hover:text-primary-900 transition-colors">
                       {paper.title}
                     </h3>
-                    <p className="text-sm text-neutral-600 line-clamp-2">
+                    <p className="text-sm text-neutral-700 leading-relaxed font-serif line-clamp-2 mb-3">
                       {paper.abstract}
                     </p>
                     {paper.topics && (
-                      <div className="flex flex-wrap gap-2 mt-3">
+                      <div className="flex flex-wrap gap-2 pt-3 border-t border-neutral-200">
                         {paper.topics.slice(0, 3).map((topic) => (
-                          <Badge key={topic} variant="default">
+                          <span key={topic} className="text-[0.6875rem] uppercase tracking-[0.15em] text-neutral-600 font-semibold bg-neutral-100 px-2 py-1 border border-neutral-300">
                             {topic}
-                          </Badge>
+                          </span>
                         ))}
                       </div>
                     )}
                   </div>
-                </Card>
+                </div>
               </Link>
             ))}
           </div>
@@ -308,19 +335,32 @@ export default async function ResourcesPage() {
       </Section>
 
       {/* Newsletter CTA */}
-      <Section background="primary">
+      <Section background="white">
         <Container size="narrow">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              Stay Updated
-            </h2>
-            <p className="text-primary-100 mb-8 max-w-xl mx-auto">
-              Get the latest guides, articles, and updates on DPDP compliance
-              delivered to your inbox.
-            </p>
-            <Button href="/contact" variant="secondary" size="lg">
-              Subscribe to Updates
-            </Button>
+          <div className="border-4 border-primary-950 bg-primary-950 p-10 md:p-14 shadow-xl relative">
+            {/* Decorative corner accents */}
+            <div className="absolute top-0 right-0 w-20 h-20 bg-accent-600 opacity-20"></div>
+            <div className="absolute bottom-0 left-0 w-20 h-20 bg-accent-600 opacity-20"></div>
+
+            <div className="text-center relative z-10">
+              {/* Academic header */}
+              <div className="inline-block mb-6">
+                <div className="text-xs uppercase tracking-[0.25em] text-accent-500 font-semibold mb-3">Stay Informed</div>
+                <div className="h-px w-24 mx-auto bg-accent-600"></div>
+              </div>
+
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-5">
+                Stay Updated
+              </h2>
+              <p className="text-primary-100 text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-serif">
+                Get the latest guides, articles, and updates on DPDP compliance
+                delivered to your inbox.
+              </p>
+
+              <Button href="/contact" variant="secondary" size="lg">
+                Subscribe to Updates
+              </Button>
+            </div>
           </div>
         </Container>
       </Section>

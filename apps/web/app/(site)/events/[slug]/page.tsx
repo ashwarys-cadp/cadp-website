@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import Link from 'next/link';
 import {
   Calendar,
   MapPin,
@@ -10,7 +9,7 @@ import {
   User,
   ArrowLeft,
 } from 'lucide-react';
-import { Container, Section, Button, Card, Badge } from '@/components/ui';
+import { Container, Section, Button } from '@/components/ui';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { EventJsonLd } from '@/components/seo/JsonLd';
 import { generatePageMetadata } from '@/lib/seo/metadata';
@@ -96,7 +95,7 @@ export default async function EventPage({ params }: EventPageProps) {
       />
 
       {/* Header */}
-      <Section background="gray">
+      <Section background="white">
         <Container>
           <Breadcrumbs
             items={[
@@ -108,25 +107,33 @@ export default async function EventPage({ params }: EventPageProps) {
           <div className="mt-8 grid lg:grid-cols-3 gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2">
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-3 mb-6">
                 {upcoming ? (
-                  <Badge variant="success">Upcoming</Badge>
+                  <span className="text-[0.6875rem] uppercase tracking-[0.15em] text-green-800 font-semibold bg-green-50 px-2.5 py-1 border border-green-200">
+                    Upcoming
+                  </span>
                 ) : (
-                  <Badge variant="default">Past Event</Badge>
+                  <span className="text-[0.6875rem] uppercase tracking-[0.15em] text-neutral-600 font-semibold bg-neutral-100 px-2.5 py-1 border border-neutral-300">
+                    Past Event
+                  </span>
                 )}
-                {event.isOnline && <Badge variant="primary">Online</Badge>}
+                {event.isOnline && (
+                  <span className="text-[0.6875rem] uppercase tracking-[0.15em] text-primary-800 font-semibold bg-primary-50 px-2.5 py-1 border border-primary-200">
+                    Online
+                  </span>
+                )}
               </div>
 
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 mb-6 text-balance">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif text-neutral-950 mb-6 leading-tight">
                 {event.title}
               </h1>
 
-              <p className="text-lg text-neutral-600 mb-6">
+              <p className="text-lg text-neutral-700 mb-8 leading-relaxed font-serif">
                 {event.description}
               </p>
 
               {event.featuredImage && (
-                <div className="relative aspect-video rounded-xl overflow-hidden">
+                <div className="relative aspect-video border-2 border-neutral-300 overflow-hidden">
                   <Image
                     src={urlFor(event.featuredImage).width(1200).height(675).url()}
                     alt={event.featuredImage.alt || event.title}
@@ -140,61 +147,74 @@ export default async function EventPage({ params }: EventPageProps) {
 
             {/* Sidebar */}
             <div>
-              <Card hover={false} className="p-6 sticky top-24">
-                <h2 className="font-semibold text-neutral-900 mb-4">
-                  Event Details
-                </h2>
+              <div className="bg-white border-2 border-neutral-300 shadow-sm sticky top-24">
+                <div className="h-2 bg-accent-600"></div>
+                <div className="p-6">
+                  <div className="mb-6">
+                    <div className="inline-block mb-3">
+                      <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">Details</div>
+                      <div className="h-px w-16 bg-accent-600"></div>
+                    </div>
+                    <h2 className="text-xl font-serif font-semibold text-neutral-950">
+                      Event Information
+                    </h2>
+                  </div>
 
-                <div className="space-y-4 mb-6">
-                  <div className="flex items-start gap-3">
-                    <Calendar className="w-5 h-5 text-primary-600 mt-0.5" />
-                    <div>
-                      <p className="font-medium text-neutral-900">Date</p>
-                      <p className="text-neutral-600">
-                        {formatDate(event.date)}
-                        {event.endDate && (
-                          <>
-                            <br />
-                            to {formatDate(event.endDate)}
-                          </>
+                  <div className="space-y-5 mb-6 pb-6 border-b border-neutral-200">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 border-2 border-primary-900 flex items-center justify-center bg-primary-50 shrink-0">
+                        <Calendar className="w-5 h-5 text-primary-900" strokeWidth={1.5} />
+                      </div>
+                      <div>
+                        <p className="text-xs uppercase tracking-[0.15em] text-primary-800 font-semibold mb-1">Date</p>
+                        <p className="text-neutral-700 font-serif text-sm">
+                          {formatDate(event.date)}
+                          {event.endDate && (
+                            <>
+                              <br />
+                              to {formatDate(event.endDate)}
+                            </>
+                          )}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 border-2 border-primary-900 flex items-center justify-center bg-primary-50 shrink-0">
+                        {event.isOnline ? (
+                          <Video className="w-5 h-5 text-primary-900" strokeWidth={1.5} />
+                        ) : (
+                          <MapPin className="w-5 h-5 text-primary-900" strokeWidth={1.5} />
                         )}
-                      </p>
+                      </div>
+                      <div>
+                        <p className="text-xs uppercase tracking-[0.15em] text-primary-800 font-semibold mb-1">
+                          {event.isOnline ? 'Format' : 'Location'}
+                        </p>
+                        <p className="text-neutral-700 font-serif text-sm">{event.location}</p>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3">
-                    {event.isOnline ? (
-                      <Video className="w-5 h-5 text-primary-600 mt-0.5" />
-                    ) : (
-                      <MapPin className="w-5 h-5 text-primary-600 mt-0.5" />
-                    )}
-                    <div>
-                      <p className="font-medium text-neutral-900">
-                        {event.isOnline ? 'Format' : 'Location'}
-                      </p>
-                      <p className="text-neutral-600">{event.location}</p>
-                    </div>
-                  </div>
+                  {upcoming && event.registrationUrl && (
+                    <a
+                      href={event.registrationUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full inline-flex items-center justify-center px-5 py-3 bg-primary-950 text-white font-semibold hover:bg-primary-900 transition-colors font-serif border-2 border-primary-950"
+                    >
+                      Register Now
+                      <ExternalLink className="w-4 h-4 ml-2" />
+                    </a>
+                  )}
+
+                  {!upcoming && (
+                    <p className="text-neutral-500 text-sm text-center font-serif">
+                      This event has ended.
+                    </p>
+                  )}
                 </div>
-
-                {upcoming && event.registrationUrl && (
-                  <a
-                    href={event.registrationUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center px-5 py-3 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors"
-                  >
-                    Register Now
-                    <ExternalLink className="w-4 h-4 ml-2" />
-                  </a>
-                )}
-
-                {!upcoming && (
-                  <p className="text-neutral-500 text-sm text-center">
-                    This event has ended.
-                  </p>
-                )}
-              </Card>
+              </div>
             </div>
           </div>
         </Container>
@@ -202,37 +222,46 @@ export default async function EventPage({ params }: EventPageProps) {
 
       {/* Speakers */}
       {event.speakers && event.speakers.length > 0 && (
-        <Section background="white">
+        <Section background="gray">
           <Container>
-            <h2 className="text-2xl font-bold text-neutral-900 mb-8">
-              Speakers
-            </h2>
+            <div className="mb-12">
+              <div className="inline-block mb-4">
+                <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">Featured Speakers</div>
+                <div className="h-px w-20 bg-accent-600"></div>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-serif text-neutral-950">Speakers</h2>
+            </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {event.speakers.map((speaker) => (
-                <Card key={speaker._id} hover={false} className="p-6 text-center">
-                  <div className="w-20 h-20 mx-auto mb-4 relative rounded-full overflow-hidden bg-neutral-100">
-                    {speaker.image ? (
-                      <Image
-                        src={urlFor(speaker.image).width(160).height(160).url()}
-                        alt={speaker.name}
-                        fill
-                        className="object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <User className="w-8 h-8 text-neutral-400" />
-                      </div>
+                <div key={speaker._id} className="bg-white border-2 border-neutral-300 shadow-sm text-center">
+                  <div className="h-1.5 bg-accent-600"></div>
+                  <div className="p-6">
+                    <div className="w-24 h-24 mx-auto mb-4 relative rounded-full overflow-hidden bg-neutral-100 border-2 border-neutral-300">
+                      {speaker.image ? (
+                        <Image
+                          src={urlFor(speaker.image).width(160).height(160).url()}
+                          alt={speaker.name}
+                          fill
+                          className="object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <User className="w-8 h-8 text-neutral-400" />
+                        </div>
+                      )}
+                    </div>
+                    <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-1">
+                      {speaker.name}
+                    </h3>
+                    <p className="text-sm text-primary-800 font-semibold uppercase tracking-wide mb-3">
+                      {speaker.role}
+                    </p>
+                    {speaker.bio && (
+                      <p className="text-sm text-neutral-700 leading-relaxed font-serif">{speaker.bio}</p>
                     )}
                   </div>
-                  <h3 className="font-semibold text-neutral-900">
-                    {speaker.name}
-                  </h3>
-                  <p className="text-sm text-primary-600">{speaker.role}</p>
-                  {speaker.bio && (
-                    <p className="text-sm text-neutral-600 mt-2">{speaker.bio}</p>
-                  )}
-                </Card>
+                </div>
               ))}
             </div>
           </Container>
@@ -240,7 +269,7 @@ export default async function EventPage({ params }: EventPageProps) {
       )}
 
       {/* Back to Events */}
-      <Section background="gray">
+      <Section background="white">
         <Container>
           <div className="flex justify-center">
             <Button href="/events" variant="outline">

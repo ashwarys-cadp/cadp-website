@@ -1,11 +1,10 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Calendar, MapPin, Video, ArrowRight, ExternalLink } from 'lucide-react';
-import { Container, Section, SectionHeader, Button, Card, Badge } from '@/components/ui';
+import { Container, Section, Button } from '@/components/ui';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { generatePageMetadata } from '@/lib/seo/metadata';
-import { client, urlFor, allEventsQuery, type Event } from '@/lib/sanity';
+import { client, allEventsQuery, type Event } from '@/lib/sanity';
 import { formatDate, formatDateShort, isUpcoming } from '@/lib/utils';
 
 export const metadata: Metadata = generatePageMetadata({
@@ -61,72 +60,91 @@ export default async function EventsPage() {
   return (
     <>
       {/* Hero */}
-      <Section background="gray">
+      <Section background="white">
         <Container>
           <Breadcrumbs items={[{ name: 'Events', href: '/events' }]} />
 
-          <div className="mt-8 max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
-              Events
-            </h1>
-            <p className="text-xl text-neutral-600 leading-relaxed">
-              Join us for workshops, conferences, and webinars on DPDP Act
-              compliance and data protection.
-            </p>
+          <div className="mt-8 max-w-4xl mx-auto">
+            <div className="mb-8">
+              <div className="inline-block mb-4">
+                <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">Workshops & Conferences</div>
+                <div className="h-px w-20 bg-accent-600"></div>
+              </div>
+              <h1 className="text-4xl md:text-5xl font-serif text-neutral-950 mb-6 leading-tight">
+                Events
+              </h1>
+              <p className="text-lg text-neutral-700 leading-relaxed font-serif">
+                Join us for workshops, conferences, and webinars on DPDP Act
+                compliance and data protection.
+              </p>
+            </div>
           </div>
         </Container>
       </Section>
 
       {/* Featured Event */}
       {featuredEvent && (
-        <Section background="white">
+        <Section background="gray">
           <Container>
-            <div className="bg-gradient-to-br from-primary-900 to-primary-800 rounded-2xl p-8 md:p-12 text-white">
-              <Badge className="bg-accent-500 text-white mb-4">
-                Featured Event
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                {featuredEvent.title}
-              </h2>
-              <p className="text-primary-100 text-lg mb-6 max-w-2xl">
-                {featuredEvent.description}
-              </p>
+            <div className="border-4 border-primary-950 bg-primary-950 p-8 md:p-12 shadow-xl relative">
+              {/* Decorative corner accents */}
+              <div className="absolute top-0 right-0 w-20 h-20 bg-accent-600 opacity-20"></div>
+              <div className="absolute bottom-0 left-0 w-20 h-20 bg-accent-600 opacity-20"></div>
 
-              <div className="flex flex-wrap gap-6 mb-8">
-                <div className="flex items-center gap-2 text-primary-100">
-                  <Calendar className="w-5 h-5" />
-                  <span>
-                    {formatDate(featuredEvent.date)}
-                    {featuredEvent.endDate &&
-                      ` - ${formatDateShort(featuredEvent.endDate)}`}
-                  </span>
+              <div className="relative z-10">
+                {/* Featured Badge */}
+                <div className="inline-block mb-6">
+                  <div className="text-xs uppercase tracking-[0.25em] text-accent-500 font-semibold mb-3">Featured Event</div>
+                  <div className="h-px w-24 bg-accent-600"></div>
                 </div>
-                <div className="flex items-center gap-2 text-primary-100">
-                  {featuredEvent.isOnline ? (
-                    <Video className="w-5 h-5" />
-                  ) : (
-                    <MapPin className="w-5 h-5" />
+
+                <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-5">
+                  {featuredEvent.title}
+                </h2>
+                <p className="text-primary-100 text-lg mb-8 max-w-2xl leading-relaxed font-serif">
+                  {featuredEvent.description}
+                </p>
+
+                <div className="flex flex-wrap gap-6 mb-10 pb-8 border-b border-primary-800">
+                  <div className="flex items-center gap-3 text-primary-100">
+                    <div className="w-10 h-10 border-2 border-accent-600 flex items-center justify-center bg-accent-600/20">
+                      <Calendar className="w-5 h-5 text-accent-400" strokeWidth={1.5} />
+                    </div>
+                    <span className="font-serif">
+                      {formatDate(featuredEvent.date)}
+                      {featuredEvent.endDate &&
+                        ` - ${formatDateShort(featuredEvent.endDate)}`}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 text-primary-100">
+                    <div className="w-10 h-10 border-2 border-accent-600 flex items-center justify-center bg-accent-600/20">
+                      {featuredEvent.isOnline ? (
+                        <Video className="w-5 h-5 text-accent-400" strokeWidth={1.5} />
+                      ) : (
+                        <MapPin className="w-5 h-5 text-accent-400" strokeWidth={1.5} />
+                      )}
+                    </div>
+                    <span className="font-serif">{featuredEvent.location}</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button href={`/events/${featuredEvent.slug.current}`} variant="secondary" size="lg">
+                    Learn More
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                  {featuredEvent.registrationUrl && (
+                    <a
+                      href={featuredEvent.registrationUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white font-semibold hover:bg-white hover:text-primary-950 transition-colors font-serif"
+                    >
+                      Register Now
+                      <ExternalLink className="w-4 h-4 ml-2" />
+                    </a>
                   )}
-                  <span>{featuredEvent.location}</span>
                 </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button href={`/events/${featuredEvent.slug.current}`} variant="secondary">
-                  Learn More
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-                {featuredEvent.registrationUrl && (
-                  <a
-                    href={featuredEvent.registrationUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-5 py-2.5 border-2 border-white text-white font-medium rounded-lg hover:bg-white/10 transition-colors"
-                  >
-                    Register Now
-                    <ExternalLink className="w-4 h-4 ml-2" />
-                  </a>
-                )}
               </div>
             </div>
           </Container>
@@ -135,12 +153,16 @@ export default async function EventsPage() {
 
       {/* Upcoming Events */}
       {upcomingEvents.length > 1 && (
-        <Section background="gray">
+        <Section background="white">
           <Container>
-            <SectionHeader
-              title="Upcoming Events"
-              subtitle="Mark your calendar for these upcoming sessions"
-            />
+            <div className="mb-12">
+              <div className="inline-block mb-4">
+                <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">Coming Soon</div>
+                <div className="h-px w-20 bg-accent-600"></div>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-serif text-neutral-950 mb-2">Upcoming Events</h2>
+              <p className="text-neutral-600 font-serif">Mark your calendar for these upcoming sessions</p>
+            </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {upcomingEvents
@@ -149,41 +171,35 @@ export default async function EventsPage() {
                   <Link
                     key={event._id}
                     href={`/events/${event.slug.current}`}
-                    className="group"
+                    className="group block bg-white border-2 border-neutral-300 hover:border-primary-600 transition-all duration-300 shadow-sm hover:shadow-lg"
                   >
-                    <Card hover className="h-full">
-                      {event.featuredImage ? (
-                        <div className="relative aspect-video">
-                          <Image
-                            src={urlFor(event.featuredImage).width(600).height(340).url()}
-                            alt={event.featuredImage.alt || event.title}
-                            fill
-                            className="object-cover"
-                          />
+                    {/* Top accent bar */}
+                    <div className="h-1.5 bg-primary-600 group-hover:bg-primary-800 transition-colors"></div>
+
+                    <div className="p-6">
+                      {/* Date */}
+                      <div className="flex items-center gap-2 text-sm text-neutral-500 mb-4">
+                        <div className="w-8 h-8 border border-neutral-300 flex items-center justify-center bg-neutral-50">
+                          <Calendar className="w-4 h-4" strokeWidth={1.5} />
                         </div>
-                      ) : (
-                        <div className="aspect-video bg-gradient-to-br from-primary-100 to-primary-50 flex items-center justify-center">
-                          <Calendar className="w-12 h-12 text-primary-300" />
-                        </div>
-                      )}
-                      <div className="p-5">
-                        <div className="flex items-center gap-2 text-sm text-neutral-500 mb-2">
-                          <Calendar className="w-4 h-4" />
-                          <span>{formatDateShort(event.date)}</span>
-                        </div>
-                        <h3 className="text-lg font-semibold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors">
-                          {event.title}
-                        </h3>
-                        <div className="flex items-center gap-2 text-sm text-neutral-500">
-                          {event.isOnline ? (
-                            <Video className="w-4 h-4" />
-                          ) : (
-                            <MapPin className="w-4 h-4" />
-                          )}
-                          <span>{event.location}</span>
-                        </div>
+                        <span className="font-serif">{formatDateShort(event.date)}</span>
                       </div>
-                    </Card>
+
+                      {/* Title */}
+                      <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-3 leading-tight group-hover:text-primary-900 transition-colors">
+                        {event.title}
+                      </h3>
+
+                      {/* Location */}
+                      <div className="flex items-center gap-2 text-sm text-neutral-600 pt-4 border-t border-neutral-200">
+                        {event.isOnline ? (
+                          <Video className="w-4 h-4" strokeWidth={1.5} />
+                        ) : (
+                          <MapPin className="w-4 h-4" strokeWidth={1.5} />
+                        )}
+                        <span className="font-serif">{event.location}</span>
+                      </div>
+                    </div>
                   </Link>
                 ))}
             </div>
@@ -193,44 +209,53 @@ export default async function EventsPage() {
 
       {/* Past Events */}
       {pastEvents.length > 0 && (
-        <Section background="white">
+        <Section background="gray">
           <Container>
-            <SectionHeader
-              title="Past Events"
-              subtitle="Browse recordings and materials from previous sessions"
-            />
+            <div className="mb-12">
+              <div className="inline-block mb-4">
+                <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">Archive</div>
+                <div className="h-px w-20 bg-accent-600"></div>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-serif text-neutral-950 mb-2">Past Events</h2>
+              <p className="text-neutral-600 font-serif">Browse recordings and materials from previous sessions</p>
+            </div>
 
             <div className="space-y-4">
               {pastEvents.map((event) => (
                 <Link
                   key={event._id}
                   href={`/events/${event.slug.current}`}
-                  className="block group"
+                  className="block group bg-white border-2 border-neutral-300 hover:border-neutral-400 transition-all duration-300 shadow-sm hover:shadow-md"
                 >
-                  <Card hover className="p-5">
-                    <div className="flex items-center justify-between gap-4">
-                      <div>
-                        <div className="flex items-center gap-3 mb-1">
-                          <span className="text-sm text-neutral-500">
-                            {formatDateShort(event.date)}
-                          </span>
-                          <Badge variant="default">Past</Badge>
-                        </div>
-                        <h3 className="font-semibold text-neutral-900 group-hover:text-primary-600 transition-colors">
-                          {event.title}
-                        </h3>
-                        <div className="flex items-center gap-2 text-sm text-neutral-500 mt-1">
-                          {event.isOnline ? (
-                            <Video className="w-4 h-4" />
-                          ) : (
-                            <MapPin className="w-4 h-4" />
-                          )}
-                          <span>{event.location}</span>
-                        </div>
+                  {/* Subtle accent bar for past events */}
+                  <div className="h-1 bg-neutral-300 group-hover:bg-neutral-400 transition-colors"></div>
+
+                  <div className="p-6 flex items-center justify-between gap-6">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-2">
+                        <span className="text-sm text-neutral-500 font-serif">
+                          {formatDateShort(event.date)}
+                        </span>
+                        <span className="text-[0.6875rem] uppercase tracking-[0.15em] text-neutral-600 font-semibold bg-neutral-100 px-2 py-1 border border-neutral-300">
+                          Past
+                        </span>
                       </div>
-                      <ArrowRight className="w-5 h-5 text-neutral-400 group-hover:text-primary-600 transition-colors" />
+                      <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-2 group-hover:text-neutral-900 transition-colors">
+                        {event.title}
+                      </h3>
+                      <div className="flex items-center gap-2 text-sm text-neutral-600">
+                        {event.isOnline ? (
+                          <Video className="w-4 h-4" strokeWidth={1.5} />
+                        ) : (
+                          <MapPin className="w-4 h-4" strokeWidth={1.5} />
+                        )}
+                        <span className="font-serif">{event.location}</span>
+                      </div>
                     </div>
-                  </Card>
+                    <div className="w-10 h-10 border-2 border-neutral-300 group-hover:border-neutral-400 flex items-center justify-center transition-all">
+                      <ArrowRight className="w-5 h-5 text-neutral-400 group-hover:text-neutral-600 transition-colors" />
+                    </div>
+                  </div>
                 </Link>
               ))}
             </div>
@@ -239,19 +264,32 @@ export default async function EventsPage() {
       )}
 
       {/* CTA */}
-      <Section background="primary">
+      <Section background="white">
         <Container size="narrow">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              Want to Host an Event?
-            </h2>
-            <p className="text-primary-100 mb-8 max-w-xl mx-auto">
-              Partner with us to bring DPDP training and awareness to your
-              organisation or community.
-            </p>
-            <Button href="/contact" variant="secondary" size="lg">
-              Get in Touch
-            </Button>
+          <div className="border-4 border-primary-950 bg-primary-950 p-10 md:p-14 shadow-xl relative">
+            {/* Decorative corner accents */}
+            <div className="absolute top-0 right-0 w-20 h-20 bg-accent-600 opacity-20"></div>
+            <div className="absolute bottom-0 left-0 w-20 h-20 bg-accent-600 opacity-20"></div>
+
+            <div className="text-center relative z-10">
+              {/* Academic header */}
+              <div className="inline-block mb-6">
+                <div className="text-xs uppercase tracking-[0.25em] text-accent-500 font-semibold mb-3">Partnership Opportunities</div>
+                <div className="h-px w-24 mx-auto bg-accent-600"></div>
+              </div>
+
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-5">
+                Want to Host an Event?
+              </h2>
+              <p className="text-primary-100 text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-serif">
+                Partner with us to bring DPDP training and awareness to your
+                organisation or community.
+              </p>
+
+              <Button href="/contact" variant="secondary" size="lg">
+                Get in Touch
+              </Button>
+            </div>
           </div>
         </Container>
       </Section>

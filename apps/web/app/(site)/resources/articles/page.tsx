@@ -1,11 +1,9 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
-import { FileText } from 'lucide-react';
-import { Container, Section, Card, Badge } from '@/components/ui';
+import { Container, Section } from '@/components/ui';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { generatePageMetadata } from '@/lib/seo/metadata';
-import { client, urlFor, allPostsQuery, type Post } from '@/lib/sanity';
+import { client, allPostsQuery, type Post } from '@/lib/sanity';
 import { formatDateShort, getCategoryLabel } from '@/lib/utils';
 
 export const metadata: Metadata = generatePageMetadata({
@@ -62,7 +60,7 @@ export default async function ArticlesPage() {
   return (
     <>
       {/* Hero */}
-      <Section background="gray">
+      <Section background="white">
         <Container>
           <Breadcrumbs
             items={[
@@ -71,62 +69,70 @@ export default async function ArticlesPage() {
             ]}
           />
 
-          <div className="mt-8 max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
-              Articles
-            </h1>
-            <p className="text-xl text-neutral-600 leading-relaxed">
-              Insights, analysis, and updates on DPDP Act compliance and data
-              protection in India.
-            </p>
+          <div className="mt-8 max-w-4xl mx-auto">
+            <div className="mb-8">
+              <div className="inline-block mb-4">
+                <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">Latest Insights</div>
+                <div className="h-px w-20 bg-accent-600"></div>
+              </div>
+              <h1 className="text-4xl md:text-5xl font-serif text-neutral-950 mb-6 leading-tight">
+                Articles
+              </h1>
+              <p className="text-lg text-neutral-700 leading-relaxed font-serif">
+                Insights, analysis, and updates on DPDP Act compliance and data
+                protection in India.
+              </p>
+            </div>
           </div>
         </Container>
       </Section>
 
       {/* Articles Grid */}
-      <Section background="white">
+      <Section background="gray">
         <Container>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post) => (
               <Link
                 key={post._id}
                 href={`/resources/articles/${post.slug.current}`}
-                className="group"
+                className="group block bg-white border-2 border-neutral-300 hover:border-primary-600 transition-all duration-300 shadow-sm hover:shadow-lg"
               >
-                <Card hover className="h-full">
-                  <div className="relative aspect-video bg-gradient-to-br from-neutral-100 to-neutral-50">
-                    {post.featuredImage ? (
-                      <Image
-                        src={urlFor(post.featuredImage).width(600).height(340).url()}
-                        alt={post.featuredImage.alt || post.title}
-                        fill
-                        className="object-cover"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <FileText className="w-12 h-12 text-neutral-300" />
+                {/* Top accent bar */}
+                <div className="h-1.5 bg-primary-600 group-hover:bg-primary-800 transition-colors"></div>
+
+                <div className="p-6">
+                  {/* Metadata */}
+                  <div className="flex items-center gap-3 mb-4">
+                    {post.category && (
+                      <div className="text-[0.6875rem] uppercase tracking-[0.15em] text-primary-800 font-semibold bg-primary-50 px-2.5 py-1 border border-primary-200">
+                        {getCategoryLabel(post.category)}
                       </div>
                     )}
+                    {post.publishedAt && (
+                      <span className="text-xs text-neutral-500 font-serif">
+                        {formatDateShort(post.publishedAt)}
+                      </span>
+                    )}
                   </div>
-                  <div className="p-5">
-                    <div className="flex items-center gap-3 mb-2">
-                      {post.category && (
-                        <Badge>{getCategoryLabel(post.category)}</Badge>
-                      )}
-                      {post.publishedAt && (
-                        <span className="text-xs text-neutral-500">
-                          {formatDateShort(post.publishedAt)}
-                        </span>
-                      )}
-                    </div>
-                    <h2 className="text-lg font-semibold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors line-clamp-2">
-                      {post.title}
-                    </h2>
-                    <p className="text-sm text-neutral-600 line-clamp-3">
-                      {post.excerpt}
-                    </p>
+
+                  {/* Title */}
+                  <h2 className="text-lg font-serif font-semibold text-neutral-950 mb-3 leading-tight group-hover:text-primary-900 transition-colors">
+                    {post.title}
+                  </h2>
+
+                  {/* Excerpt */}
+                  <p className="text-sm text-neutral-700 leading-relaxed font-serif line-clamp-3">
+                    {post.excerpt}
+                  </p>
+
+                  {/* Read more indicator */}
+                  <div className="mt-5 pt-4 border-t border-neutral-200">
+                    <span className="text-sm font-semibold text-primary-700 group-hover:text-primary-900 transition-colors font-serif inline-flex items-center gap-2">
+                      Read Article
+                      <span className="group-hover:translate-x-1 transition-transform">→</span>
+                    </span>
                   </div>
-                </Card>
+                </div>
               </Link>
             ))}
           </div>
