@@ -306,7 +306,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
                 Get in Touch
               </Button>
               <Button
-                href="/services"
+                href="/programs-and-initiatives"
                 variant="outline"
                 size="lg"
                 className="border-white text-white hover:bg-white/10"

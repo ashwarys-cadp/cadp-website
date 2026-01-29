@@ -1,19 +1,20 @@
 import { Metadata } from 'next';
 import {
   Hero,
-  ServicesOverview,
+  ProgrammesOverview,
   FeaturedGuides,
   LatestArticles,
   UpcomingEvents,
   Newsletter,
   TrustSignals,
+  AboutCentre,
 } from '@/components/sections';
 import { generatePageMetadata } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Centre for Applied Data Protection',
   description:
-    'CADP provides expert DPDP Act compliance training, advisory services, and research at KLE Law College, Bengaluru. Build your data protection capability today.',
+    'CADP provides expert DPDP Act compliance training, legal advisory, and research at KLE Law College, Bengaluru. Build your data protection capability today.',
   path: '/',
   keywords: [
     'DPDP Act compliance',
@@ -28,10 +29,11 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <ServicesOverview />
-      <FeaturedGuides />
+      <AboutCentre />
       <LatestArticles />
+      <FeaturedGuides />
       <UpcomingEvents />
+      <ProgrammesOverview />
       <TrustSignals />
       <Newsletter />
     </>

@@ -47,62 +47,78 @@ export function Newsletter() {
   };
 
   return (
-    <Section background="primary">
+    <Section background="white">
       <Container size="narrow">
-        <div className="text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Stay Updated on DPDP Compliance
-          </h2>
-          <p className="text-primary-100 text-lg max-w-2xl mx-auto mb-8">
-            Get the latest insights, guides, and updates on DPDP Act compliance
-            delivered to your inbox.
-          </p>
+        <div className="border-4 border-primary-950 bg-primary-950 p-10 md:p-14 shadow-xl relative">
+          {/* Decorative corner accent */}
+          <div className="absolute top-0 right-0 w-20 h-20 bg-accent-600 opacity-20"></div>
+          <div className="absolute bottom-0 left-0 w-20 h-20 bg-accent-600 opacity-20"></div>
 
-          {status === 'success' ? (
-            <div className="flex items-center justify-center gap-2 text-accent-400 bg-white/10 border border-white/20 py-4 px-6">
-              <CheckCircle className="w-5 h-5" />
-              <span>{message}</span>
+          <div className="text-center relative z-10">
+            {/* Academic header */}
+            <div className="inline-block mb-6">
+              <div className="text-xs uppercase tracking-[0.25em] text-accent-500 font-semibold mb-3">
+                Newsletter Subscription
+              </div>
+              <div className="h-px w-24 mx-auto bg-accent-600"></div>
             </div>
-          ) : (
-            <form
-              onSubmit={handleSubmit}
-              className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-            >
-              {/* Honeypot for spam protection */}
-              <input type="checkbox" name="botcheck" className="hidden" />
 
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="flex-1 bg-white/10 border-white/20 text-white placeholder:text-primary-200 focus:border-white focus:ring-white"
-              />
-              <Button
-                type="submit"
-                variant="secondary"
-                disabled={status === 'loading'}
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-5">
+              Research Updates & Insights
+            </h2>
+            <p className="text-primary-100 text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-serif">
+              Receive scholarly publications, legal analysis, and research updates on data
+              protection law and digital governance.
+            </p>
+
+            {status === 'success' ? (
+              <div className="flex items-center justify-center gap-3 text-accent-400 bg-white/10 border-2 border-accent-600 py-5 px-8">
+                <CheckCircle className="w-6 h-6" />
+                <span className="font-serif font-semibold">{message}</span>
+              </div>
+            ) : (
+              <form
+                onSubmit={handleSubmit}
+                className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto"
               >
-                {status === 'loading' ? (
-                  'Subscribing...'
-                ) : (
-                  <>
-                    Subscribe
-                    <Send className="w-4 h-4 ml-2" />
-                  </>
-                )}
-              </Button>
-            </form>
-          )}
+                {/* Honeypot for spam protection */}
+                <input type="checkbox" name="botcheck" className="hidden" />
 
-          {status === 'error' && (
-            <p className="mt-3 text-sm text-red-300">{message}</p>
-          )}
+                <Input
+                  type="email"
+                  placeholder="your.email@institution.edu"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="flex-1 bg-white border-2 border-white text-neutral-900 placeholder:text-neutral-500 focus:border-accent-500 focus:ring-accent-500 font-serif py-3 px-5"
+                />
+                <Button
+                  type="submit"
+                  variant="secondary"
+                  size="lg"
+                  disabled={status === 'loading'}
+                  className="whitespace-nowrap"
+                >
+                  {status === 'loading' ? (
+                    'Subscribing...'
+                  ) : (
+                    <>
+                      Subscribe
+                      <Send className="w-4 h-4 ml-2" />
+                    </>
+                  )}
+                </Button>
+              </form>
+            )}
 
-          <p className="mt-4 text-sm text-primary-200">
-            No spam. Unsubscribe anytime.
-          </p>
+            {status === 'error' && (
+              <p className="mt-4 text-sm text-red-300 font-serif">{message}</p>
+            )}
+
+            <p className="mt-6 text-sm text-primary-200 font-serif italic">
+              Academic communications only. Unsubscribe at any time.
+            </p>
+          </div>
         </div>
       </Container>
     </Section>

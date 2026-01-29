@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Static website for the Centre for Applied Data Protection (CADP) at KLE Law College, Bengaluru. The site provides information about DPDP Act compliance training, advisory services, and research publications.
+Static website for the Centre for Applied Data Protection (CADP) at KLE Law College, Bengaluru. The site provides information about DPDP Act compliance training, legal advisory, and research publications.
 
 ## Tech Stack
 
@@ -20,7 +20,7 @@ cadp/
 ├── apps/
 │   ├── web/                    # Next.js website
 │   │   ├── app/
-│   │   │   ├── (site)/         # Public pages (home, about, services, etc.)
+│   │   │   ├── (site)/         # Public pages (home, about, programs, etc.)
 │   │   │   ├── layout.tsx      # Root layout with Header/Footer
 │   │   │   └── globals.css     # Tailwind v4 theme & styles
 │   │   ├── components/
@@ -104,7 +104,7 @@ NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=your-access-key
 - **guide**: Pillar content (1500+ words), highest SEO priority
 - **post**: Blog articles, linked to parent guides
 - **whitePaper**: Downloadable PDFs with abstracts
-- **service**: Service pages (training, advisory, research)
+- **programme**: Programme pages (training, advisory, research)
 - **event**: Upcoming/past events
 - **teamMember**: Staff and advisory board
 - **siteSettings**: Global site configuration
@@ -135,12 +135,12 @@ NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=your-access-key
 
 The site follows a topical authority strategy with 3 content clusters:
 1. **DPDP Compliance** - Primary cluster
-2. **Data Protection Training** - Service-focused
-3. **Compliance Advisory** - Service-focused
+2. **Data Protection Training** - Programme-focused
+3. **Compliance Advisory** - Programme-focused
 
 Each cluster has:
 - Pillar guide (in `/resources/guides/`)
 - Supporting articles (in `/resources/articles/`)
-- Service page with CTA
+- Programme page with CTA (in `/programs-and-initiatives/`)
 
 Internal linking: Pillars link to 8-12 related pieces, articles link to 5-8.

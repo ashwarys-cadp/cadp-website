@@ -48,84 +48,102 @@ export async function UpcomingEvents() {
   if (!featuredEvent) return null;
 
   return (
-    <Section background="white">
+    <Section background="gray">
       <Container>
+        {/* Academic section header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
-          <SectionHeader
-            title="Upcoming Events"
-            subtitle="Join us for workshops, conferences, and webinars"
-            className="mb-0"
-          />
+          <div>
+            <div className="inline-block mb-4">
+              <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">
+                Academic Events
+              </div>
+              <div className="h-px w-20 bg-accent-600"></div>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-serif text-neutral-950 mb-3">
+              Upcoming Events
+            </h2>
+            <p className="text-neutral-600 leading-relaxed font-serif">
+              Workshops, conferences, and scholarly discussions
+            </p>
+          </div>
           <Link
             href="/events"
-            className="mt-4 md:mt-0 inline-flex items-center text-primary-600 font-medium hover:text-primary-700"
+            className="mt-6 md:mt-0 inline-flex items-center text-primary-900 font-serif font-semibold hover:text-primary-700 border-b-2 border-primary-300 hover:border-primary-700 pb-1 transition-all"
           >
-            View all events
-            <ArrowRight className="w-4 h-4 ml-1" />
+            View All Events
+            <ArrowRight className="w-4 h-4 ml-2" strokeWidth={2.5} />
           </Link>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Featured Event */}
           <div className="lg:col-span-2">
-            <div className="bg-gradient-to-br from-primary-900 to-primary-800 rounded-xl p-8 text-white h-full">
-              <Badge className="bg-accent-500 text-white mb-4">Featured</Badge>
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                {featuredEvent.title}
-              </h3>
-              <p className="text-primary-100 mb-6 max-w-xl">
-                {featuredEvent.description}
-              </p>
+            <div className="bg-primary-950 border-4 border-accent-600 p-10 text-white h-full shadow-lg relative">
+              {/* Decorative corner accent */}
+              <div className="absolute top-0 right-0 w-16 h-16 bg-accent-600 opacity-20"></div>
 
-              <div className="flex flex-wrap gap-6 mb-8">
-                <div className="flex items-center gap-2 text-primary-100">
-                  <Calendar className="w-5 h-5" />
-                  <span>
-                    {formatDate(featuredEvent.date)}
-                    {featuredEvent.endDate &&
-                      ` - ${formatDateShort(featuredEvent.endDate)}`}
-                  </span>
+              <div className="relative z-10">
+                <div className="inline-block bg-accent-600 text-white px-4 py-1.5 mb-6 font-serif font-semibold text-sm tracking-wide">
+                  Featured Event
                 </div>
-                <div className="flex items-center gap-2 text-primary-100">
-                  {featuredEvent.isOnline ? (
-                    <Video className="w-5 h-5" />
-                  ) : (
-                    <MapPin className="w-5 h-5" />
-                  )}
-                  <span>{featuredEvent.location}</span>
+                <h3 className="text-2xl md:text-3xl font-serif font-bold mb-5 text-white leading-tight">
+                  {featuredEvent.title}
+                </h3>
+                <p className="text-primary-100 mb-8 max-w-2xl font-serif text-[1.0625rem] leading-relaxed">
+                  {featuredEvent.description}
+                </p>
+
+                <div className="flex flex-col sm:flex-row sm:flex-wrap gap-5 mb-10 pb-8 border-b-2 border-primary-800">
+                  <div className="flex items-center gap-3 text-primary-100 font-serif">
+                    <Calendar className="w-5 h-5 text-accent-500" strokeWidth={1.5} />
+                    <span>
+                      {formatDate(featuredEvent.date)}
+                      {featuredEvent.endDate &&
+                        ` - ${formatDateShort(featuredEvent.endDate)}`}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 text-primary-100 font-serif">
+                    {featuredEvent.isOnline ? (
+                      <Video className="w-5 h-5 text-accent-500" strokeWidth={1.5} />
+                    ) : (
+                      <MapPin className="w-5 h-5 text-accent-500" strokeWidth={1.5} />
+                    )}
+                    <span>{featuredEvent.location}</span>
+                  </div>
                 </div>
+
+                <Button
+                  href={`/events/${featuredEvent.slug.current}`}
+                  variant="secondary"
+                  size="lg"
+                >
+                  Learn More & Register
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
               </div>
-
-              <Button
-                href={`/events/${featuredEvent.slug.current}`}
-                variant="secondary"
-              >
-                Learn More & Register
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
             </div>
           </div>
 
           {/* Other Events */}
-          <div className="space-y-4">
+          <div className="space-y-5">
             {otherEvents.map((event) => (
               <Link
                 key={event._id}
                 href={`/events/${event.slug.current}`}
-                className="block bg-neutral-50 rounded-xl p-5 hover:bg-neutral-100 transition-colors"
+                className="block bg-white p-6 border-2 border-neutral-300 hover:border-primary-700 transition-all shadow-sm hover:shadow-md"
               >
-                <div className="flex items-center gap-2 text-sm text-neutral-500 mb-2">
-                  <Calendar className="w-4 h-4" />
+                <div className="flex items-center gap-2 text-sm text-neutral-500 mb-3 font-serif">
+                  <Calendar className="w-4 h-4" strokeWidth={1.5} />
                   {formatDateShort(event.date)}
                 </div>
-                <h4 className="font-semibold text-neutral-900 mb-1">
+                <h4 className="font-serif font-semibold text-neutral-950 mb-3 text-lg leading-snug">
                   {event.title}
                 </h4>
-                <div className="flex items-center gap-2 text-sm text-neutral-500">
+                <div className="flex items-center gap-2 text-sm text-neutral-600 font-serif">
                   {event.isOnline ? (
-                    <Video className="w-4 h-4" />
+                    <Video className="w-4 h-4" strokeWidth={1.5} />
                   ) : (
-                    <MapPin className="w-4 h-4" />
+                    <MapPin className="w-4 h-4" strokeWidth={1.5} />
                   )}
                   {event.location}
                 </div>
@@ -133,8 +151,8 @@ export async function UpcomingEvents() {
             ))}
 
             {otherEvents.length === 0 && (
-              <div className="bg-neutral-50 rounded-xl p-5 text-center">
-                <p className="text-neutral-500">More events coming soon</p>
+              <div className="bg-white p-6 border-2 border-neutral-300 text-center">
+                <p className="text-neutral-600 font-serif italic">Additional events to be announced</p>
               </div>
             )}
           </div>

@@ -102,7 +102,7 @@ export const defaultMetadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    'Centre for Applied Data Protection (CADP) at KLE Law College, Bengaluru - Expert DPDP Act compliance training, advisory services, and research publications.',
+    'Centre for Applied Data Protection (CADP) at KLE Law College, Bengaluru - Expert DPDP Act compliance training, legal advisory, and research publications.',
   keywords: [
     'DPDP Act',
     'DPDP compliance',

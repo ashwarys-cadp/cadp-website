@@ -17,19 +17,19 @@ interface ButtonProps {
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    'bg-primary-700 text-white hover:bg-primary-800 focus:ring-primary-600 border border-primary-800',
+    'bg-primary-900 text-white hover:bg-primary-800 focus:ring-primary-700 border-2 border-primary-950 hover:border-primary-800 shadow-sm',
   secondary:
-    'bg-accent-600 text-white hover:bg-accent-700 focus:ring-accent-600 border border-accent-700',
+    'bg-accent-700 text-white hover:bg-accent-800 focus:ring-accent-600 border-2 border-accent-800 hover:border-accent-900 shadow-sm',
   outline:
-    'border-2 border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white focus:ring-primary-600',
+    'border-2 border-primary-900 text-primary-900 hover:bg-primary-900 hover:text-white focus:ring-primary-700 bg-white',
   ghost:
-    'text-neutral-700 hover:text-neutral-900 hover:bg-neutral-100 focus:ring-neutral-500',
+    'text-neutral-800 hover:text-neutral-950 hover:bg-neutral-100 focus:ring-neutral-500 border-2 border-transparent hover:border-neutral-300',
 };
 
 const sizes: Record<ButtonSize, string> = {
-  sm: 'px-4 py-2 text-sm',
-  md: 'px-6 py-2.5 text-base',
-  lg: 'px-8 py-3.5 text-base',
+  sm: 'px-5 py-2 text-sm',
+  md: 'px-7 py-2.5 text-[0.9375rem]',
+  lg: 'px-10 py-3.5 text-base',
 };
 
 export function Button({
@@ -43,10 +43,10 @@ export function Button({
   onClick,
 }: ButtonProps) {
   const baseStyles = cn(
-    'inline-flex items-center justify-center font-medium transition-all duration-150',
+    'inline-flex items-center justify-center font-semibold transition-all duration-200',
     'focus:outline-none focus:ring-2 focus:ring-offset-2',
     'disabled:opacity-50 disabled:cursor-not-allowed',
-    'uppercase tracking-wide text-sm',
+    'tracking-wide font-serif',
     variants[variant],
     sizes[size],
     className

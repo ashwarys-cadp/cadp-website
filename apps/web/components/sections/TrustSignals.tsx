@@ -38,7 +38,7 @@ export function TrustSignals() {
           </h2>
           <p className="text-neutral-600 max-w-2xl mx-auto">
             We bring together academic rigour and practical expertise to deliver
-            world-class data protection education and advisory services.
+            world-class data protection education and legal advisory.
           </p>
         </div>
 
