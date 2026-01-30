@@ -28,14 +28,18 @@ async function getWhitePaper(slug: string): Promise<WhitePaper | null> {
 }
 
 export async function generateStaticParams() {
+  const fallback = [
+    { slug: 'dpdp-implementation-roadmap' },
+    { slug: 'dpdp-act-analysis-commentary' },
+  ];
   try {
     const papers = await client.fetch<WhitePaper[]>(allWhitePapersQuery);
+    if (!papers || papers.length === 0) {
+      return fallback;
+    }
     return papers.map((paper) => ({ slug: paper.slug.current }));
   } catch {
-    return [
-      { slug: 'dpdp-implementation-roadmap' },
-      { slug: 'dpdp-act-analysis-commentary' },
-    ];
+    return fallback;
   }
 }
 

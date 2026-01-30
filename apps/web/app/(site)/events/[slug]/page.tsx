@@ -35,14 +35,18 @@ async function getEvent(slug: string): Promise<Event | null> {
 }
 
 export async function generateStaticParams() {
+  const fallback = [
+    { slug: 'dpdp-conference-2026' },
+    { slug: 'webinar-dpdp-implementation' },
+  ];
   try {
     const events = await client.fetch<Event[]>(allEventsQuery);
+    if (!events || events.length === 0) {
+      return fallback;
+    }
     return events.map((event) => ({ slug: event.slug.current }));
   } catch {
-    return [
-      { slug: 'dpdp-conference-2026' },
-      { slug: 'webinar-dpdp-implementation' },
-    ];
+    return fallback;
   }
 }
 

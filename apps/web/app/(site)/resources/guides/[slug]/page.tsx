@@ -30,15 +30,19 @@ async function getGuide(slug: string): Promise<Guide | null> {
 }
 
 export async function generateStaticParams() {
+  const fallback = [
+    { slug: 'complete-guide-dpdp-act-compliance' },
+    { slug: 'dpdp-training-for-organisations' },
+    { slug: 'dpdp-compliance-advisory-what-to-expect' },
+  ];
   try {
     const guides = await client.fetch<Guide[]>(allGuidesQuery);
+    if (!guides || guides.length === 0) {
+      return fallback;
+    }
     return guides.map((guide) => ({ slug: guide.slug.current }));
   } catch {
-    return [
-      { slug: 'complete-guide-dpdp-act-compliance' },
-      { slug: 'dpdp-training-for-organisations' },
-      { slug: 'dpdp-compliance-advisory-what-to-expect' },
-    ];
+    return fallback;
   }
 }
 

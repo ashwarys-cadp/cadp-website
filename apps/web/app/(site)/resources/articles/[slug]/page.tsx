@@ -30,15 +30,19 @@ async function getPost(slug: string): Promise<Post | null> {
 }
 
 export async function generateStaticParams() {
+  const fallback = [
+    { slug: 'dpdp-act-key-provisions-explained' },
+    { slug: 'dpdp-vs-gdpr-comparison' },
+    { slug: 'why-dpdp-training-matters-for-your-team' },
+  ];
   try {
     const posts = await client.fetch<Post[]>(allPostsQuery);
+    if (!posts || posts.length === 0) {
+      return fallback;
+    }
     return posts.map((post) => ({ slug: post.slug.current }));
   } catch {
-    return [
-      { slug: 'dpdp-act-key-provisions-explained' },
-      { slug: 'dpdp-vs-gdpr-comparison' },
-      { slug: 'why-dpdp-training-matters-for-your-team' },
-    ];
+    return fallback;
   }
 }
 
