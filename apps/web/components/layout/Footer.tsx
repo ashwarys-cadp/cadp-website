@@ -28,17 +28,20 @@ export function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
             {/* Brand */}
             <div className="lg:col-span-2">
-              <Link href="/" className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-primary-700 border-2 border-primary-600 flex items-center justify-center">
-                  <span className="text-white font-bold text-xl" style={{ fontFamily: "var(--font-heading)" }}>
+              <Link href="/" className="flex items-center gap-3.5 group">
+                <div className="w-14 h-14 bg-primary-950 border-2 border-primary-950 flex items-center justify-center relative group-hover:bg-primary-900 transition-colors">
+                  <span className="text-accent-500 font-bold text-2xl" style={{ fontFamily: "var(--font-heading)" }}>
                     C
                   </span>
+                  <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-accent-600 border border-white"></div>
                 </div>
                 <div>
-                  <div className="font-semibold text-lg text-white" style={{ fontFamily: "var(--font-heading)" }}>
+                  <div className="font-bold text-xl text-white tracking-tight" style={{ fontFamily: "var(--font-heading)" }}>
                     CADP
                   </div>
-                  <div className="text-xs text-neutral-400 tracking-wide">Centre for Applied Data Protection</div>
+                  <div className="text-[0.6875rem] text-neutral-400 -mt-1 tracking-[0.03em] uppercase font-semibold">
+                    Centre for Applied Data Protection
+                  </div>
                 </div>
               </Link>
               <p className="mt-4 text-sm text-neutral-400 max-w-sm">
