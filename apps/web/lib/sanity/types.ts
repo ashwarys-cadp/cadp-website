@@ -28,23 +28,6 @@ export interface Author {
   email?: string;
 }
 
-export interface Guide {
-  _id: string;
-  title: string;
-  slug: { current: string };
-  excerpt: string;
-  body?: PortableTextBlock[];
-  category?: string;
-  publishedAt?: string;
-  _updatedAt?: string;
-  seoTitle?: string;
-  seoDescription?: string;
-  featuredImage?: SanityImage;
-  author?: Author;
-  relatedGuides?: Guide[];
-  relatedArticles?: Post[];
-}
-
 export interface Post {
   _id: string;
   title: string;
@@ -104,7 +87,12 @@ export interface Service {
   seoTitle?: string;
   seoDescription?: string;
   order?: number;
-  relatedGuide?: Guide;
+  relatedGuide?: {
+    _id: string;
+    title: string;
+    slug: { current: string };
+    excerpt?: string;
+  };
   relatedArticles?: Post[];
 }
 

@@ -71,13 +71,6 @@ export default defineType({
       initialValue: 'Learn More',
     }),
     defineField({
-      name: 'relatedGuide',
-      title: 'Related Guide',
-      type: 'reference',
-      to: [{ type: 'guide' }],
-      description: 'Link to the pillar guide for this service',
-    }),
-    defineField({
       name: 'relatedArticles',
       title: 'Related Articles',
       type: 'array',

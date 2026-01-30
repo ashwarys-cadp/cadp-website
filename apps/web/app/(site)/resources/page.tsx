@@ -16,10 +16,8 @@ import { generatePageMetadata } from '@/lib/seo/metadata';
 import {
   client,
   urlFor,
-  featuredGuidesQuery,
   latestPostsQuery,
   allWhitePapersQuery,
-  type Guide,
   type Post,
   type WhitePaper,
 } from '@/lib/sanity';
@@ -38,22 +36,16 @@ export const metadata: Metadata = generatePageMetadata({
   ],
 });
 
-// Fallback data
-const fallbackGuides: Guide[] = [
+// Static guides data
+const staticGuides = [
   {
     _id: '1',
-    title: 'Complete Guide to DPDP Act Compliance',
-    slug: { current: 'complete-guide-dpdp-act-compliance' },
-    excerpt: 'Everything you need to know about achieving DPDP compliance.',
-    category: 'dpdp-compliance',
+    title: 'DPDP Implementation Roadmap',
+    slug: { current: 'dpdp-implementation-roadmap' },
+    excerpt: 'Comprehensive implementation roadmap for the Digital Personal Data Protection Act 2023 and Rules 2025. Strategic guidance on phased compliance, priority actions, and organizational readiness.',
+    category: 'Implementation',
   },
-  {
-    _id: '2',
-    title: 'DPDP Training Programs Guide',
-    slug: { current: 'dpdp-training-for-organisations' },
-    excerpt: 'How to build data protection capability through training.',
-    category: 'training',
-  },
+  // Add more guides here as you create them
 ];
 
 const fallbackPosts: Post[] = [
@@ -86,24 +78,23 @@ const fallbackWhitePapers: WhitePaper[] = [
 ];
 
 async function getResourcesData(): Promise<{
-  guides: Guide[];
+  guides: typeof staticGuides;
   posts: Post[];
   whitePapers: WhitePaper[];
 }> {
   try {
-    const [guides, posts, whitePapers] = await Promise.all([
-      client.fetch<Guide[]>(featuredGuidesQuery),
+    const [posts, whitePapers] = await Promise.all([
       client.fetch<Post[]>(latestPostsQuery, { limit: 6 }),
       client.fetch<WhitePaper[]>(allWhitePapersQuery),
     ]);
     return {
-      guides: guides.length > 0 ? guides : fallbackGuides,
+      guides: staticGuides,
       posts: posts.length > 0 ? posts : fallbackPosts,
       whitePapers: whitePapers.length > 0 ? whitePapers : fallbackWhitePapers,
     };
   } catch {
     return {
-      guides: fallbackGuides,
+      guides: staticGuides,
       posts: fallbackPosts,
       whitePapers: fallbackWhitePapers,
     };

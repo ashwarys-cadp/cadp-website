@@ -69,12 +69,6 @@ export default defineType({
       },
     }),
     defineField({
-      name: 'relatedGuide',
-      title: 'Related Guide',
-      type: 'reference',
-      to: [{ type: 'guide' }],
-    }),
-    defineField({
       name: 'seoTitle',
       title: 'SEO Title',
       type: 'string',

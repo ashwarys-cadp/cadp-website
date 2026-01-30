@@ -1,52 +1,27 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { ArrowRight, BookOpen } from 'lucide-react';
-import { Container, Section, SectionHeader, Badge } from '@/components/ui';
-import { client, urlFor, featuredGuidesQuery, type Guide } from '@/lib/sanity';
+import { Container, Section, SectionHeader } from '@/components/ui';
 import { getCategoryLabel } from '@/lib/utils';
 
-// Fallback guides for when Sanity is not connected
-const fallbackGuides = [
+// Static guides data (must match guides in /resources/guides/page.tsx)
+const staticGuides = [
   {
     _id: '1',
-    title: 'Complete Guide to DPDP Act Compliance for Indian Organisations',
-    slug: { current: 'complete-guide-dpdp-act-compliance' },
+    title: 'DPDP Implementation Roadmap',
+    slug: 'dpdp-implementation-roadmap',
     excerpt:
-      'Everything you need to know about achieving and maintaining compliance with India\'s Digital Personal Data Protection Act.',
-    category: 'dpdp-compliance',
-    publishedAt: '2024-01-15',
+      'Comprehensive implementation roadmap for the Digital Personal Data Protection Act 2023 and Rules 2025. Strategic guidance on phased compliance, priority actions, and organizational readiness.',
+    category: 'Implementation',
   },
-  {
-    _id: '2',
-    title: 'DPDP Training Programs: Building Data Protection Capability',
-    slug: { current: 'dpdp-training-for-organisations' },
-    excerpt:
-      'How to build data protection expertise in your organisation through structured training programs.',
-    category: 'training',
-    publishedAt: '2024-01-10',
-  },
-  {
-    _id: '3',
-    title: 'DPDP Compliance Advisory: From Gap Assessment to Implementation',
-    slug: { current: 'dpdp-compliance-advisory-what-to-expect' },
-    excerpt:
-      'A comprehensive look at the compliance advisory process and what organisations can expect.',
-    category: 'advisory',
-    publishedAt: '2024-01-05',
-  },
+  // Add more guides here as you create them
 ];
 
-async function getGuides(): Promise<Guide[]> {
-  try {
-    const guides = await client.fetch<Guide[]>(featuredGuidesQuery);
-    return guides.length > 0 ? guides : fallbackGuides as Guide[];
-  } catch {
-    return fallbackGuides as Guide[];
-  }
-}
-
 export async function FeaturedGuides() {
-  const guides = await getGuides();
+  const guides = staticGuides;
+
+  if (guides.length === 0) {
+    return null;
+  }
 
   return (
     <Section background="white">
@@ -67,10 +42,10 @@ export async function FeaturedGuides() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {guides.map((guide, index) => (
+          {guides.slice(0, 3).map((guide, index) => (
             <Link
               key={guide._id}
-              href={`/resources/guides/${guide.slug.current}`}
+              href={`/resources/guides/${guide.slug}`}
               className="group block bg-white border-2 border-neutral-300 hover:border-accent-600 transition-all duration-300 shadow-sm hover:shadow-lg"
             >
               {/* Top accent bar */}

@@ -119,7 +119,7 @@ export default defineType({
                     name: 'reference',
                     type: 'reference',
                     title: 'Reference',
-                    to: [{ type: 'guide' }, { type: 'post' }, { type: 'service' }],
+                    to: [{ type: 'post' }, { type: 'service' }],
                   },
                 ],
               },
@@ -143,13 +143,6 @@ export default defineType({
           ],
         },
       ],
-    }),
-    defineField({
-      name: 'parentGuide',
-      title: 'Parent Guide (Pillar)',
-      type: 'reference',
-      to: [{ type: 'guide' }],
-      description: 'Link to the pillar content this article supports',
     }),
     defineField({
       name: 'relatedPosts',
