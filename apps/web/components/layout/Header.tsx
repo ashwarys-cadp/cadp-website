@@ -75,7 +75,7 @@ export function Header() {
                 </Link>
                 {item.children && openDropdown === item.name && (
                   <div className="absolute top-full left-0 pt-2">
-                    <div className="bg-white shadow-xl border-2 border-primary-950 py-2 min-w-[260px]">
+                    <div className="bg-white shadow-xl border-2 border-primary-950 py-2 min-w-64">
                       {item.children.map((child) => (
                         <Link
                           key={child.name}

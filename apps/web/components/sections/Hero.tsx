@@ -17,7 +17,7 @@ export function Hero() {
       </div>
 
       {/* Top accent line - classic institutional */}
-      <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-primary-900 via-accent-600 to-primary-900"></div>
+      <div className="absolute top-0 left-0 right-0 h-2 bg-linear-to-r from-primary-900 via-accent-600 to-primary-900"></div>
 
       <Container size="wide" className="relative">
         <div className="py-16 md:py-24 lg:py-28">
@@ -55,10 +55,10 @@ export function Hero() {
 
             {/* Call to Actions */}
             <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
-              <Button href="/programs-and-initiatives/dpdp-training" size="lg" variant="primary" className="min-w-[240px]">
+              <Button href="/programs-and-initiatives/dpdp-training" size="lg" variant="primary" className="min-w-60">
                 Training Programmes
               </Button>
-              <Button href="/resources/articles" size="lg" variant="outline" className="min-w-[240px]">
+              <Button href="/resources/articles" size="lg" variant="outline" className="min-w-60">
                 Research & Publications
               </Button>
             </div>
