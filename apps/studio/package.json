@@ -9,14 +9,14 @@
     "start": "sanity start"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "sanity": "^3.68.0",
-    "@sanity/vision": "^3.68.0",
-    "styled-components": "^6.1.0"
+    "@sanity/vision": "^5.7.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "sanity": "^5.7.0",
+    "styled-components": "^6.3.8"
   },
   "devDependencies": {
-    "typescript": "^5.7.0",
-    "@types/react": "^19.0.0"
+    "@types/react": "^19.0.0",
+    "typescript": "^5.7.0"
   }
 }
