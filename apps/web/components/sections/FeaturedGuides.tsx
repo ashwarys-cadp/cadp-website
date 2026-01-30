@@ -7,13 +7,20 @@ import { getCategoryLabel } from '@/lib/utils';
 const staticGuides = [
   {
     _id: '1',
+    title: 'DPDP Rules 2025: Complete Guide',
+    slug: 'dpdp-rules-2025',
+    excerpt:
+      'Comprehensive breakdown of all 23 DPDP Rules 2025. Learn what the rules require, implementation timelines, and compliance obligations for Indian businesses.',
+    category: 'Foundational',
+  },
+  {
+    _id: '2',
     title: 'DPDP Implementation Roadmap',
     slug: 'dpdp-implementation-roadmap',
     excerpt:
       'Comprehensive implementation roadmap for the Digital Personal Data Protection Act 2023 and Rules 2025. Strategic guidance on phased compliance, priority actions, and organizational readiness.',
     category: 'Implementation',
   },
-  // Add more guides here as you create them
 ];
 
 export async function FeaturedGuides() {

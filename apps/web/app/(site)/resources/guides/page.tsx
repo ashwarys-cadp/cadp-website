@@ -18,6 +18,15 @@ export const metadata: Metadata = generatePageMetadata({
 const guides = [
   {
     id: '1',
+    title: 'DPDP Rules 2025: Complete Guide',
+    slug: 'dpdp-rules-2025',
+    excerpt:
+      'Comprehensive breakdown of all 23 DPDP Rules 2025. Learn what the rules require, implementation timelines, and compliance obligations for Indian businesses.',
+    category: 'Foundational',
+    publishedAt: '2026-01-31',
+  },
+  {
+    id: '2',
     title: 'DPDP Implementation Roadmap',
     slug: 'dpdp-implementation-roadmap',
     excerpt:
@@ -25,15 +34,6 @@ const guides = [
     category: 'Implementation',
     publishedAt: '2026-01-30',
   },
-  // Add more guides here as you create them
-  // {
-  //   id: '2',
-  //   title: 'Complete Guide to DPDP Act Compliance',
-  //   slug: 'complete-guide-dpdp-act-compliance',
-  //   excerpt: 'Everything you need to know about achieving and maintaining compliance with India\'s Digital Personal Data Protection Act.',
-  //   category: 'Compliance',
-  //   publishedAt: '2024-01-15',
-  // },
 ];
 
 export default function GuidesPage() {

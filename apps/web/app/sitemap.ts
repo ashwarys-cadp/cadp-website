@@ -44,10 +44,13 @@ type SanitySlug = {
 // Static guides (not from Sanity CMS)
 const staticGuides = [
   {
+    slug: 'dpdp-rules-2025',
+    lastModified: '2026-01-31',
+  },
+  {
     slug: 'dpdp-implementation-roadmap',
     lastModified: '2026-01-30',
   },
-  // Add more static guides here as you create them
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

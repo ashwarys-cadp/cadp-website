@@ -397,6 +397,20 @@ export default function DPDPRoadmapPage() {
                 Protection Act 2023 and Rules 2025. Navigate compliance through phased action
                 plans, priority matrices, and practical implementation guidance.
               </p>
+
+              {/* Prerequisite callout */}
+              <div className="mt-8 inline-block bg-primary-50 border border-primary-200 px-6 py-3">
+                <p className="text-sm text-primary-800 font-serif">
+                  <span className="font-semibold">First time here?</span> Start with our{' '}
+                  <a
+                    href="/resources/guides/dpdp-rules-2025"
+                    className="text-primary-700 underline hover:text-primary-900"
+                  >
+                    Complete Guide to DPDP Rules 2025
+                  </a>{' '}
+                  to understand what the rules require.
+                </p>
+              </div>
             </div>
 
             {/* Quick actions */}
