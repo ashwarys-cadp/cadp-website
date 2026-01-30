@@ -196,47 +196,8 @@ export default function ComplianceAdvisoryPage() {
         </Container>
       </Section>
 
-      {/* Value Propositions */}
-      <Section background="gray">
-        <Container>
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-block mb-6">
-              <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">
-                Our Approach
-              </div>
-              <div className="h-px w-24 mx-auto bg-accent-600"></div>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-serif text-neutral-950 mb-6">
-              Scholarly Analysis, Applied Frameworks
-            </h2>
-            <p className="text-lg text-neutral-600 leading-relaxed font-serif">
-              Legal guidance integrating doctrinal research with institutional implementation methodologies.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {valuePropositions.map((value) => (
-              <div key={value.title} className="bg-white border-2 border-neutral-300 shadow-sm text-center">
-                <div className="h-1.5 bg-accent-600"></div>
-                <div className="p-8">
-                  <div className="w-14 h-14 border-2 border-primary-900 flex items-center justify-center bg-primary-50 mx-auto mb-4">
-                    <value.icon className="w-7 h-7 text-primary-900" strokeWidth={1.5} />
-                  </div>
-                  <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-3">
-                    {value.title}
-                  </h3>
-                  <p className="text-sm text-neutral-600 leading-relaxed font-serif">
-                    {value.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </Section>
-
       {/* Advisory Services */}
-      <Section background="white">
+      <Section background="gray">
         <Container>
           <div className="text-center max-w-3xl mx-auto mb-16">
             <div className="inline-block mb-6">
@@ -294,6 +255,45 @@ export default function ComplianceAdvisoryPage() {
         </Container>
       </Section>
 
+      {/* Value Propositions */}
+      <Section background="white">
+        <Container>
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-block mb-6">
+              <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">
+                Our Approach
+              </div>
+              <div className="h-px w-24 mx-auto bg-accent-600"></div>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-serif text-neutral-950 mb-6">
+              Scholarly Analysis, Applied Frameworks
+            </h2>
+            <p className="text-lg text-neutral-600 leading-relaxed font-serif">
+              Legal guidance integrating doctrinal research with institutional implementation methodologies.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {valuePropositions.map((value) => (
+              <div key={value.title} className="bg-white border-2 border-neutral-300 shadow-sm text-center">
+                <div className="h-1.5 bg-accent-600"></div>
+                <div className="p-8">
+                  <div className="w-14 h-14 border-2 border-primary-900 flex items-center justify-center bg-primary-50 mx-auto mb-4">
+                    <value.icon className="w-7 h-7 text-primary-900" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-3">
+                    {value.title}
+                  </h3>
+                  <p className="text-sm text-neutral-600 leading-relaxed font-serif">
+                    {value.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
       {/* Process */}
       <Section background="gray">
         <Container>
@@ -329,43 +329,6 @@ export default function ComplianceAdvisoryPage() {
                 </div>
               </div>
             ))}
-          </div>
-        </Container>
-      </Section>
-
-      {/* Related Resources */}
-      <Section background="white">
-        <Container size="narrow">
-          <div className="bg-white border-2 border-neutral-300 shadow-sm">
-            <div className="h-2 bg-accent-600"></div>
-            <div className="p-10">
-              <div className="text-center mb-6">
-                <div className="w-14 h-14 border-2 border-primary-900 flex items-center justify-center bg-primary-50 mx-auto mb-4">
-                  <BookOpen className="w-7 h-7 text-primary-900" strokeWidth={1.5} />
-                </div>
-                <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-3">
-                  Further Reading
-                </div>
-              </div>
-              <h2 className="text-2xl font-serif font-semibold text-neutral-950 mb-4 text-center">
-                Understanding DPDP Compliance Advisory
-              </h2>
-              <p className="text-neutral-700 mb-6 leading-relaxed font-serif text-center max-w-2xl mx-auto">
-                Analytical examination of the compliance advisory methodology,
-                from institutional assessment through framework implementation to continuous regulatory analysis.
-              </p>
-              <div className="text-center">
-                <Button
-                  href="/resources/guides/dpdp-compliance-advisory-what-to-expect"
-                  variant="outline"
-                  size="lg"
-                  className="inline-flex items-center gap-2"
-                >
-                  Access Advisory Guide
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
-              </div>
-            </div>
           </div>
         </Container>
       </Section>

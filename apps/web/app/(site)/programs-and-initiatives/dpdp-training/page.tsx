@@ -183,47 +183,8 @@ export default function DPDPTrainingPage() {
         </Container>
       </Section>
 
-      {/* Learning Outcomes */}
-      <Section background="gray">
-        <Container>
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-block mb-6">
-              <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">
-                Learning Outcomes
-              </div>
-              <div className="h-px w-24 mx-auto bg-accent-600"></div>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-serif text-neutral-950 mb-6">
-              Learning Objectives
-            </h2>
-            <p className="text-lg text-neutral-600 leading-relaxed font-serif">
-              Programmes integrate doctrinal foundations with applied competencies for comprehensive capability development.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {learningOutcomes.map((outcome) => (
-              <div key={outcome.title} className="bg-white border-2 border-neutral-300 shadow-sm text-center">
-                <div className="h-1.5 bg-accent-600"></div>
-                <div className="p-8">
-                  <div className="w-14 h-14 border-2 border-primary-900 flex items-center justify-center bg-primary-50 mx-auto mb-4">
-                    <outcome.icon className="w-7 h-7 text-primary-900" strokeWidth={1.5} />
-                  </div>
-                  <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-3">
-                    {outcome.title}
-                  </h3>
-                  <p className="text-sm text-neutral-600 leading-relaxed font-serif">
-                    {outcome.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </Section>
-
       {/* Programs */}
-      <Section background="white">
+      <Section background="gray">
         <Container>
           <div className="text-center max-w-3xl mx-auto mb-16">
             <div className="inline-block mb-6">
@@ -287,6 +248,45 @@ export default function DPDPTrainingPage() {
         </Container>
       </Section>
 
+      {/* Learning Outcomes */}
+      <Section background="white">
+        <Container>
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-block mb-6">
+              <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">
+                Learning Outcomes
+              </div>
+              <div className="h-px w-24 mx-auto bg-accent-600"></div>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-serif text-neutral-950 mb-6">
+              Learning Objectives
+            </h2>
+            <p className="text-lg text-neutral-600 leading-relaxed font-serif">
+              Programmes integrate doctrinal foundations with applied competencies for comprehensive capability development.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {learningOutcomes.map((outcome) => (
+              <div key={outcome.title} className="bg-white border-2 border-neutral-300 shadow-sm text-center">
+                <div className="h-1.5 bg-accent-600"></div>
+                <div className="p-8">
+                  <div className="w-14 h-14 border-2 border-primary-900 flex items-center justify-center bg-primary-50 mx-auto mb-4">
+                    <outcome.icon className="w-7 h-7 text-primary-900" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-3">
+                    {outcome.title}
+                  </h3>
+                  <p className="text-sm text-neutral-600 leading-relaxed font-serif">
+                    {outcome.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
       {/* Benefits */}
       <Section background="gray">
         <Container>
@@ -322,43 +322,6 @@ export default function DPDPTrainingPage() {
                 </div>
               </div>
             ))}
-          </div>
-        </Container>
-      </Section>
-
-      {/* Related Resources */}
-      <Section background="white">
-        <Container size="narrow">
-          <div className="bg-white border-2 border-neutral-300 shadow-sm">
-            <div className="h-2 bg-accent-600"></div>
-            <div className="p-10">
-              <div className="text-center mb-6">
-                <div className="w-14 h-14 border-2 border-primary-900 flex items-center justify-center bg-primary-50 mx-auto mb-4">
-                  <BookOpen className="w-7 h-7 text-primary-900" strokeWidth={1.5} />
-                </div>
-                <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-3">
-                  Further Reading
-                </div>
-              </div>
-              <h2 className="text-2xl font-serif font-semibold text-neutral-950 mb-4 text-center">
-                Comprehensive Programme Guide
-              </h2>
-              <p className="text-neutral-700 mb-6 leading-relaxed font-serif text-center max-w-2xl mx-auto">
-                An analytical framework examining DPDP training imperatives,
-                pedagogical approaches, and methodologies for institutional capacity development.
-              </p>
-              <div className="text-center">
-                <Button
-                  href="/resources/guides/dpdp-training-for-organisations"
-                  variant="outline"
-                  size="lg"
-                  className="inline-flex items-center gap-2"
-                >
-                  Access Programme Guide
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
-              </div>
-            </div>
           </div>
         </Container>
       </Section>
