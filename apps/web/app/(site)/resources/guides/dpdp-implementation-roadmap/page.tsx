@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import { Container, Section, Button } from '@/components/ui';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
+import { ArticleJsonLd } from '@/components/seo/JsonLd';
 import { generatePageMetadata } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = generatePageMetadata({
@@ -349,6 +350,14 @@ const complianceChecklist = [
 export default function DPDPRoadmapPage() {
   return (
     <>
+      <ArticleJsonLd
+        title="DPDP Implementation Roadmap"
+        description="Comprehensive implementation roadmap for the Digital Personal Data Protection Act 2023 and Rules 2025. Strategic guidance on phased compliance, priority actions, and organizational readiness."
+        url="https://cadp.in/resources/guides/dpdp-implementation-roadmap"
+        authorName="Centre for Applied Data Protection (CADP)"
+        publishedAt="2026-01-30"
+      />
+
       {/* Hero Section */}
       <Section background="white">
         <Container>

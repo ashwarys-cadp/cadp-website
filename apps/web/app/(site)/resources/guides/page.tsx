@@ -23,7 +23,7 @@ const guides = [
     excerpt:
       'Comprehensive implementation roadmap for the Digital Personal Data Protection Act 2023 and Rules 2025. Strategic guidance on phased compliance, priority actions, and organizational readiness.',
     category: 'Implementation',
-    publishedAt: '2025-01-30',
+    publishedAt: '2026-01-30',
   },
   // Add more guides here as you create them
   // {

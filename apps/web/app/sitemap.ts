@@ -41,6 +41,15 @@ type SanitySlug = {
   _updatedAt: string;
 };
 
+// Static guides (not from Sanity CMS)
+const staticGuides = [
+  {
+    slug: 'dpdp-implementation-roadmap',
+    lastModified: '2026-01-30',
+  },
+  // Add more static guides here as you create them
+];
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Fetch all dynamic content slugs from Sanity
   const [guides, posts, whitePapers, events] = await Promise.all([
@@ -126,8 +135,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // Dynamic guide pages (pillar content - high priority)
-  const guidePages: MetadataRoute.Sitemap = guides.map((guide) => ({
+  // Static guide pages (pillar content - high priority)
+  const staticGuidePages: MetadataRoute.Sitemap = staticGuides.map((guide) => ({
+    url: `${BASE_URL}/resources/guides/${guide.slug}`,
+    lastModified: new Date(guide.lastModified),
+    changeFrequency: 'monthly',
+    priority: 0.9,
+  }));
+
+  // Dynamic guide pages from Sanity (pillar content - high priority)
+  const dynamicGuidePages: MetadataRoute.Sitemap = guides.map((guide) => ({
     url: `${BASE_URL}/resources/guides/${guide.slug}`,
     lastModified: new Date(guide._updatedAt),
     changeFrequency: 'monthly',
@@ -160,7 +177,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     ...staticPages,
-    ...guidePages,
+    ...staticGuidePages,
+    ...dynamicGuidePages,
     ...articlePages,
     ...whitePaperPages,
     ...eventPages,
