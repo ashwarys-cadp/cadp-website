@@ -18,7 +18,7 @@ import { generatePageMetadata } from '@/lib/seo/metadata';
 export const metadata: Metadata = generatePageMetadata({
   title: 'DPDP Training Programs',
   description:
-    'Comprehensive DPDP Act training programs for organisations, professionals, and educational institutions. Executive workshops, DPO certification prep, and customised training.',
+    'Research-informed capacity building programmes in DPDP Act compliance for organisations, legal professionals, and academic institutions. Executive seminars, DPO certification preparation, and specialized pedagogical frameworks.',
   path: '/programs-and-initiatives/dpdp-training',
   keywords: [
     'DPDP training',
@@ -31,55 +31,55 @@ export const metadata: Metadata = generatePageMetadata({
 
 const programs = [
   {
-    title: 'Executive Workshop',
+    title: 'Executive Seminar',
     duration: '1 Day',
-    audience: 'C-Suite & Senior Management',
+    audience: 'Senior Leadership & Governance Bodies',
     description:
-      'Strategic overview of DPDP compliance for decision-makers. Understand obligations, risks, and implementation priorities.',
+      'Strategic examination of DPDP compliance frameworks for institutional decision-makers. Comprehensive analysis of legal obligations, governance implications, and implementation pathways.',
     features: [
-      'DPDP Act overview and business impact',
-      'Board-level responsibilities',
-      'Risk assessment framework',
-      'Compliance roadmap planning',
+      'DPDP Act provisions and institutional impact',
+      'Governance-level responsibilities',
+      'Risk assessment methodologies',
+      'Compliance strategy development',
     ],
   },
   {
-    title: 'DPO Certification Prep',
+    title: 'DPO Certification Preparation',
     duration: '5 Days',
-    audience: 'Aspiring DPOs & Privacy Professionals',
+    audience: 'Privacy Professionals & Legal Practitioners',
     description:
-      'Intensive program preparing participants for the Data Protection Officer role under the DPDP Act.',
+      'Intensive capacity-building programme preparing participants for the Data Protection Officer function under the DPDP Act framework.',
     features: [
-      'Comprehensive DPDP Act analysis',
-      'DPO roles and responsibilities',
-      'Practical compliance exercises',
-      'Assessment and certification',
+      'Systematic DPDP Act analysis',
+      'DPO competencies and responsibilities',
+      'Applied compliance methodologies',
+      'Competency evaluation and certification',
     ],
   },
   {
-    title: 'Team Training',
-    duration: 'Customised',
-    audience: 'All Employees',
+    title: 'Institutional Capacity Building',
+    duration: 'Contextually Adapted',
+    audience: 'Cross-Functional Teams',
     description:
-      'Role-specific training for different teams across your organisation to ensure everyone understands their data protection responsibilities.',
+      'Role-specific pedagogical frameworks for building organizational data protection capability across functional units.',
     features: [
-      'Role-based curriculum',
-      'Practical scenarios',
-      'Interactive workshops',
-      'Assessment and reporting',
+      'Function-based curriculum design',
+      'Applied case methodology',
+      'Participatory learning sessions',
+      'Competency assessment',
     ],
   },
   {
-    title: 'Educational Institution Program',
-    duration: 'Semester-long',
+    title: 'Academic Integration Programme',
+    duration: 'Semester-Long',
     audience: 'Law Students & Faculty',
     description:
-      'Comprehensive curriculum for law schools integrating DPDP Act into legal education.',
+      'Comprehensive curricular framework for academic institutions integrating DPDP Act scholarship into legal education.',
     features: [
-      'Academic curriculum design',
-      'Guest lectures and workshops',
-      'Moot court support',
-      'Research collaboration',
+      'Pedagogical framework development',
+      'Scholarly lectures and seminars',
+      'Experiential learning support',
+      'Joint research initiatives',
     ],
   },
 ];
@@ -89,37 +89,37 @@ const benefits = [
     icon: Users,
     title: 'Expert Faculty',
     description:
-      'Learn from leading practitioners and academics in data protection law.',
+      'Knowledge transfer from leading practitioners and academics in data protection law.',
   },
   {
     icon: Building2,
-    title: 'Industry-Focused',
+    title: 'Applied Research Focus',
     description:
-      'Training tailored to your sector with relevant case studies and scenarios.',
+      'Pedagogy grounded in sector-specific research with contextually relevant case analysis.',
   },
   {
     icon: Clock,
-    title: 'Flexible Delivery',
+    title: 'Flexible Modalities',
     description:
-      'Choose from in-person, online, or hybrid formats to suit your needs.',
+      'Multiple delivery formats including in-person seminars, distance learning, and hybrid pedagogies.',
   },
 ];
 
 const learningOutcomes = [
   {
     icon: BookOpen,
-    title: 'Comprehensive Understanding',
-    description: 'Deep knowledge of DPDP Act provisions, scope, and application',
+    title: 'Doctrinal Knowledge',
+    description: 'Systematic understanding of DPDP Act provisions, scope, and jurisprudential foundations',
   },
   {
     icon: Award,
-    title: 'Practical Skills',
-    description: 'Hands-on experience with compliance frameworks and implementation',
+    title: 'Applied Competencies',
+    description: 'Practical proficiency in compliance methodologies and implementation frameworks',
   },
   {
     icon: Target,
-    title: 'Strategic Capability',
-    description: 'Ability to develop and execute data protection strategies',
+    title: 'Strategic Analysis',
+    description: 'Capacity to formulate and evaluate institutional data protection strategies',
   },
 ];
 
@@ -128,7 +128,7 @@ export default function DPDPTrainingPage() {
     <>
       <ServiceJsonLd
         name="DPDP Compliance Training"
-        description="Comprehensive DPDP Act training programs for organisations, professionals, and educational institutions."
+        description="Research-informed capacity building programmes in DPDP Act compliance for organisations, legal professionals, and academic institutions."
         url="https://cadp.in/programs-and-initiatives/dpdp-training"
       />
 
@@ -146,7 +146,7 @@ export default function DPDPTrainingPage() {
             <div className="mb-8">
               <div className="inline-block mb-4">
                 <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">
-                  Professional Development
+                  Capacity Building
                 </div>
                 <div className="h-px w-20 bg-accent-600"></div>
               </div>
@@ -154,8 +154,8 @@ export default function DPDPTrainingPage() {
                 DPDP Act Training <span className="italic text-primary-900">Programmes</span>
               </h1>
               <p className="text-lg text-neutral-700 leading-relaxed font-serif mb-8">
-                Build comprehensive data protection capability across your organisation through
-                rigorous training programmes designed for decision-makers, compliance professionals,
+                Develop institutional data protection capability through research-informed
+                capacity-building programmes for governance bodies, compliance professionals,
                 and legal practitioners.
               </p>
 
@@ -168,14 +168,14 @@ export default function DPDPTrainingPage() {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button href="/contact" size="lg" variant="primary">
-                  Request Training
+                  Programme Enquiry
                 </Button>
                 <Button
                   href="/resources/guides/dpdp-training-for-organisations"
                   size="lg"
                   variant="outline"
                 >
-                  Training Guide
+                  Programme Guide
                 </Button>
               </div>
             </div>
@@ -194,10 +194,10 @@ export default function DPDPTrainingPage() {
               <div className="h-px w-24 mx-auto bg-accent-600"></div>
             </div>
             <h2 className="text-3xl md:text-4xl font-serif text-neutral-950 mb-6">
-              What You Will Achieve
+              Learning Objectives
             </h2>
             <p className="text-lg text-neutral-600 leading-relaxed font-serif">
-              Our training programmes equip participants with both theoretical knowledge and practical competencies.
+              Programmes integrate doctrinal foundations with applied competencies for comprehensive capability development.
             </p>
           </div>
 
@@ -228,7 +228,7 @@ export default function DPDPTrainingPage() {
           <div className="text-center max-w-3xl mx-auto mb-16">
             <div className="inline-block mb-6">
               <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">
-                Our Offerings
+                Programme Structure
               </div>
               <div className="h-px w-24 mx-auto bg-accent-600"></div>
             </div>
@@ -236,7 +236,7 @@ export default function DPDPTrainingPage() {
               Training Programmes
             </h2>
             <p className="text-lg text-neutral-600 leading-relaxed font-serif">
-              Programmes designed for different audiences and organisational needs.
+              Specialized programmes addressing distinct capacity-building requirements across legal, organisational, and academic contexts.
             </p>
           </div>
 
@@ -298,10 +298,10 @@ export default function DPDPTrainingPage() {
               <div className="h-px w-24 mx-auto bg-accent-600"></div>
             </div>
             <h2 className="text-3xl md:text-4xl font-serif text-neutral-950 mb-6">
-              Why Train with CADP?
+              Pedagogical Approach
             </h2>
             <p className="text-lg text-neutral-600 leading-relaxed font-serif">
-              Academic rigour combined with practical application.
+              Research-informed curriculum integrating scholarly rigour with applied methodologies.
             </p>
           </div>
 
@@ -341,11 +341,11 @@ export default function DPDPTrainingPage() {
                 </div>
               </div>
               <h2 className="text-2xl font-serif font-semibold text-neutral-950 mb-4 text-center">
-                Comprehensive Training Guide
+                Comprehensive Programme Guide
               </h2>
               <p className="text-neutral-700 mb-6 leading-relaxed font-serif text-center max-w-2xl mx-auto">
-                Our detailed guide examines the strategic imperatives of DPDP training,
-                implementation frameworks, and best practices for building organisational capability.
+                An analytical framework examining DPDP training imperatives,
+                pedagogical approaches, and methodologies for institutional capacity development.
               </p>
               <div className="text-center">
                 <Button
@@ -354,7 +354,7 @@ export default function DPDPTrainingPage() {
                   size="lg"
                   className="inline-flex items-center gap-2"
                 >
-                  Read the Training Guide
+                  Access Programme Guide
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </div>
@@ -380,16 +380,16 @@ export default function DPDPTrainingPage() {
               </div>
 
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-5">
-                Ready to Build Your Data Protection Capability?
+                Advance Your Data Protection Capability
               </h2>
               <p className="text-primary-100 text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-serif">
-                Contact us to discuss your training requirements and receive a customised
-                programme proposal tailored to your organisation&apos;s needs.
+                Connect with us to discuss capacity-building requirements and explore
+                programme frameworks adapted to your institutional context.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button href="/contact" variant="secondary" size="lg">
-                  Request Training
+                  Programme Enquiry
                 </Button>
                 <Button
                   href="/programs-and-initiatives"

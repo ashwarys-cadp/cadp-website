@@ -18,7 +18,7 @@ import { generatePageMetadata } from '@/lib/seo/metadata';
 export const metadata: Metadata = generatePageMetadata({
   title: 'DPDP Compliance Advisory',
   description:
-    'Expert DPDP Act compliance advisory services including gap assessment, policy development, and implementation support for Indian organisations.',
+    'Research-informed legal guidance on DPDP Act compliance including institutional assessment, policy frameworks, and implementation methodologies for Indian organisations.',
   path: '/programs-and-initiatives/compliance-advisory',
   keywords: [
     'DPDP compliance advisory',
@@ -31,50 +31,50 @@ export const metadata: Metadata = generatePageMetadata({
 const advisoryAreas = [
   {
     icon: Search,
-    title: 'Gap Assessment',
+    title: 'Institutional Assessment',
     description:
-      'Comprehensive review of your current data practices against DPDP Act requirements.',
+      'Systematic evaluation of current data governance practices against DPDP Act requirements and compliance benchmarks.',
     deliverables: [
       'Current state analysis',
       'Gap identification report',
       'Risk prioritisation matrix',
-      'Executive summary',
+      'Governance-level summary',
     ],
   },
   {
     icon: FileCheck,
-    title: 'Policy Development',
+    title: 'Policy Framework Development',
     description:
-      'Drafting and review of data protection policies, procedures, and documentation.',
+      'Development and evaluation of data protection policy frameworks, procedural documentation, and governance instruments.',
     deliverables: [
-      'Privacy policy',
+      'Privacy policy frameworks',
       'Data processing agreements',
-      'Consent mechanisms',
-      'Internal procedures',
+      'Consent mechanism design',
+      'Procedural documentation',
     ],
   },
   {
     icon: Settings,
-    title: 'Implementation Support',
+    title: 'Implementation Guidance',
     description:
-      'Hands-on guidance to implement compliance measures across your organisation.',
+      'Technical and legal guidance for implementing compliance frameworks across institutional functions.',
     deliverables: [
       'Implementation roadmap',
-      'Process redesign support',
-      'Technology recommendations',
-      'Stakeholder coordination',
+      'Process adaptation frameworks',
+      'Technical architecture guidance',
+      'Stakeholder engagement strategy',
     ],
   },
   {
     icon: Shield,
-    title: 'Ongoing Compliance',
+    title: 'Ongoing Advisory',
     description:
-      'Continuous support to maintain compliance as regulations and your business evolve.',
+      'Continuous analytical support for maintaining compliance amid regulatory and operational evolution.',
     deliverables: [
-      'Regular compliance reviews',
-      'Regulatory update briefings',
-      'Incident response support',
-      'Annual compliance audit',
+      'Periodic compliance evaluation',
+      'Regulatory development analysis',
+      'Incident response guidance',
+      'Annual compliance assessment',
     ],
   },
 ];
@@ -82,57 +82,57 @@ const advisoryAreas = [
 const processSteps = [
   {
     step: '01',
-    title: 'Discovery',
+    title: 'Institutional Discovery',
     description:
-      'We understand your organisation, data flows, and current privacy practices.',
+      'Mapping organizational structures, data flows, and existing governance practices.',
   },
   {
     step: '02',
-    title: 'Assessment',
+    title: 'Legal Assessment',
     description:
-      'We conduct a thorough gap assessment against DPDP Act requirements.',
+      'Systematic evaluation of current practices against DPDP Act requirements.',
   },
   {
     step: '03',
-    title: 'Roadmap',
+    title: 'Strategic Roadmap',
     description:
-      'We develop a prioritised compliance roadmap aligned with your business goals.',
+      'Development of prioritized compliance pathways aligned with institutional objectives.',
   },
   {
     step: '04',
-    title: 'Implementation',
+    title: 'Framework Implementation',
     description:
-      'We support you in implementing necessary changes across policies, processes, and technology.',
+      'Guidance on operationalizing compliance measures across policy, process, and technical domains.',
   },
   {
     step: '05',
-    title: 'Validation',
+    title: 'Compliance Validation',
     description:
-      'We verify that implemented measures meet compliance requirements.',
+      'Verification that implemented frameworks satisfy regulatory requirements.',
   },
   {
     step: '06',
-    title: 'Maintenance',
+    title: 'Continuous Advisory',
     description:
-      'We provide ongoing support to maintain compliance over time.',
+      'Ongoing analytical support for sustained compliance maintenance.',
   },
 ];
 
 const valuePropositions = [
   {
     icon: Scale,
-    title: 'Legal Expertise',
-    description: 'Advisory grounded in rigorous legal analysis and scholarly research',
+    title: 'Legal Scholarship',
+    description: 'Guidance grounded in rigorous legal analysis and doctrinal research',
   },
   {
     icon: Target,
-    title: 'Practical Focus',
-    description: 'Solutions tailored to your operational realities and business context',
+    title: 'Applied Methodology',
+    description: 'Frameworks adapted to institutional contexts and operational requirements',
   },
   {
     icon: Users,
-    title: 'Institutional Backing',
-    description: 'Credibility and resources of KLE Law College, Bengaluru',
+    title: 'Academic Foundation',
+    description: 'Scholarly resources and institutional credibility of KLE Law College, Bengaluru',
   },
 ];
 
@@ -141,7 +141,7 @@ export default function ComplianceAdvisoryPage() {
     <>
       <ServiceJsonLd
         name="DPDP Compliance Advisory"
-        description="Expert DPDP Act compliance advisory services including gap assessment, policy development, and implementation support."
+        description="Research-informed legal guidance on DPDP Act compliance including institutional assessment, policy frameworks, and implementation methodologies."
         url="https://cadp.in/programs-and-initiatives/compliance-advisory"
       />
 
@@ -159,7 +159,7 @@ export default function ComplianceAdvisoryPage() {
             <div className="mb-8">
               <div className="inline-block mb-4">
                 <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">
-                  Legal Advisory Services
+                  Legal & Technical Guidance
                 </div>
                 <div className="h-px w-20 bg-accent-600"></div>
               </div>
@@ -167,9 +167,9 @@ export default function ComplianceAdvisoryPage() {
                 DPDP Act <span className="italic text-primary-900">Compliance Advisory</span>
               </h1>
               <p className="text-lg text-neutral-700 leading-relaxed font-serif mb-8">
-                Expert legal guidance on achieving and maintaining DPDP Act compliance,
-                from initial assessment through implementation to ongoing regulatory support.
-                Our advisory services combine scholarly rigour with practical application.
+                Research-informed legal and technical guidance on achieving and maintaining DPDP Act compliance,
+                from institutional assessment through implementation frameworks to ongoing regulatory analysis.
+                Academic rigour integrated with applied methodologies.
               </p>
 
               {/* Decorative divider */}
@@ -181,7 +181,7 @@ export default function ComplianceAdvisoryPage() {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button href="/contact" size="lg" variant="primary">
-                  Request Advisory
+                  Advisory Enquiry
                 </Button>
                 <Button
                   href="/resources/guides/dpdp-compliance-advisory-what-to-expect"
@@ -207,10 +207,10 @@ export default function ComplianceAdvisoryPage() {
               <div className="h-px w-24 mx-auto bg-accent-600"></div>
             </div>
             <h2 className="text-3xl md:text-4xl font-serif text-neutral-950 mb-6">
-              Academic Rigour, Practical Solutions
+              Scholarly Analysis, Applied Frameworks
             </h2>
             <p className="text-lg text-neutral-600 leading-relaxed font-serif">
-              Advisory services that bridge legal scholarship and business implementation.
+              Legal guidance integrating doctrinal research with institutional implementation methodologies.
             </p>
           </div>
 
@@ -241,15 +241,15 @@ export default function ComplianceAdvisoryPage() {
           <div className="text-center max-w-3xl mx-auto mb-16">
             <div className="inline-block mb-6">
               <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">
-                Service Areas
+                Advisory Focus Areas
               </div>
               <div className="h-px w-24 mx-auto bg-accent-600"></div>
             </div>
             <h2 className="text-3xl md:text-4xl font-serif text-neutral-950 mb-6">
-              Advisory Services
+              Compliance Advisory
             </h2>
             <p className="text-lg text-neutral-600 leading-relaxed font-serif">
-              Comprehensive support for your compliance journey.
+              Systematic guidance across the institutional compliance development pathway.
             </p>
           </div>
 
@@ -305,10 +305,10 @@ export default function ComplianceAdvisoryPage() {
               <div className="h-px w-24 mx-auto bg-accent-600"></div>
             </div>
             <h2 className="text-3xl md:text-4xl font-serif text-neutral-950 mb-6">
-              Our Advisory Process
+              Advisory Methodology
             </h2>
             <p className="text-lg text-neutral-600 leading-relaxed font-serif">
-              A structured, phased approach to achieving sustainable compliance.
+              Systematic, phased framework for developing sustainable institutional compliance.
             </p>
           </div>
 
@@ -348,11 +348,11 @@ export default function ComplianceAdvisoryPage() {
                 </div>
               </div>
               <h2 className="text-2xl font-serif font-semibold text-neutral-950 mb-4 text-center">
-                What to Expect from DPDP Advisory
+                Understanding DPDP Compliance Advisory
               </h2>
               <p className="text-neutral-700 mb-6 leading-relaxed font-serif text-center max-w-2xl mx-auto">
-                Our comprehensive guide examines the compliance advisory process,
-                from initial gap assessment through implementation to ongoing regulatory support.
+                Analytical examination of the compliance advisory methodology,
+                from institutional assessment through framework implementation to continuous regulatory analysis.
               </p>
               <div className="text-center">
                 <Button
@@ -361,7 +361,7 @@ export default function ComplianceAdvisoryPage() {
                   size="lg"
                   className="inline-flex items-center gap-2"
                 >
-                  Read the Advisory Guide
+                  Access Advisory Guide
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </div>
@@ -387,16 +387,16 @@ export default function ComplianceAdvisoryPage() {
               </div>
 
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-5">
-                Start Your Compliance Journey
+                Advance Institutional Compliance
               </h2>
               <p className="text-primary-100 text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-serif">
-                Contact us for a consultation to discuss your compliance requirements
-                and how our advisory services can support your organisation.
+                Connect with the Centre to discuss compliance requirements
+                and explore advisory frameworks suited to institutional contexts.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button href="/contact" variant="secondary" size="lg">
-                  Request Advisory
+                  Advisory Enquiry
                 </Button>
                 <Button
                   href="/programs-and-initiatives"

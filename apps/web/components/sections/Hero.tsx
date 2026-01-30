@@ -23,13 +23,15 @@ export function Hero() {
         <div className="py-16 md:py-24 lg:py-28">
           {/* Institutional Header */}
           <div className="text-center max-w-5xl mx-auto mb-14">
-            {/* Institution Badge */}
-            <div className="inline-flex items-center gap-3 mb-8 pb-3 border-b-2 border-accent-700">
-              <div className="w-12 h-12 border-2 border-primary-900 flex items-center justify-center bg-primary-950">
-                <Scale className="w-6 h-6 text-accent-500" strokeWidth={1.5} />
-              </div>
-              <div className="text-left">
-                <div className="text-sm text-neutral-800 tracking-wide font-semibold">Advancing DPDP Compliance & Research</div>
+            {/* Minimal institutional mark */}
+            <div className="mb-10">
+              <div className="relative inline-block">
+                {/* Subtle typographic treatment */}
+                <div className="text-xs tracking-[0.25em] uppercase text-neutral-500 font-serif font-normal">
+                  Advancing <span className="text-neutral-700 font-semibold">DPDP</span> Compliance & Research
+                </div>
+                {/* Minimal accent mark */}
+                <div className="absolute -left-4 top-1/2 -translate-y-1/2 w-2 h-px bg-accent-600"></div>
               </div>
             </div>
 
