@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Download } from 'lucide-react';
 import { Container, Section } from '@/components/ui';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { Newsletter } from '@/components/sections';
@@ -82,42 +81,47 @@ export default async function WhitePapersPage() {
       {/* Papers Grid */}
       <Section background="gray">
         <Container>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {papers.map((paper) => (
               <Link
                 key={paper._id}
                 href={`/resources/white-papers/${paper.slug.current}`}
-                className="group block bg-white border-2 border-neutral-300 hover:border-accent-600 transition-all duration-300 shadow-sm hover:shadow-lg"
+                className="group block bg-white border-2 border-neutral-300 hover:border-primary-600 transition-all duration-300 shadow-sm hover:shadow-lg"
               >
                 {/* Top accent bar */}
-                <div className="h-1.5 bg-accent-600 group-hover:bg-accent-700 transition-colors"></div>
+                <div className="h-1.5 bg-primary-600 group-hover:bg-primary-800 transition-colors"></div>
 
-                <div className="p-6 flex items-start gap-4">
-                  <div className="w-14 h-14 border-2 border-primary-900 flex items-center justify-center bg-primary-50 group-hover:bg-primary-900 shrink-0 transition-all">
-                    <Download className="w-7 h-7 text-primary-900 group-hover:text-white transition-colors" strokeWidth={1.5} />
-                  </div>
-                  <div className="flex-1">
-                    <h2 className="text-lg font-serif font-semibold text-neutral-950 mb-2 group-hover:text-primary-900 transition-colors">
-                      {paper.title}
-                    </h2>
-                    <p className="text-sm text-neutral-700 leading-relaxed font-serif line-clamp-3 mb-3">
-                      {paper.abstract}
-                    </p>
-                    {paper.topics && (
-                      <div className="flex flex-wrap gap-2 pt-3 border-t border-neutral-200">
-                        {paper.topics.map((topic) => (
-                          <span key={topic} className="text-[0.6875rem] uppercase tracking-[0.15em] text-neutral-600 font-semibold bg-neutral-100 px-2 py-1 border border-neutral-300">
-                            {topic}
-                          </span>
-                        ))}
+                <div className="p-6">
+                  {/* Metadata */}
+                  <div className="flex items-center gap-3 mb-4">
+                    {paper.topics && paper.topics.length > 0 && (
+                      <div className="text-[0.6875rem] uppercase tracking-[0.15em] text-primary-800 font-semibold bg-primary-50 px-2.5 py-1 border border-primary-200">
+                        {paper.topics[0]}
                       </div>
                     )}
-                    <div className="mt-4 pt-4 border-t border-neutral-200">
-                      <span className="text-sm font-semibold text-primary-700 group-hover:text-primary-900 transition-colors font-serif inline-flex items-center gap-2">
-                        <Download className="w-4 h-4" />
-                        Download PDF
+                    {paper.publishedAt && (
+                      <span className="text-xs text-neutral-500 font-serif">
+                        {new Date(paper.publishedAt).toLocaleDateString('en-IN', { year: 'numeric', month: 'short' })}
                       </span>
-                    </div>
+                    )}
+                  </div>
+
+                  {/* Title */}
+                  <h2 className="text-lg font-serif font-semibold text-neutral-950 mb-3 leading-tight group-hover:text-primary-900 transition-colors">
+                    {paper.title}
+                  </h2>
+
+                  {/* Abstract */}
+                  <p className="text-sm text-neutral-700 leading-relaxed font-serif line-clamp-3">
+                    {paper.abstract}
+                  </p>
+
+                  {/* Download indicator */}
+                  <div className="mt-5 pt-4 border-t border-neutral-200">
+                    <span className="text-sm font-semibold text-primary-700 group-hover:text-primary-900 transition-colors font-serif inline-flex items-center gap-2">
+                      Download Paper
+                      <span className="group-hover:translate-x-1 transition-transform">→</span>
+                    </span>
                   </div>
                 </div>
               </Link>

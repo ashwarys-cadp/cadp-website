@@ -27,7 +27,7 @@ export function OrganizationJsonLd() {
       addressRegion: "Karnataka",
       addressCountry: "IN",
     },
-    sameAs: ["https://linkedin.com/company/cadp"],
+    sameAs: ["https://linkedin.com/company/cadp-in"],
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "support inquiries",

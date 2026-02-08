@@ -114,7 +114,7 @@ export function Footer() {
           <p className="text-sm text-neutral-500">&copy; {new Date().getFullYear()} Centre for Applied Data Protection. All rights reserved.</p>
           <div className="flex items-center gap-4">
             <a
-              href="https://linkedin.com/company/cadp"
+              href="https://linkedin.com/company/cadp-in"
               target="_blank"
               rel="noopener noreferrer"
               className="text-neutral-400 hover:text-white transition-colors"
