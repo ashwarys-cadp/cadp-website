@@ -20,12 +20,6 @@ const contactInfo = [
     href: "mailto:contact@cadp.in",
   },
   {
-    icon: Phone,
-    title: "Phone",
-    content: "+91 80 1234 5678",
-    href: "tel:+918012345678",
-  },
-  {
     icon: MapPin,
     title: "Address",
     content: "KLE Law College, Bengaluru, Karnataka 560091",
@@ -52,9 +46,7 @@ export default function ContactPage() {
                 <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">Connect With Us</div>
                 <div className="h-px w-20 bg-accent-600"></div>
               </div>
-              <h1 className="text-4xl md:text-5xl font-serif text-neutral-950 mb-6 leading-tight">
-                Get in Touch
-              </h1>
+              <h1 className="text-4xl md:text-5xl font-serif text-neutral-950 mb-6 leading-tight">Get in Touch</h1>
               <p className="text-lg text-neutral-700 leading-relaxed font-serif">
                 Have a question about DPDP compliance? Want to discuss training or legal advisory? We&apos;d love to hear from you.
               </p>
@@ -159,8 +151,8 @@ export default function ContactPage() {
               <div className="p-6">
                 <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-3">How can organisations engage with CADP?</h3>
                 <p className="text-neutral-700 leading-relaxed font-serif">
-                  Submit an inquiry through the form above detailing your interest—whether in professional training, legal advisory, or research collaboration.
-                  The Centre will respond within 1-2 business days to discuss potential engagement.
+                  Submit an inquiry through the form above detailing your interest—whether in professional training, legal advisory, or research
+                  collaboration. The Centre will respond within 1-2 business days to discuss potential engagement.
                 </p>
               </div>
             </div>
@@ -168,10 +160,12 @@ export default function ContactPage() {
             <div className="bg-white border-2 border-neutral-300 shadow-sm">
               <div className="h-1.5 bg-primary-600"></div>
               <div className="p-6">
-                <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-3">Can professional education programmes be tailored to specific needs?</h3>
+                <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-3">
+                  Can professional education programmes be tailored to specific needs?
+                </h3>
                 <p className="text-neutral-700 leading-relaxed font-serif">
-                  Yes. The Centre develops customised training curricula aligned with sector-specific regulatory requirements and organisational contexts,
-                  drawing on our research expertise in data protection frameworks.
+                  Yes. The Centre develops customised training curricula aligned with sector-specific regulatory requirements and organisational
+                  contexts, drawing on our research expertise in data protection frameworks.
                 </p>
               </div>
             </div>
@@ -181,8 +175,8 @@ export default function ContactPage() {
               <div className="p-6">
                 <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-3">Does CADP engage in ongoing advisory relationships?</h3>
                 <p className="text-neutral-700 leading-relaxed font-serif">
-                  The Centre maintains long-term advisory engagements with organisations navigating evolving data protection regulations,
-                  providing evidence-based guidance grounded in legal scholarship and regulatory analysis.
+                  The Centre maintains long-term advisory engagements with organisations navigating evolving data protection regulations, providing
+                  evidence-based guidance grounded in legal scholarship and regulatory analysis.
                 </p>
               </div>
             </div>
