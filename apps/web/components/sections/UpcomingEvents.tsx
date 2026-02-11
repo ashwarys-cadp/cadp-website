@@ -67,7 +67,7 @@ export async function UpcomingEvents() {
             </p>
           </div>
           <Link
-            href="/events"
+            href="/events/"
             className="mt-6 md:mt-0 inline-flex items-center text-primary-900 font-serif font-semibold hover:text-primary-700 border-b-2 border-primary-300 hover:border-primary-700 pb-1 transition-all"
           >
             View All Events

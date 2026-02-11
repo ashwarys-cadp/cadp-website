@@ -8,9 +8,9 @@ import { generatePageMetadata } from "@/lib/seo/metadata";
 import { client, urlFor, allTeamMembersQuery, advisoryBoardQuery, type TeamMember } from "@/lib/sanity";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "About CADP",
+  title: "About the Centre",
   description:
-    "Learn about the Centre for Applied Data Protection at KLE Law College, Bengaluru. Our mission, team, and commitment to building data protection capability in India.",
+    "Learn about the Centre for Applied Data Protection. Our mission, team, and commitment to building data protection capability in India.",
   path: "/about",
   keywords: ["CADP about", "KLE Law College", "data protection centre", "DPDP training institute"],
 });
@@ -303,7 +303,7 @@ export default async function AboutPage() {
                 and practitioners.
               </p>
               <a
-                href="https://klelawcollege.edu.in"
+                href="https://www.klelawcollege.edu.in"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-primary-800 hover:text-primary-900 font-semibold font-serif border-b-2 border-primary-300 hover:border-primary-800 pb-1 transition-all"
@@ -338,11 +338,11 @@ export default async function AboutPage() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button href="/contact" variant="secondary" size="lg">
+                <Button href="/contact/" variant="secondary" size="lg">
                   Contact the Centre
                 </Button>
                 <Button
-                  href="/programs-and-initiatives"
+                  href="/programs-and-initiatives/"
                   size="lg"
                   className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary-950 transition-colors font-semibold"
                 >

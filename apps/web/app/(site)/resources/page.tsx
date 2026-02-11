@@ -120,10 +120,17 @@ export default async function ResourcesPage() {
               <h1 className="text-4xl md:text-5xl font-serif text-neutral-950 mb-6 leading-tight">
                 Resources
               </h1>
-              <p className="text-lg text-neutral-700 leading-relaxed font-serif">
+              <p className="text-lg text-neutral-700 leading-relaxed font-serif mb-4">
                 Comprehensive guides, articles, and white papers to help you
                 understand and implement DPDP Act compliance.
               </p>
+              <Link
+                href="/resources/publications/"
+                className="inline-flex items-center text-primary-700 hover:text-primary-900 font-semibold font-serif border-b-2 border-primary-300 hover:border-primary-700 pb-1 transition-all"
+              >
+                Browse all publications
+                <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
             </div>
           </div>
         </Container>
@@ -142,7 +149,7 @@ export default async function ResourcesPage() {
               <p className="text-neutral-600 font-serif">In-depth resources on key compliance topics</p>
             </div>
             <Link
-              href="/resources/guides"
+              href="/resources/guides/"
               className="mt-4 md:mt-0 inline-flex items-center text-primary-700 hover:text-primary-900 font-semibold font-serif border-b-2 border-primary-300 hover:border-primary-700 pb-1 transition-all"
             >
               View all guides
@@ -210,7 +217,7 @@ export default async function ResourcesPage() {
               <p className="text-neutral-600 font-serif">Latest insights and updates</p>
             </div>
             <Link
-              href="/resources/articles"
+              href="/resources/articles/"
               className="mt-4 md:mt-0 inline-flex items-center text-primary-700 hover:text-primary-900 font-semibold font-serif border-b-2 border-primary-300 hover:border-primary-700 pb-1 transition-all"
             >
               View all articles
@@ -280,7 +287,7 @@ export default async function ResourcesPage() {
               <p className="text-neutral-600 font-serif">In-depth research and analysis</p>
             </div>
             <Link
-              href="/resources/white-papers"
+              href="/resources/white-papers/"
               className="mt-4 md:mt-0 inline-flex items-center text-primary-700 hover:text-primary-900 font-semibold font-serif border-b-2 border-primary-300 hover:border-primary-700 pb-1 transition-all"
             >
               View all white papers

@@ -174,11 +174,11 @@ export default async function ResearchPublicationsPage() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button href="/resources/publications" size="lg" variant="primary">
+                <Button href="/resources/publications/" size="lg" variant="primary">
                   View Publications
                 </Button>
                 <Button
-                  href="/contact"
+                  href="/contact/"
                   size="lg"
                   variant="outline"
                 >
@@ -322,7 +322,7 @@ export default async function ResearchPublicationsPage() {
 
           <div className="mt-12 text-center">
             <Link
-              href="/resources/publications"
+              href="/resources/publications/"
               className="inline-flex items-center text-primary-800 hover:text-primary-900 font-semibold font-serif border-b-2 border-primary-300 hover:border-primary-800 pb-1 transition-all"
             >
               View All Publications
@@ -396,11 +396,11 @@ export default async function ResearchPublicationsPage() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button href="/contact" variant="secondary" size="lg">
+                <Button href="/contact/" variant="secondary" size="lg">
                   Get in Touch
                 </Button>
                 <Button
-                  href="/programs-and-initiatives"
+                  href="/programs-and-initiatives/"
                   size="lg"
                   className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary-950 transition-colors font-semibold"
                 >

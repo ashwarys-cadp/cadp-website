@@ -10,7 +10,7 @@ import { formatDate, formatDateShort, isUpcoming } from '@/lib/utils';
 export const metadata: Metadata = generatePageMetadata({
   title: 'Events',
   description:
-    'Join CADP\'s workshops, conferences, and webinars on DPDP Act compliance and data protection.',
+    'Upcoming and past workshops, conferences, and webinars on DPDP Act compliance and data protection hosted by the Centre for Applied Data Protection.',
   path: '/events',
   keywords: ['DPDP events', 'data protection workshops', 'compliance conferences'],
 });
@@ -286,7 +286,7 @@ export default async function EventsPage() {
                 organisation or community.
               </p>
 
-              <Button href="/contact" variant="secondary" size="lg">
+              <Button href="/contact/" variant="secondary" size="lg">
                 Get in Touch
               </Button>
             </div>

@@ -42,7 +42,7 @@ export function AboutCentre() {
               </p>
             </div>
 
-            <Button href="/about" variant="outline" size="lg">
+            <Button href="/about/" variant="outline" size="lg">
               Learn More About CADP
             </Button>
           </div>

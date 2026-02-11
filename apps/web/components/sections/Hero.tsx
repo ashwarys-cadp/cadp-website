@@ -57,10 +57,10 @@ export function Hero() {
 
             {/* Call to Actions */}
             <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
-              <Button href="/programs-and-initiatives/dpdp-training" size="lg" variant="primary" className="min-w-60">
+              <Button href="/programs-and-initiatives/dpdp-training/" size="lg" variant="primary" className="min-w-60">
                 Training Programmes
               </Button>
-              <Button href="/resources/articles" size="lg" variant="outline" className="min-w-60">
+              <Button href="/resources/articles/" size="lg" variant="outline" className="min-w-60">
                 Research & Publications
               </Button>
             </div>

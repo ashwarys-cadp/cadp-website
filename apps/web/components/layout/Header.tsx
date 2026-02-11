@@ -95,7 +95,7 @@ export function Header() {
           {/* CTA Button */}
           <div className="hidden lg:block">
             <Link
-              href="/contact"
+              href="/contact/"
               className="inline-flex items-center px-7 py-2.5 bg-primary-950 text-white text-[0.9375rem] font-serif font-semibold border-2 border-primary-950 hover:bg-primary-900 hover:border-primary-800 transition-all shadow-sm"
             >
               Contact
@@ -147,7 +147,7 @@ export function Header() {
               ))}
               <div className="pt-6 px-5">
                 <Link
-                  href="/contact"
+                  href="/contact/"
                   className="block w-full text-center px-7 py-3 bg-primary-950 text-white text-[0.9375rem] font-serif font-semibold border-2 border-primary-950 hover:bg-primary-900 transition-all shadow-sm"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >

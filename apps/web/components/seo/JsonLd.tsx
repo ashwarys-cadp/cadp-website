@@ -19,7 +19,7 @@ export function OrganizationJsonLd() {
     parentOrganization: {
       "@type": "EducationalOrganization",
       name: "KLE Law College, Bengaluru",
-      url: "https://klelawcollege.edu.in",
+      url: "https://www.klelawcollege.edu.in",
     },
     address: {
       "@type": "PostalAddress",

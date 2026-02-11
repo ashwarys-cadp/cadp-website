@@ -303,11 +303,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               your compliance program.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button href="/contact" variant="secondary" size="lg">
+              <Button href="/contact/" variant="secondary" size="lg">
                 Get in Touch
               </Button>
               <Button
-                href="/resources"
+                href="/resources/"
                 variant="outline"
                 size="lg"
                 className="border-white text-white hover:bg-white/10"

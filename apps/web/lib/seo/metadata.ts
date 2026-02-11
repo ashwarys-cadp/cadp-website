@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 
 const SITE_NAME = 'CADP - Centre for Applied Data Protection';
+const SITE_BRAND = 'CADP';
 const SITE_URL = 'https://cadp.in';
 const DEFAULT_OG_IMAGE = '/og-default.jpg';
 
@@ -30,11 +31,10 @@ export function generatePageMetadata({
   noIndex = false,
 }: PageMetadataProps): Metadata {
   const url = `${SITE_URL}${path}`;
-  const fullTitle = `${title} | ${SITE_NAME}`;
   const imageUrl = image.startsWith('http') ? image : `${SITE_URL}${image}`;
 
   return {
-    title: fullTitle,
+    title,
     description,
     keywords,
     alternates: {
@@ -99,7 +99,7 @@ export const defaultMetadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: SITE_NAME,
-    template: `%s | ${SITE_NAME}`,
+    template: `%s | ${SITE_BRAND}`,
   },
   description:
     'Centre for Applied Data Protection (CADP) at KLE Law College, Bengaluru - Expert DPDP Act compliance training, legal advisory, and research publications.',

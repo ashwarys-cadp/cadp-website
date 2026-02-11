@@ -751,7 +751,7 @@ export default function DPDPRulesGuidePage() {
 
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             <a
-              href="/resources/guides/dpdp-implementation-roadmap"
+              href="/resources/guides/dpdp-implementation-roadmap/"
               className="group bg-white border-2 border-neutral-300 p-6 hover:border-primary-600 transition-all duration-300"
             >
               <div className="w-12 h-12 border-2 border-primary-600 bg-primary-50 flex items-center justify-center mb-4 group-hover:bg-primary-600 transition-colors">
@@ -765,7 +765,7 @@ export default function DPDPRulesGuidePage() {
             </a>
 
             <a
-              href="/programs-and-initiatives/dpdp-training"
+              href="/programs-and-initiatives/dpdp-training/"
               className="group bg-white border-2 border-neutral-300 p-6 hover:border-primary-600 transition-all duration-300"
             >
               <div className="w-12 h-12 border-2 border-primary-600 bg-primary-50 flex items-center justify-center mb-4 group-hover:bg-primary-600 transition-colors">
@@ -779,7 +779,7 @@ export default function DPDPRulesGuidePage() {
             </a>
 
             <a
-              href="/programs-and-initiatives/compliance-advisory"
+              href="/programs-and-initiatives/compliance-advisory/"
               className="group bg-white border-2 border-neutral-300 p-6 hover:border-primary-600 transition-all duration-300"
             >
               <div className="w-12 h-12 border-2 border-primary-600 bg-primary-50 flex items-center justify-center mb-4 group-hover:bg-primary-600 transition-colors">
@@ -817,11 +817,11 @@ export default function DPDPRulesGuidePage() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button href="/contact" variant="secondary" size="lg">
+                <Button href="/contact/" variant="secondary" size="lg">
                   Contact Our Team
                 </Button>
                 <Button
-                  href="/resources/guides/dpdp-implementation-roadmap"
+                  href="/resources/guides/dpdp-implementation-roadmap/"
                   size="lg"
                   className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary-950 transition-colors font-semibold"
                 >

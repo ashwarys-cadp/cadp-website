@@ -10,7 +10,7 @@ import { formatDateShort, getCategoryLabel } from '@/lib/utils';
 export const metadata: Metadata = generatePageMetadata({
   title: 'Articles',
   description:
-    'Latest articles and insights on DPDP Act compliance, data protection trends, and industry updates.',
+    'Articles and analysis on DPDP Act compliance, data protection trends, regulatory developments, and practical implementation guidance for Indian organisations.',
   path: '/resources/articles',
   keywords: ['DPDP articles', 'data protection news', 'compliance updates'],
 });

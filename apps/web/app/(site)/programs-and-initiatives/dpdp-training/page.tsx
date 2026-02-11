@@ -18,7 +18,7 @@ import { generatePageMetadata } from '@/lib/seo/metadata';
 export const metadata: Metadata = generatePageMetadata({
   title: 'DPDP Training Programs',
   description:
-    'Research-informed capacity building programmes in DPDP Act compliance for organisations, legal professionals, and academic institutions. Executive seminars, DPO certification preparation, and specialized pedagogical frameworks.',
+    'DPDP Act compliance training for organisations, legal professionals, and academic institutions. Executive seminars, DPO certification, and capacity building programmes.',
   path: '/programs-and-initiatives/dpdp-training',
   keywords: [
     'DPDP training',
@@ -167,7 +167,7 @@ export default function DPDPTrainingPage() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button href="/contact" size="lg" variant="primary">
+                <Button href="/contact/" size="lg" variant="primary">
                   Programme Enquiry
                 </Button>
                 {/* <Button
@@ -351,11 +351,11 @@ export default function DPDPTrainingPage() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button href="/contact" variant="secondary" size="lg">
+                <Button href="/contact/" variant="secondary" size="lg">
                   Programme Enquiry
                 </Button>
                 <Button
-                  href="/programs-and-initiatives"
+                  href="/programs-and-initiatives/"
                   size="lg"
                   className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary-950 transition-colors font-semibold"
                 >

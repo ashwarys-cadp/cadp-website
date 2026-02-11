@@ -40,7 +40,7 @@ export async function FeaturedGuides() {
             className="mb-0"
           />
           <Link
-            href="/resources/guides"
+            href="/resources/guides/"
             className="mt-4 md:mt-0 inline-flex items-center text-primary-600 font-medium hover:text-primary-700"
           >
             View all guides

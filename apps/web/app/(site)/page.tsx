@@ -14,7 +14,7 @@ import { generatePageMetadata } from '@/lib/seo/metadata';
 export const metadata: Metadata = generatePageMetadata({
   title: 'Centre for Applied Data Protection',
   description:
-    'CADP provides expert DPDP Act compliance training, legal advisory, and research at KLE Law College, Bengaluru. Build your data protection capability today.',
+    'CADP provides expert DPDP Act compliance training, legal advisory, and research. Build your data protection capability today.',
   path: '/',
   keywords: [
     'DPDP Act compliance',

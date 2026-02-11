@@ -27,7 +27,7 @@ import { generatePageMetadata } from '@/lib/seo/metadata';
 export const metadata: Metadata = generatePageMetadata({
   title: 'DPDP Implementation Roadmap',
   description:
-    'Comprehensive implementation roadmap for the Digital Personal Data Protection Act 2023 and Rules 2025. Strategic guidance on phased compliance, priority actions, and organizational readiness.',
+    'Implementation roadmap for the DPDP Act 2023 and Rules 2025. Phased compliance guidance, priority actions, and organisational readiness.',
   path: '/resources/guides/dpdp-implementation-roadmap',
   keywords: [
     'DPDP implementation',
@@ -403,7 +403,7 @@ export default function DPDPRoadmapPage() {
                 <p className="text-sm text-primary-800 font-serif">
                   <span className="font-semibold">First time here?</span> Start with our{' '}
                   <a
-                    href="/resources/guides/dpdp-rules-2025"
+                    href="/resources/guides/dpdp-rules-2025/"
                     className="text-primary-700 underline hover:text-primary-900"
                   >
                     Complete Guide to DPDP Rules 2025
@@ -788,7 +788,7 @@ export default function DPDPRoadmapPage() {
               </div>
 
               <div className="mt-8">
-                <Button href="/contact" variant="outline" size="lg">
+                <Button href="/contact/" variant="outline" size="lg">
                   Request Full Visual Package
                 </Button>
               </div>
@@ -823,11 +823,11 @@ export default function DPDPRoadmapPage() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button href="/programs-and-initiatives/compliance-advisory" variant="secondary" size="lg">
+                <Button href="/programs-and-initiatives/compliance-advisory/" variant="secondary" size="lg">
                   Compliance Advisory
                 </Button>
                 <Button
-                  href="/programs-and-initiatives/dpdp-training"
+                  href="/programs-and-initiatives/dpdp-training/"
                   size="lg"
                   className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary-950 transition-colors font-semibold"
                 >

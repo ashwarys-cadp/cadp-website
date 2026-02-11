@@ -276,7 +276,7 @@ export default async function EventPage({ params }: EventPageProps) {
       <Section background="white">
         <Container>
           <div className="flex justify-center">
-            <Button href="/events" variant="outline">
+            <Button href="/events/" variant="outline">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to All Events
             </Button>

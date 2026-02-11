@@ -7,7 +7,7 @@ import { ContactForm } from "./ContactForm";
 
 export const metadata: Metadata = generatePageMetadata({
   title: "Contact Us",
-  description: "Get in touch with CADP for DPDP training, compliance advisory, or research collaboration inquiries.",
+  description: "Get in touch with the Centre for Applied Data Protection for DPDP training, compliance advisory, research collaboration, or partnership enquiries.",
   path: "/contact",
   keywords: ["contact CADP", "DPDP consultation", "data protection inquiry"],
 });

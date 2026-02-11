@@ -169,10 +169,10 @@ export default async function WhitePaperPage({ params }: WhitePaperPageProps) {
             <h2 className="text-3xl font-bold text-white mb-4">Want to Discuss This Research?</h2>
             <p className="text-primary-100 mb-8 max-w-xl mx-auto">Our team can help you understand how these findings apply to your organisation.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button href="/contact" variant="secondary" size="lg">
+              <Button href="/contact/" variant="secondary" size="lg">
                 Get in Touch
               </Button>
-              <Button href="/resources/white-papers" variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
+              <Button href="/resources/white-papers/" variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
                 More White Papers
               </Button>
             </div>

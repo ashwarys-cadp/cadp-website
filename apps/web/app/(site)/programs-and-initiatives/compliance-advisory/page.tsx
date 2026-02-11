@@ -18,7 +18,7 @@ import { generatePageMetadata } from '@/lib/seo/metadata';
 export const metadata: Metadata = generatePageMetadata({
   title: 'DPDP Compliance Advisory',
   description:
-    'Research-informed legal guidance on DPDP Act compliance including institutional assessment, policy frameworks, and implementation methodologies for Indian organisations.',
+    'DPDP Act compliance advisory including institutional assessment, policy frameworks, and implementation guidance for Indian organisations.',
   path: '/programs-and-initiatives/compliance-advisory',
   keywords: [
     'DPDP compliance advisory',
@@ -180,7 +180,7 @@ export default function ComplianceAdvisoryPage() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button href="/contact" size="lg" variant="primary">
+                <Button href="/contact/" size="lg" variant="primary">
                   Advisory Enquiry
                 </Button>
                 {/* <Button
@@ -358,11 +358,11 @@ export default function ComplianceAdvisoryPage() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button href="/contact" variant="secondary" size="lg">
+                <Button href="/contact/" variant="secondary" size="lg">
                   Advisory Enquiry
                 </Button>
                 <Button
-                  href="/programs-and-initiatives"
+                  href="/programs-and-initiatives/"
                   size="lg"
                   className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary-950 transition-colors font-semibold"
                 >

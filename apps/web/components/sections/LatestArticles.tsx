@@ -109,7 +109,7 @@ export async function LatestArticles() {
 
         <div className="mt-10 pt-8 border-t border-neutral-300">
           <Link
-            href="/resources/articles"
+            href="/resources/articles/"
             className="inline-flex items-center text-primary-900 font-serif font-semibold hover:text-primary-700 border-b-2 border-primary-300 hover:border-primary-700 pb-1 transition-all"
           >
             View Complete Archive

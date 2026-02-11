@@ -190,7 +190,7 @@ export default function ProgramsPage() {
                 or research collaboration aligned with your institutional requirements.
               </p>
 
-              <Button href="/contact" variant="secondary" size="lg">
+              <Button href="/contact/" variant="secondary" size="lg">
                 Initiate an Inquiry
               </Button>
             </div>
