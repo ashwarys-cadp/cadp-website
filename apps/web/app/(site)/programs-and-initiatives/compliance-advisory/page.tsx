@@ -183,13 +183,13 @@ export default function ComplianceAdvisoryPage() {
                 <Button href="/contact" size="lg" variant="primary">
                   Advisory Enquiry
                 </Button>
-                <Button
+                {/* <Button
                   href="/resources/guides/dpdp-compliance-advisory-what-to-expect"
                   size="lg"
                   variant="outline"
                 >
                   Advisory Guide
-                </Button>
+                </Button> */}
               </div>
             </div>
           </div>

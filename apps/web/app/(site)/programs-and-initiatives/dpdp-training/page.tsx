@@ -170,13 +170,13 @@ export default function DPDPTrainingPage() {
                 <Button href="/contact" size="lg" variant="primary">
                   Programme Enquiry
                 </Button>
-                <Button
+                {/* <Button
                   href="/resources/guides/dpdp-training-for-organisations"
                   size="lg"
                   variant="outline"
                 >
                   Programme Guide
-                </Button>
+                </Button> */}
               </div>
             </div>
           </div>
