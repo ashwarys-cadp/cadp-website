@@ -65,73 +65,79 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Static pages with their priorities and change frequencies
   const staticPages: MetadataRoute.Sitemap = [
     {
-      url: BASE_URL,
+      url: `${BASE_URL}/`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1.0,
     },
     {
-      url: `${BASE_URL}/about`,
+      url: `${BASE_URL}/about/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/programs-and-initiatives`,
+      url: `${BASE_URL}/programs-and-initiatives/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/programs-and-initiatives/dpdp-training`,
+      url: `${BASE_URL}/programs-and-initiatives/dpdp-training/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/programs-and-initiatives/compliance-advisory`,
+      url: `${BASE_URL}/programs-and-initiatives/compliance-advisory/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/programs-and-initiatives/research-publications`,
+      url: `${BASE_URL}/programs-and-initiatives/research-publications/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/resources`,
+      url: `${BASE_URL}/resources/`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/resources/guides`,
+      url: `${BASE_URL}/resources/guides/`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/resources/articles`,
+      url: `${BASE_URL}/resources/articles/`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/resources/white-papers`,
+      url: `${BASE_URL}/resources/white-papers/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
-      url: `${BASE_URL}/events`,
+      url: `${BASE_URL}/resources/publications/`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${BASE_URL}/events/`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.7,
     },
     {
-      url: `${BASE_URL}/contact`,
+      url: `${BASE_URL}/contact/`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.7,
@@ -140,7 +146,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Static guide pages (pillar content - high priority)
   const staticGuidePages: MetadataRoute.Sitemap = staticGuides.map((guide) => ({
-    url: `${BASE_URL}/resources/guides/${guide.slug}`,
+    url: `${BASE_URL}/resources/guides/${guide.slug}/`,
     lastModified: new Date(guide.lastModified),
     changeFrequency: 'monthly',
     priority: 0.9,
@@ -148,7 +154,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Dynamic guide pages from Sanity (pillar content - high priority)
   const dynamicGuidePages: MetadataRoute.Sitemap = guides.map((guide) => ({
-    url: `${BASE_URL}/resources/guides/${guide.slug}`,
+    url: `${BASE_URL}/resources/guides/${guide.slug}/`,
     lastModified: new Date(guide._updatedAt),
     changeFrequency: 'monthly',
     priority: 0.9,
@@ -156,7 +162,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Dynamic article pages
   const articlePages: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `${BASE_URL}/resources/articles/${post.slug}`,
+    url: `${BASE_URL}/resources/articles/${post.slug}/`,
     lastModified: new Date(post._updatedAt),
     changeFrequency: 'monthly',
     priority: 0.7,
@@ -164,7 +170,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Dynamic white paper pages
   const whitePaperPages: MetadataRoute.Sitemap = whitePapers.map((wp) => ({
-    url: `${BASE_URL}/resources/white-papers/${wp.slug}`,
+    url: `${BASE_URL}/resources/white-papers/${wp.slug}/`,
     lastModified: new Date(wp._updatedAt),
     changeFrequency: 'monthly',
     priority: 0.7,
@@ -172,7 +178,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Dynamic event pages
   const eventPages: MetadataRoute.Sitemap = events.map((event) => ({
-    url: `${BASE_URL}/events/${event.slug}`,
+    url: `${BASE_URL}/events/${event.slug}/`,
     lastModified: new Date(event._updatedAt),
     changeFrequency: 'weekly',
     priority: 0.6,
