@@ -34,3 +34,14 @@ export function getCategoryLabel(category: string): string {
   };
   return labels[category] || category;
 }
+
+export function getNewsCategoryLabel(category: string): string {
+  const labels: Record<string, string> = {
+    'government-orders': 'Government Orders',
+    'court-decisions': 'Court Decisions',
+    'industry-news': 'Industry News',
+    opinion: 'Opinion',
+    'cadp-announcements': 'CADP Announcements',
+  };
+  return labels[category] || category;
+}
