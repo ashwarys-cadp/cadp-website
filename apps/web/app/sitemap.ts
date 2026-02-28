@@ -36,6 +36,13 @@ const eventSlugsQuery = groq`
   }
 `;
 
+const newsSlugsQuery = groq`
+  *[_type == "newsArticle"] {
+    "slug": slug.current,
+    _updatedAt
+  }
+`;
+
 type SanitySlug = {
   slug: string;
   _updatedAt: string;
@@ -55,11 +62,12 @@ const staticGuides = [
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Fetch all dynamic content slugs from Sanity
-  const [guides, posts, whitePapers, events] = await Promise.all([
+  const [guides, posts, whitePapers, events, newsArticles] = await Promise.all([
     client.fetch<SanitySlug[]>(guideSlugsQuery).catch(() => []),
     client.fetch<SanitySlug[]>(postSlugsQuery).catch(() => []),
     client.fetch<SanitySlug[]>(whitePaperSlugsQuery).catch(() => []),
     client.fetch<SanitySlug[]>(eventSlugsQuery).catch(() => []),
+    client.fetch<SanitySlug[]>(newsSlugsQuery).catch(() => []),
   ]);
 
   // Static pages with their priorities and change frequencies
@@ -137,6 +145,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     },
     {
+      url: `${BASE_URL}/news/`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.8,
+    },
+    {
       url: `${BASE_URL}/contact/`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
@@ -184,6 +198,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
+  // Dynamic news pages
+  const newsPages: MetadataRoute.Sitemap = newsArticles.map((item) => ({
+    url: `${BASE_URL}/news/${item.slug}/`,
+    lastModified: new Date(item._updatedAt),
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }));
+
   return [
     ...staticPages,
     ...staticGuidePages,
@@ -191,5 +213,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...articlePages,
     ...whitePaperPages,
     ...eventPages,
+    ...newsPages,
   ];
 }
