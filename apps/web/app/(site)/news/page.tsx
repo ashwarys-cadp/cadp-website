@@ -80,31 +80,20 @@ export default async function NewsPage() {
   return (
     <>
       {/* Hero */}
-      <Section background="white">
+      <Section background="white" className="py-8 md:py-10">
         <Container>
           <Breadcrumbs
             items={[{ name: 'News', href: '/news' }]}
           />
 
-          <div className="mt-8 max-w-4xl mx-auto">
-            <div className="mb-8">
-              <div className="inline-block mb-4">
-                <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">
-                  News &amp; Updates
-                </div>
-                <div className="h-px w-20 bg-accent-600"></div>
-              </div>
-              <h1 className="text-4xl md:text-5xl font-serif text-neutral-950 mb-6 leading-tight">
-                Data Protection News from India
-              </h1>
-              <p className="text-lg text-neutral-700 leading-relaxed font-serif">
-                Curated updates on the DPDP Act, enforcement actions, and data
-                protection developments across India.{' '}
-                <span className="text-neutral-500">
-                  Published by CADP Correspondent.
-                </span>
-              </p>
-            </div>
+          <div className="mt-4 max-w-4xl mx-auto">
+            <h1 className="text-3xl md:text-4xl font-serif text-neutral-950 mb-2 leading-tight">
+              Data Protection News from India
+            </h1>
+            <p className="text-base text-neutral-600 font-serif">
+              Curated updates on the DPDP Act, enforcement actions, and data
+              protection developments across India.
+            </p>
           </div>
         </Container>
       </Section>
