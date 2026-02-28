@@ -4,6 +4,7 @@ import service from './documents/service';
 import teamMember from './documents/teamMember';
 import event from './documents/event';
 import siteSettings from './documents/siteSettings';
+import newsArticle from './documents/newsArticle';
 
 export const schemaTypes = [
   // Documents
@@ -13,4 +14,5 @@ export const schemaTypes = [
   teamMember,
   event,
   siteSettings,
+  newsArticle,
 ];
