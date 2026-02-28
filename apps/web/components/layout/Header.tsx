@@ -16,6 +16,7 @@ const navigation = [
       { name: 'DPDP Training', href: '/programs-and-initiatives/dpdp-training' },
       { name: 'Compliance Advisory', href: '/programs-and-initiatives/compliance-advisory' },
       { name: 'Research & Publications', href: '/programs-and-initiatives/research-publications' },
+      { name: 'Events', href: '/events' },
     ],
   },
   {
@@ -27,7 +28,7 @@ const navigation = [
       { name: 'White Papers', href: '/resources/white-papers' },
     ],
   },
-  { name: 'Events', href: '/events' },
+  { name: 'News', href: '/news' },
   { name: 'Contact', href: '/contact' },
 ];
 
