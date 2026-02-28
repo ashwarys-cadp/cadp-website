@@ -1,8 +1,7 @@
 import { Metadata } from 'next';
 import { Container, Section } from '@/components/ui';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
-import { Newsletter } from '@/components/sections';
-import { NewsGrid } from '@/components/sections/NewsGrid';
+import { Newsletter, NewsGrid } from '@/components/sections';
 import { generatePageMetadata } from '@/lib/seo/metadata';
 import { client, allNewsQuery, type NewsArticle } from '@/lib/sanity';
 

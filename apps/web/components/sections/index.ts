@@ -6,3 +6,4 @@ export { UpcomingEvents } from './UpcomingEvents';
 export { Newsletter } from './Newsletter';
 export { TrustSignals } from './TrustSignals';
 export { AboutCentre } from './AboutCentre';
+export { NewsGrid } from './NewsGrid';
