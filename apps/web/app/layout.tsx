@@ -27,6 +27,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${crimsonText.variable}`}>
+      <head>
+        <link rel="alternate" type="application/rss+xml" title="CADP News & Articles" href="/feed.xml" />
+      </head>
       <body className="min-h-screen flex flex-col">
         <OrganizationJsonLd />
         <Header />
