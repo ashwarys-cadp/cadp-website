@@ -58,7 +58,7 @@ export async function generateMetadata({
     title: article.seoTitle || article.title,
     description: article.seoDescription || article.excerpt,
     path: `/news/${article.slug.current}`,
-    image: article.featuredImage
+    image: article.featuredImage?.asset
       ? urlFor(article.featuredImage).width(1200).height(630).url()
       : undefined,
     publishedTime: article.publishedAt,
@@ -126,7 +126,7 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
           headline: article.title,
           description: article.excerpt,
           url: `https://cadp.in/news/${article.slug.current}/`,
-          image: article.featuredImage
+          image: article.featuredImage?.asset
             ? urlFor(article.featuredImage).width(1200).height(630).url()
             : undefined,
           author: {
@@ -196,7 +196,7 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
       {/* Content */}
       <Section background="white">
         <Container size="narrow">
-          {article.featuredImage && (
+          {article.featuredImage?.asset && (
             <div className="relative aspect-video mb-10 overflow-hidden">
               <Image
                 src={urlFor(article.featuredImage).width(1200).height(675).url()}
