@@ -1,7 +1,8 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import { ExternalLink } from 'lucide-react';
+import Link from 'next/link';
+import { ExternalLink, ArrowLeft } from 'lucide-react';
 import { PortableText } from '@portabletext/react';
 import { Container, Section, Button, Badge } from '@/components/ui';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
@@ -72,6 +73,7 @@ export async function generateMetadata({
   });
 }
 
+/** Portable Text — only override links for external target handling. */
 const portableTextComponents = {
   marks: {
     link: ({
@@ -85,7 +87,6 @@ const portableTextComponents = {
       return (
         <a
           href={href}
-          className="text-primary-600 hover:underline"
           target={href.startsWith('http') ? '_blank' : undefined}
           rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
         >
@@ -93,18 +94,6 @@ const portableTextComponents = {
         </a>
       );
     },
-  },
-  block: {
-    h3: ({ children }: { children?: React.ReactNode }) => (
-      <h3 className="text-xl font-semibold text-neutral-900 mt-8 mb-3">
-        {children}
-      </h3>
-    ),
-    blockquote: ({ children }: { children?: React.ReactNode }) => (
-      <blockquote className="border-l-4 border-primary-500 pl-4 italic text-neutral-600 my-6">
-        {children}
-      </blockquote>
-    ),
   },
 };
 
@@ -150,8 +139,8 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
         }}
       />
 
-      {/* Header */}
-      <Section background="gray">
+      {/* ── Article Header ── */}
+      <Section background="white" className="pb-0 md:pb-0">
         <Container size="narrow">
           <Breadcrumbs
             items={[
@@ -163,52 +152,73 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
             ]}
           />
 
-          <div className="mt-8">
-            <div className="flex items-center gap-3 mb-4">
-              <Badge>{getNewsCategoryLabel(article.category)}</Badge>
-              <span className="text-sm text-neutral-500">
-                {formatDate(article.publishedAt)}
-              </span>
-              <span className="text-sm text-neutral-400 font-serif">
-                &middot; CADP Correspondent
-              </span>
-            </div>
-
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 mb-6 text-balance">
-              {article.title}
-            </h1>
-
-            <p className="text-xl text-neutral-600 mb-6">{article.excerpt}</p>
-
-            {article.tags && article.tags.length > 0 && (
-              <div className="flex flex-wrap gap-2 mt-4">
-                {article.tags.map((tag) => (
-                  <Badge key={tag} variant="default">
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
-            )}
+          {/* Category label */}
+          <div className="mt-10">
+            <span className="text-xs font-semibold uppercase tracking-[0.15em] text-primary-700">
+              {getNewsCategoryLabel(article.category)}
+            </span>
           </div>
+
+          {/* Gold rule */}
+          <div className="mt-4 w-16 h-[3px] bg-accent-600" />
+
+          {/* Headline */}
+          <h1 className="mt-6 text-3xl md:text-4xl lg:text-[2.75rem] lg:leading-[1.18] font-bold text-neutral-950 text-balance max-w-3xl">
+            {article.title}
+          </h1>
+
+          {/* Byline */}
+          <div className="mt-4 flex items-center gap-3 text-sm">
+            <span className="text-neutral-700 font-serif font-semibold">
+              CADP Correspondent
+            </span>
+            <span className="text-neutral-300 select-none">|</span>
+            <time
+              dateTime={article.publishedAt}
+              className="text-neutral-500 font-serif"
+            >
+              {formatDate(article.publishedAt)}
+            </time>
+          </div>
+
+          {/* Standfirst / lede */}
+          <p className="mt-6 text-lg md:text-xl text-neutral-600 font-serif leading-relaxed max-w-2xl">
+            {article.excerpt}
+          </p>
         </Container>
       </Section>
 
-      {/* Content */}
-      <Section background="white">
-        <Container size="narrow">
-          {article.featuredImage?.asset && (
-            <div className="relative aspect-video mb-10 overflow-hidden">
-              <Image
-                src={urlFor(article.featuredImage).width(1200).height(675).url()}
-                alt={article.featuredImage.alt || article.title}
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-          )}
+      {/* ── Featured Image ── */}
+      {article.featuredImage?.asset && (
+        <Section background="white" className="pt-10 md:pt-12 pb-0 md:pb-0">
+          <Container size="narrow">
+            <figure>
+              <div className="relative aspect-[16/9] overflow-hidden border border-neutral-200">
+                <Image
+                  src={urlFor(article.featuredImage)
+                    .width(1200)
+                    .height(675)
+                    .url()}
+                  alt={article.featuredImage.alt || article.title}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              {article.featuredImage.caption && (
+                <figcaption className="mt-3 text-sm text-neutral-500 font-serif italic">
+                  {article.featuredImage.caption}
+                </figcaption>
+              )}
+            </figure>
+          </Container>
+        </Section>
+      )}
 
-          <div className="prose prose-lg">
+      {/* ── Article Body ── */}
+      <Section background="white" className="pt-10 md:pt-14">
+        <Container size="narrow">
+          <div className="prose prose-lg drop-cap">
             {article.body ? (
               <PortableText
                 value={article.body}
@@ -221,59 +231,95 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
             )}
           </div>
 
-          {/* Source Callout Box — only shown when sourceUrl exists */}
-          {article.sourceUrl && (
-            <div className="mt-12 border-2 border-neutral-300 bg-neutral-50 p-8">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 bg-primary-950 flex items-center justify-center flex-shrink-0">
-                  <ExternalLink className="w-5 h-5 text-accent-500" />
-                </div>
-                <div>
-                  <p className="text-sm text-neutral-500 font-serif mb-1">
-                    Originally reported by
-                  </p>
-                  <p className="text-lg font-serif font-semibold text-neutral-900 mb-4">
-                    {article.sourceName || 'External Source'}
-                  </p>
-                  <a
-                    href={article.sourceUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-2.5 bg-primary-950 text-white text-[0.9375rem] font-serif font-semibold border-2 border-primary-950 hover:bg-primary-900 transition-all"
-                  >
-                    Read Full Article
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
-                </div>
+          {/* ── Tags ── */}
+          {article.tags && article.tags.length > 0 && (
+            <div className="mt-14 pt-6 border-t border-neutral-200">
+              <span className="text-xs font-semibold uppercase tracking-[0.15em] text-neutral-400 mr-4">
+                Topics
+              </span>
+              <div className="inline-flex flex-wrap gap-2 mt-1">
+                {article.tags.map((tag) => (
+                  <Badge key={tag} variant="default">
+                    {tag}
+                  </Badge>
+                ))}
               </div>
             </div>
           )}
+
+          {/* ── Source Attribution ── */}
+          {article.sourceUrl && (
+            <>
+              <div className="ornament-divider" />
+              <aside className="border-l-4 border-accent-600 pl-8 py-6 my-2">
+                <p className="text-xs font-semibold uppercase tracking-[0.15em] text-neutral-400 mb-2">
+                  Original Source
+                </p>
+                <p className="text-xl font-heading font-semibold text-neutral-900 mb-5">
+                  {article.sourceName || 'External Source'}
+                </p>
+                <a
+                  href={article.sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 bg-primary-950 text-white text-[0.9375rem] font-serif font-semibold border-2 border-primary-950 hover:bg-primary-900 transition-all"
+                >
+                  Read Full Article
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </aside>
+            </>
+          )}
+
+          {/* ── Back link ── */}
+          <div className="mt-16 pt-8 border-t border-neutral-200">
+            <Link
+              href="/news"
+              className="inline-flex items-center gap-2 text-sm font-serif text-primary-700 hover:text-primary-900 transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              All News
+            </Link>
+          </div>
         </Container>
       </Section>
 
-      {/* CTA */}
-      <Section background="primary">
+      {/* ── CTA ── */}
+      <Section background="white">
         <Container size="narrow">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              Need Help with DPDP Compliance?
-            </h2>
-            <p className="text-primary-100 mb-8 max-w-xl mx-auto">
-              Our team can help you navigate DPDP Act requirements and build
-              your compliance program.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button href="/contact/" variant="secondary" size="lg">
-                Get in Touch
-              </Button>
-              <Button
-                href="/resources/"
-                variant="outline"
-                size="lg"
-                className="border-white text-white hover:bg-white/10"
-              >
-                More Resources
-              </Button>
+          <div className="border-4 border-primary-950 bg-primary-950 p-10 md:p-14 shadow-xl relative">
+            {/* Decorative corner accents */}
+            <div className="absolute top-0 right-0 w-20 h-20 bg-accent-600 opacity-20" />
+            <div className="absolute bottom-0 left-0 w-20 h-20 bg-accent-600 opacity-20" />
+
+            <div className="text-center relative z-10">
+              <div className="inline-block mb-6">
+                <div className="text-xs uppercase tracking-[0.25em] text-accent-500 font-semibold mb-3">
+                  Get in Touch
+                </div>
+                <div className="h-px w-24 mx-auto bg-accent-600" />
+              </div>
+
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-5">
+                Navigating the DPDP Act
+              </h2>
+              <p className="text-primary-100 text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-serif">
+                Explore our research, training programmes, and advisory services
+                on data protection law and compliance in India.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button href="/contact/" variant="secondary" size="lg">
+                  Get in Touch
+                </Button>
+                <Button
+                  href="/resources/"
+                  size="lg"
+                  className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary-950 transition-colors font-semibold"
+                >
+                  More Resources
+                </Button>
+              </div>
             </div>
           </div>
         </Container>
