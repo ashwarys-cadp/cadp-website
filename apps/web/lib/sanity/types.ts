@@ -125,6 +125,23 @@ export interface Event {
   speakers?: TeamMember[];
 }
 
+export interface NewsArticle {
+  _id: string;
+  title: string;
+  slug: { current: string };
+  excerpt: string;
+  body?: PortableTextBlock[];
+  sourceUrl?: string;
+  sourceName?: string;
+  category: string;
+  tags?: string[];
+  publishedAt: string;
+  _updatedAt?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  featuredImage?: SanityImage;
+}
+
 export interface SiteSettings {
   siteName: string;
   siteDescription?: string;

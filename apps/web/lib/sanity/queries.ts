@@ -312,6 +312,47 @@ export const eventBySlugQuery = groq`
   }
 `;
 
+// News Article Queries
+export const allNewsQuery = groq`
+  *[_type == "newsArticle"] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    excerpt,
+    sourceUrl,
+    sourceName,
+    category,
+    tags,
+    publishedAt,
+    featuredImage {
+      asset->,
+      alt
+    }
+  }
+`;
+
+export const newsBySlugQuery = groq`
+  *[_type == "newsArticle" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    excerpt,
+    body,
+    sourceUrl,
+    sourceName,
+    category,
+    tags,
+    publishedAt,
+    _updatedAt,
+    seoTitle,
+    seoDescription,
+    featuredImage {
+      asset->,
+      alt
+    }
+  }
+`;
+
 // Site Settings Query
 export const siteSettingsQuery = groq`
   *[_type == "siteSettings"][0] {
