@@ -116,7 +116,7 @@ export function DocumentSearch({
             }}
             onFocus={() => query && setIsOpen(true)}
             onKeyDown={handleKeyDown}
-            placeholder="Search this document..."
+            placeholder={isCrossCorpus ? 'Search all documents...' : `Search ${currentDocument.shortTitle}...`}
             className="w-full pl-10 pr-8 py-2.5 border-2 border-neutral-300 bg-white font-serif text-sm focus:border-primary-600 focus:outline-none transition-colors"
           />
           {query && (
@@ -143,7 +143,7 @@ export function DocumentSearch({
           title={isCrossCorpus ? 'Searching all documents' : 'Search all documents'}
         >
           <Globe className="w-4 h-4" />
-          <span className="hidden sm:inline">All (Act/Rules/Notifications)</span>
+          <span className="hidden sm:inline">{isCrossCorpus ? 'All (Act/Rules/Notifications)' : 'This Document'}</span>
         </button>
       </div>
 

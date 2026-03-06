@@ -84,6 +84,15 @@ interface LegalDocument {
   chapters: Chapter[];
   schedules: Schedule[];
   definitions: TermDefinition[];
+  corrigenda: Corrigendum[];   // Always include — use [] if none
+}
+
+interface Corrigendum {
+  id: string;              // "corrigendum-1", "corrigendum-2", ...
+  gazetteNumber: string;   // e.g., "G.S.R. 892(E)"
+  date: string;            // ISO date of the corrigendum gazette
+  description: string;     // Brief description of the correction
+  affectedSections: string[]; // IDs of sections corrected
 }
 
 interface Chapter {
@@ -207,6 +216,15 @@ export function getDocumentIds(): string[] {
 
 This is the only code change needed. The dynamic import in `loadDocument()` will resolve the new JSON file automatically.
 
+### Index page grouping
+
+The index page at `/resources/official-texts/` automatically groups documents into two tables:
+
+- **Legislation** — documents with `type` of `"act"` or `"rules"`
+- **Notifications & Orders** — everything else (`"notification"`, etc.)
+
+No code changes are needed — the grouping is driven by the document's `type` field.
+
 ---
 
 ## Step 5: Add Sitemap Entry
@@ -309,6 +327,7 @@ Before committing, verify:
 - [ ] All section text is verbatim from the gazette — no paraphrasing
 - [ ] HTML uses correct tags: `<p>`, `<ol type="a">`, `<li>`, `<table>`, `.proviso`, `.explanation`
 - [ ] Definitions include `clause` field with the correct letter/number
+- [ ] `corrigenda` field is present (use `[]` if no corrections apply)
 - [ ] Section IDs use correct prefix (`section-`, `rule-`, `para-`)
 - [ ] Document ID added to `getDocumentIds()` in `utils.ts`
 - [ ] Sitemap entry added in `sitemap.ts`
