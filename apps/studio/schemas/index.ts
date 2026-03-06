@@ -1,3 +1,4 @@
+import announcement from './documents/announcement';
 import post from './documents/post';
 import whitePaper from './documents/whitePaper';
 import service from './documents/service';
@@ -11,6 +12,7 @@ import caseReference from './documents/caseReference';
 
 export const schemaTypes = [
   // Documents
+  announcement,
   post,
   whitePaper,
   service,
