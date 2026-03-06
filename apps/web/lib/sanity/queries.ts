@@ -367,3 +367,84 @@ export const siteSettingsQuery = groq`
     footerText
   }
 `;
+
+// Official Texts — Annotations
+export const annotationsByDocumentQuery = groq`
+  *[_type == "annotation" && documentId == $documentId] {
+    _id,
+    term,
+    explanation,
+    category,
+    documentId,
+    targetSection
+  }
+`;
+
+export const allAnnotationsQuery = groq`
+  *[_type == "annotation"] {
+    _id,
+    term,
+    explanation,
+    category,
+    documentId,
+    targetSection
+  }
+`;
+
+// Official Texts — Section Resources
+export const resourcesByDocumentQuery = groq`
+  *[_type == "sectionResource" && documentId == $documentId] {
+    _id,
+    title,
+    description,
+    url,
+    type,
+    documentId,
+    targetSection,
+    targetChapter
+  }
+`;
+
+export const allResourcesQuery = groq`
+  *[_type == "sectionResource"] {
+    _id,
+    title,
+    description,
+    url,
+    type,
+    documentId,
+    targetSection,
+    targetChapter
+  }
+`;
+
+// Official Texts — Case References
+export const casesByDocumentQuery = groq`
+  *[_type == "caseReference" && documentId == $documentId] | order(dateDecided desc) {
+    _id,
+    caseName,
+    citation,
+    court,
+    dateDecided,
+    summary,
+    url,
+    documentId,
+    targetSection,
+    targetChapter
+  }
+`;
+
+export const allCasesQuery = groq`
+  *[_type == "caseReference"] | order(dateDecided desc) {
+    _id,
+    caseName,
+    citation,
+    court,
+    dateDecided,
+    summary,
+    url,
+    documentId,
+    targetSection,
+    targetChapter
+  }
+`;
