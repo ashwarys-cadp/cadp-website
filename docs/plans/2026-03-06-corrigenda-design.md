@@ -96,12 +96,10 @@ After preamble, before Chapter I. It is metadata about the document, not part of
 
 ## UI: Section-Level Indicators
 
-### Section heading icon
+### Section heading button
 
-- New icon on section headings alongside existing resources (link) and case law (scale) icons
-- Icon: Lucide `History` in `neutral-500`
-- Count badge showing number of amendments
-- Tooltip: "1 correction applied"
+- New text button on section headings alongside existing resources and case law buttons
+- Format: `[N Correction(s)]` in `neutral-500`, matching the existing `[N Resources]` and `[N Cases]` pattern
 - Only appears on sections that have `amendments` entries
 
 ### Side panel mode

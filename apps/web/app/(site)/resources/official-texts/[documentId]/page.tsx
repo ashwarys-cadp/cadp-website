@@ -5,6 +5,7 @@ import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { LegislationJsonLd, WebApplicationJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { generatePageMetadata } from '@/lib/seo/metadata';
 import { formatDate } from '@/lib/utils';
+import { formatSectionId } from '@/lib/official-texts/utils';
 import {
   loadDocument,
   loadAllDocuments,
@@ -96,10 +97,7 @@ function CorrigendaBanner({ corrigenda }: { corrigenda: Corrigendum[] }) {
                   href={`#${sectionId}`}
                   className="text-xs font-serif font-semibold text-primary-700 hover:text-primary-900 hover:underline"
                 >
-                  {sectionId
-                    .replace('section-', 'Section ')
-                    .replace('rule-', 'Rule ')
-                    .replace('schedule-', 'Schedule ')}
+                  {formatSectionId(sectionId)}
                 </a>
               ))}
             </div>

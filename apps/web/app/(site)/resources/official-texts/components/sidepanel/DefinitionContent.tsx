@@ -1,4 +1,5 @@
 import type { TermDefinition } from '@/data/official-texts/types';
+import { formatSectionId } from '@/lib/official-texts/utils';
 
 interface DefinitionContentProps {
   term: TermDefinition;
@@ -31,7 +32,7 @@ export function DefinitionContent({ term, onNavigateToSection }: DefinitionConte
           &ldquo;{term.legalDefinition}&rdquo;
         </blockquote>
         <div className="text-sm text-neutral-500 font-serif mt-2">
-          &mdash; {term.sourceSection.replace('section-', 'Section ').replace('rule-', 'Rule ')}({term.clause})
+          &mdash; {formatSectionId(term.sourceSection)}({term.clause})
         </div>
       </div>
 
@@ -58,7 +59,7 @@ export function DefinitionContent({ term, onNavigateToSection }: DefinitionConte
                   }}
                   className="text-primary-700 hover:text-primary-900 font-serif text-sm hover:underline transition-colors"
                 >
-                  {sectionId.replace('section-', 'Section ').replace('rule-', 'Rule ')}
+                  {formatSectionId(sectionId)}
                 </button>
               </li>
             ))}

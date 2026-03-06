@@ -1,13 +1,14 @@
 import { Scale, ExternalLink } from 'lucide-react';
 import type { CaseReference } from '@/data/official-texts/types';
 import { formatDate } from '@/lib/utils';
+import { formatSectionId } from '@/lib/official-texts/utils';
 
 export function CaseLawContent({ sectionId, cases }: { sectionId: string; cases: CaseReference[] }) {
   return (
     <div>
       <div className="text-xs uppercase tracking-[0.2em] text-primary-600 font-semibold mb-3">Case Law</div>
       <div className="text-sm text-neutral-500 font-serif mb-6">
-        {sectionId.replace('section-', 'Section ').replace('rule-', 'Rule ').replace('chapter-', 'Chapter ')}
+        {formatSectionId(sectionId)}
       </div>
       <div className="space-y-4">
         {cases.map((caseRef) => (
