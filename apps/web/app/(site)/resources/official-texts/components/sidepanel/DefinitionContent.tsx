@@ -1,0 +1,53 @@
+import type { TermDefinition } from '@/data/official-texts/types';
+
+interface DefinitionContentProps {
+  term: TermDefinition;
+  onNavigateToSection: (sectionId: string) => void;
+}
+
+export function DefinitionContent({ term, onNavigateToSection }: DefinitionContentProps) {
+  return (
+    <div>
+      <div className="text-xs uppercase tracking-[0.2em] text-accent-700 font-semibold mb-3">
+        Defined Term
+      </div>
+      <h3 className="text-xl font-serif font-semibold text-neutral-950 mb-6">{term.term}</h3>
+
+      <div className="mb-6">
+        <div className="text-xs uppercase tracking-[0.15em] text-neutral-500 font-semibold mb-2">Legal Definition</div>
+        <blockquote className="text-neutral-700 font-serif leading-relaxed border-l-2 border-accent-600 pl-4 italic">
+          &ldquo;{term.legalDefinition}&rdquo;
+        </blockquote>
+        <div className="text-sm text-neutral-500 font-serif mt-2">
+          &mdash; {term.sourceSection.replace('section-', 'Section ').replace('rule-', 'Rule ')}
+        </div>
+      </div>
+
+      {term.plainLanguage && (
+        <div className="mb-6">
+          <div className="text-xs uppercase tracking-[0.15em] text-neutral-500 font-semibold mb-2">Plain Language</div>
+          <p className="text-neutral-700 font-serif leading-relaxed">{term.plainLanguage}</p>
+        </div>
+      )}
+
+      {term.relatedSections.length > 0 && (
+        <div>
+          <div className="h-px bg-neutral-200 my-6"></div>
+          <div className="text-xs uppercase tracking-[0.15em] text-neutral-500 font-semibold mb-3">Appears in</div>
+          <ul className="space-y-1">
+            {term.relatedSections.map((sectionId) => (
+              <li key={sectionId}>
+                <button
+                  onClick={() => onNavigateToSection(sectionId)}
+                  className="text-primary-700 hover:text-primary-900 font-serif text-sm hover:underline transition-colors"
+                >
+                  {sectionId.replace('section-', 'Section ').replace('rule-', 'Rule ')}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
