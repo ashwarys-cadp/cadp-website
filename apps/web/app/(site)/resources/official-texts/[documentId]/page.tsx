@@ -21,6 +21,7 @@ import type {
   Annotation,
   SectionResource,
   CaseReference,
+  Corrigendum,
 } from '@/data/official-texts/types';
 import { DocumentReader } from '../components/DocumentReader';
 
@@ -70,6 +71,43 @@ async function fetchSanityData(documentId: string) {
   } catch {
     return { annotations: [], resources: [], cases: [] };
   }
+}
+
+function CorrigendaBanner({ corrigenda }: { corrigenda: Corrigendum[] }) {
+  if (corrigenda.length === 0) return null;
+
+  return (
+    <div className="mb-12 border-l-4 border-neutral-300 bg-neutral-50 p-6">
+      <div className="text-xs uppercase tracking-[0.2em] text-neutral-600 font-semibold mb-3">
+        Corrections Incorporated
+      </div>
+      <div className="space-y-3">
+        {corrigenda.map((c) => (
+          <div key={c.id}>
+            <div className="text-sm font-serif text-neutral-700">
+              <span className="font-semibold">{c.description}</span>
+              {' — '}
+              {c.gazetteNumber}, {formatDate(c.date)}
+            </div>
+            <div className="flex flex-wrap gap-2 mt-1.5">
+              {c.affectedSections.map((sectionId) => (
+                <a
+                  key={sectionId}
+                  href={`#${sectionId}`}
+                  className="text-xs font-serif font-semibold text-primary-700 hover:text-primary-900 hover:underline"
+                >
+                  {sectionId
+                    .replace('section-', 'Section ')
+                    .replace('rule-', 'Rule ')
+                    .replace('schedule-', 'Schedule ')}
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default async function OfficialTextPage({ params }: PageProps) {
@@ -158,6 +196,8 @@ export default async function OfficialTextPage({ params }: PageProps) {
               </div>
             </div>
           </div>
+
+          <CorrigendaBanner corrigenda={doc.corrigenda} />
 
           <DocumentReader
             document={doc}
