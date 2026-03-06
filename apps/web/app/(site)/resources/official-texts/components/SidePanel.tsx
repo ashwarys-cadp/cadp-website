@@ -70,7 +70,7 @@ export function SidePanel({ mode, onClose, onNavigateToSection }: SidePanelProps
     <div
       ref={panelRef}
       className={cn(
-        'fixed top-20 lg:top-24 right-0 h-[calc(100vh-5rem)] lg:h-[calc(100vh-6rem)] w-full sm:w-[360px] bg-white border-l-2 border-neutral-300 shadow-xl z-40',
+        'fixed top-0 right-0 h-full w-full sm:w-[360px] bg-white border-l-2 border-neutral-300 shadow-xl z-40',
         'transform transition-transform duration-300 ease-in-out',
         'overflow-y-auto',
         mode ? 'translate-x-0' : 'translate-x-full'

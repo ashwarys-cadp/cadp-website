@@ -34,7 +34,7 @@ export function SectionHeading({
       : `Section ${number}`;
 
   return (
-    <div id={id} className="group flex items-start gap-3 scroll-mt-24">
+    <div id={id} className="group flex items-start gap-3 scroll-mt-8">
       <Tag
         className={
           isChapter

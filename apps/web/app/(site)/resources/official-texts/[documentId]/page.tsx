@@ -78,6 +78,7 @@ export default async function OfficialTextPage({ params }: PageProps) {
 
   return (
     <>
+      <style>{`header { position: relative !important; }`}</style>
       <Section background="white">
         <Container size="wide">
           <Breadcrumbs

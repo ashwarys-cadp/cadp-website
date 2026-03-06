@@ -143,7 +143,7 @@ export function DocumentSearch({
           title={isCrossCorpus ? 'Searching all documents' : 'Search all documents'}
         >
           <Globe className="w-4 h-4" />
-          <span className="hidden sm:inline">All</span>
+          <span className="hidden sm:inline">All (Act/Rules/Notifications)</span>
         </button>
       </div>
 

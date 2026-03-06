@@ -100,7 +100,7 @@ export function DocumentReader({
     <div className="flex gap-0 xl:gap-8 relative">
       {/* Left: Sticky TOC */}
       <aside className="hidden xl:block w-[220px] shrink-0">
-        <div className="sticky top-28 max-h-[calc(100vh-8rem)] overflow-y-auto pr-4">
+        <div className="sticky top-8 max-h-[calc(100vh-4rem)] overflow-y-auto pr-4">
           <TableOfContents items={toc} />
         </div>
       </aside>
@@ -108,7 +108,7 @@ export function DocumentReader({
       {/* Center: Main content */}
       <main className="flex-1 min-w-0">
         {/* Search */}
-        <div className="mb-10">
+        <div className="sticky top-0 z-20 bg-white py-4 -mx-1 px-1 mb-6">
           <DocumentSearch
             currentDocument={doc}
             allDocuments={allDocuments}
