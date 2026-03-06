@@ -5,6 +5,9 @@ import teamMember from './documents/teamMember';
 import event from './documents/event';
 import siteSettings from './documents/siteSettings';
 import newsArticle from './documents/newsArticle';
+import annotation from './documents/annotation';
+import sectionResource from './documents/sectionResource';
+import caseReference from './documents/caseReference';
 
 export const schemaTypes = [
   // Documents
@@ -15,4 +18,7 @@ export const schemaTypes = [
   event,
   siteSettings,
   newsArticle,
+  annotation,
+  sectionResource,
+  caseReference,
 ];
