@@ -97,6 +97,11 @@ export default defineType({
           { title: 'Industry News', value: 'industry-news' },
           { title: 'Opinion', value: 'opinion' },
           { title: 'CADP Announcements', value: 'cadp-announcements' },
+          { title: 'Policy & Regulation', value: 'policy-and-regulation' },
+          { title: 'Legislation', value: 'legislation' },
+          { title: 'Enforcement', value: 'enforcement' },
+          { title: 'International', value: 'international' },
+          { title: 'Litigation', value: 'litigation' },
         ],
       },
       validation: (Rule) => Rule.required(),
@@ -170,6 +175,11 @@ export default defineType({
         'industry-news': 'Industry',
         opinion: 'Opinion',
         'cadp-announcements': 'CADP',
+        'policy-and-regulation': 'Policy',
+        legislation: 'Legislation',
+        enforcement: 'Enforcement',
+        international: 'International',
+        litigation: 'Litigation',
       };
       return {
         ...selection,
