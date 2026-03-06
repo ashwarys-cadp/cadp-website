@@ -70,3 +70,16 @@ export async function loadAllDocuments(): Promise<LegalDocument[]> {
 export function countSections(doc: LegalDocument): number {
   return doc.chapters.reduce((acc, ch) => acc + ch.sections.length, 0);
 }
+
+/**
+ * Format a section/rule/chapter/schedule ID for display.
+ * e.g. "section-7" → "Section 7", "rule-12" → "Rule 12"
+ */
+export function formatSectionId(id: string): string {
+  return id
+    .replace('section-', 'Section ')
+    .replace('rule-', 'Rule ')
+    .replace('chapter-', 'Chapter ')
+    .replace('schedule-', 'Schedule ')
+    .replace('para-', 'Para ');
+}

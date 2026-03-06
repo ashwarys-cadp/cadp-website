@@ -8,6 +8,7 @@ import { DefinitionContent } from './sidepanel/DefinitionContent';
 import { AnnotationContent } from './sidepanel/AnnotationContent';
 import { ResourcesContent } from './sidepanel/ResourcesContent';
 import { CaseLawContent } from './sidepanel/CaseLawContent';
+import { AmendmentsContent } from './sidepanel/AmendmentsContent';
 
 interface SidePanelProps {
   mode: PanelMode | null;
@@ -31,6 +32,14 @@ function PanelContent({
       return <ResourcesContent sectionId={mode.sectionId} resources={mode.resources} />;
     case 'caselaw':
       return <CaseLawContent sectionId={mode.sectionId} cases={mode.cases} />;
+    case 'amendments':
+      return (
+        <AmendmentsContent
+          sectionId={mode.sectionId}
+          amendments={mode.amendments}
+          corrigenda={mode.corrigenda}
+        />
+      );
     default:
       return null;
   }

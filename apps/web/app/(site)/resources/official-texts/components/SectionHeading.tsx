@@ -11,6 +11,8 @@ interface SectionHeadingProps {
   caseCount: number;
   onResourcesClick: () => void;
   onCasesClick: () => void;
+  amendmentCount: number;
+  onAmendmentsClick: () => void;
 }
 
 export function SectionHeading({
@@ -22,6 +24,8 @@ export function SectionHeading({
   caseCount,
   onResourcesClick,
   onCasesClick,
+  amendmentCount,
+  onAmendmentsClick,
 }: SectionHeadingProps) {
   const isChapter = level === 'chapter';
   const isSchedule = level === 'schedule';
@@ -47,7 +51,7 @@ export function SectionHeading({
           <span className="text-primary-700">{prefix}.</span> {title}
         </Tag>
 
-        {(resourceCount > 0 || caseCount > 0) && (
+        {(resourceCount > 0 || caseCount > 0 || amendmentCount > 0) && (
           <span className="text-neutral-300 select-none">|</span>
         )}
 
@@ -66,6 +70,15 @@ export function SectionHeading({
             className="text-sm font-serif font-semibold text-primary-600 hover:text-primary-800 hover:underline transition-colors cursor-pointer"
           >
             [{caseCount} Case{caseCount > 1 ? 's' : ''}]
+          </button>
+        )}
+
+        {amendmentCount > 0 && (
+          <button
+            onClick={onAmendmentsClick}
+            className="text-sm font-serif font-semibold text-neutral-500 hover:text-neutral-700 hover:underline transition-colors cursor-pointer"
+          >
+            [{amendmentCount} Correction{amendmentCount > 1 ? 's' : ''}]
           </button>
         )}
       </div>
