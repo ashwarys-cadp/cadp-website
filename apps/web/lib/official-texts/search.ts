@@ -75,9 +75,11 @@ export function searchEntries(
 
     if (!matches) continue;
 
-    const firstWordIndex = lowerText.indexOf(words[0]);
-    const snippetStart = Math.max(0, firstWordIndex - 60);
-    const snippetEnd = Math.min(entry.plainText.length, firstWordIndex + 120);
+    // Prefer the full phrase match for snippet context, fall back to first word
+    let matchIndex = lowerText.indexOf(lowerQuery);
+    if (matchIndex === -1) matchIndex = lowerText.indexOf(words[0]);
+    const snippetStart = Math.max(0, matchIndex - 40);
+    const snippetEnd = Math.min(entry.plainText.length, matchIndex + query.length + 120);
     const snippet =
       (snippetStart > 0 ? '...' : '') +
       entry.plainText.slice(snippetStart, snippetEnd) +
