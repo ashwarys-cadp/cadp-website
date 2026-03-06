@@ -163,3 +163,11 @@ export interface SiteSettings {
   };
   footerText?: string;
 }
+
+export interface Announcement {
+  _id: string;
+  message: string;
+  link?: string;
+  linkText?: string;
+  publishedAt: string;
+}

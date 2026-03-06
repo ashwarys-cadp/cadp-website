@@ -448,3 +448,14 @@ export const allCasesQuery = groq`
     targetChapter
   }
 `;
+
+// Announcement Banner Query
+export const activeAnnouncementQuery = groq`
+  *[_type == "announcement" && isActive == true] | order(publishedAt desc)[0] {
+    _id,
+    message,
+    link,
+    linkText,
+    publishedAt
+  }
+`;
