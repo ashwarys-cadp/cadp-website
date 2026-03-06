@@ -278,3 +278,44 @@
     font-family: var(--font-heading);
   }
 }
+
+/* Legal text prose styles */
+.prose-legal p {
+  @apply mb-4;
+}
+
+.prose-legal ol {
+  @apply ml-6 mb-4 space-y-2;
+}
+
+.prose-legal ol[type="a"] {
+  list-style-type: lower-alpha;
+}
+
+.prose-legal ol[type="i"] {
+  list-style-type: lower-roman;
+}
+
+.prose-legal li {
+  @apply pl-1;
+}
+
+.prose-legal .proviso {
+  @apply ml-6 italic text-neutral-700 border-l-2 border-neutral-300 pl-4 mb-4;
+}
+
+.prose-legal .explanation {
+  @apply ml-6 text-neutral-600 border-l-2 border-accent-300 pl-4 mb-4;
+}
+
+.prose-legal table {
+  @apply w-full border-collapse border-2 border-neutral-300 mb-4;
+}
+
+.prose-legal th {
+  @apply text-left py-2 px-3 bg-neutral-100 border border-neutral-300 font-semibold text-sm;
+}
+
+.prose-legal td {
+  @apply py-2 px-3 border border-neutral-300 text-sm;
+}
