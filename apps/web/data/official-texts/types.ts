@@ -40,6 +40,7 @@ export interface Schedule {
 
 export interface TermDefinition {
   term: string;
+  clause: string;
   legalDefinition: string;
   plainLanguage?: string;
   sourceSection: string;

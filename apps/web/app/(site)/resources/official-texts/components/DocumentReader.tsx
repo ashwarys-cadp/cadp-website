@@ -35,7 +35,8 @@ export function DocumentReader({
   const [panelMode, setPanelMode] = useState<PanelMode | null>(null);
 
   const toc = generateToc(doc);
-  const mergedTerms = mergeTerms(doc.definitions, annotations);
+  const allDefinitions = allDocuments.flatMap((d) => d.definitions);
+  const mergedTerms = mergeTerms(allDefinitions, annotations);
 
   // Scroll to hash on mount
   useEffect(() => {

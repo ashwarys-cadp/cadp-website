@@ -8,8 +8,20 @@ interface DefinitionContentProps {
 export function DefinitionContent({ term, onNavigateToSection }: DefinitionContentProps) {
   return (
     <div>
-      <div className="text-xs uppercase tracking-[0.2em] text-accent-700 font-semibold mb-3">
-        Defined Term
+      <div className="flex items-center gap-2 mb-3">
+        <div className="text-xs uppercase tracking-[0.2em] text-accent-700 font-semibold">
+          Defined Term
+        </div>
+        {term.sourceSection.startsWith('section-') && (
+          <span className="text-[0.625rem] uppercase tracking-[0.15em] font-semibold px-1.5 py-0.5 border border-primary-300 text-primary-700 bg-primary-50">
+            DPDP Act 2023
+          </span>
+        )}
+        {term.sourceSection.startsWith('rule-') && (
+          <span className="text-[0.625rem] uppercase tracking-[0.15em] font-semibold px-1.5 py-0.5 border border-accent-300 text-accent-700 bg-accent-50">
+            DPDP Rules 2025
+          </span>
+        )}
       </div>
       <h3 className="text-xl font-serif font-semibold text-neutral-950 mb-6">{term.term}</h3>
 
@@ -19,7 +31,7 @@ export function DefinitionContent({ term, onNavigateToSection }: DefinitionConte
           &ldquo;{term.legalDefinition}&rdquo;
         </blockquote>
         <div className="text-sm text-neutral-500 font-serif mt-2">
-          &mdash; {term.sourceSection.replace('section-', 'Section ').replace('rule-', 'Rule ')}
+          &mdash; {term.sourceSection.replace('section-', 'Section ').replace('rule-', 'Rule ')}({term.clause})
         </div>
       </div>
 
