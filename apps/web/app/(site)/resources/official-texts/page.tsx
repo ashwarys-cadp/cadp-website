@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { FileText, Scale, BookOpen, ArrowRight } from 'lucide-react';
+import { Scale, BookOpen, FileText, ArrowRight } from 'lucide-react';
 import { Container, Section } from '@/components/ui';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { generatePageMetadata } from '@/lib/seo/metadata';
-import { loadAllDocuments, countSections } from '@/lib/official-texts/utils';
+import { loadAllDocuments } from '@/lib/official-texts/utils';
 import { formatDate } from '@/lib/utils';
 
 export const metadata: Metadata = generatePageMetadata({
@@ -20,20 +20,23 @@ export const metadata: Metadata = generatePageMetadata({
   ],
 });
 
-const typeIcons = {
+const typeIcons: Record<string, typeof Scale> = {
   act: Scale,
   rules: BookOpen,
   notification: FileText,
 };
 
-const typeLabels = {
+const typeLabels: Record<string, string> = {
   act: 'Act',
   rules: 'Rules',
   notification: 'Notification',
 };
 
 export default async function OfficialTextsPage() {
-  const documents = await loadAllDocuments();
+  const documents = (await loadAllDocuments()).sort(
+    (a, b) =>
+      new Date(b.dateEnacted).getTime() - new Date(a.dateEnacted).getTime()
+  );
 
   return (
     <>
@@ -67,63 +70,103 @@ export default async function OfficialTextsPage() {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {documents.map((doc) => {
-              const Icon = typeIcons[doc.type];
-              const sectionCount = countSections(doc);
-              return (
-                <Link
-                  key={doc.id}
-                  href={`/resources/official-texts/${doc.id}/`}
-                  className="group block bg-white border-2 border-neutral-300 hover:border-primary-600 transition-all duration-300 shadow-sm hover:shadow-lg"
-                >
-                  <div className="h-2 bg-primary-600 group-hover:bg-primary-800 transition-colors"></div>
-                  <div className="p-8">
-                    <div className="flex items-start justify-between mb-6">
-                      <div className="w-14 h-14 border-2 border-primary-900 flex items-center justify-center bg-primary-50 group-hover:bg-primary-900 transition-all">
-                        <Icon
-                          className="w-7 h-7 text-primary-900 group-hover:text-white transition-colors"
-                          strokeWidth={1.5}
-                        />
+          {/* Table view */}
+          <div className="max-w-3xl mx-auto">
+            <div className="border-2 border-neutral-300 bg-white">
+              {/* Table header */}
+              <div className="hidden md:grid md:grid-cols-[1fr_1fr_1fr_40px] gap-0 border-b-2 border-neutral-300 bg-neutral-50">
+                <div className="px-5 py-3 text-[0.6875rem] uppercase tracking-[0.15em] font-semibold text-neutral-500">
+                  Title
+                </div>
+                <div className="px-4 py-3 text-[0.6875rem] uppercase tracking-[0.15em] font-semibold text-neutral-500">
+                  Type
+                </div>
+                <div className="px-4 py-3 text-[0.6875rem] uppercase tracking-[0.15em] font-semibold text-neutral-500">
+                  Published
+                </div>
+                <div />
+              </div>
+
+              {/* Table rows */}
+              {documents.map((doc, i) => {
+                const Icon = typeIcons[doc.type];
+                return (
+                  <Link
+                    key={doc.id}
+                    href={`/resources/official-texts/${doc.id}/`}
+                    className={`group block transition-colors hover:bg-primary-50 ${
+                      i < documents.length - 1
+                        ? 'border-b border-neutral-200'
+                        : ''
+                    }`}
+                  >
+                    {/* Desktop row */}
+                    <div className="hidden md:grid md:grid-cols-[1fr_1fr_1fr_40px] gap-0 items-center">
+                      <div className="px-5 py-4 flex items-center gap-3">
+                        <div className="w-9 h-9 border border-primary-900 shrink-0 flex items-center justify-center bg-primary-50 group-hover:bg-primary-900 transition-all">
+                          <Icon
+                            className="w-4 h-4 text-primary-900 group-hover:text-white transition-colors"
+                            strokeWidth={1.5}
+                          />
+                        </div>
+                        <div>
+                          <span className="text-sm font-serif font-semibold text-neutral-950 group-hover:text-primary-900 transition-colors leading-snug">
+                            {doc.shortTitle}
+                          </span>
+                          <span className="block text-xs text-neutral-500 font-serif mt-0.5">
+                            {doc.gazetteNumber}
+                          </span>
+                        </div>
                       </div>
-                      <div className="text-[0.6875rem] uppercase tracking-[0.15em] text-primary-800 font-semibold bg-primary-50 px-2.5 py-1 border border-primary-200">
-                        {typeLabels[doc.type]}
+                      <div className="px-4 py-4">
+                        <span className="text-[0.6875rem] uppercase tracking-widest text-primary-800 font-semibold bg-primary-50 border border-primary-200 px-2 py-0.5">
+                          {typeLabels[doc.type]}
+                        </span>
+                      </div>
+                      <div className="px-4 py-4 text-sm text-neutral-700 font-serif">
+                        {formatDate(doc.dateEnacted)}
+                      </div>
+                      <div className="px-5 py-4 flex items-center justify-end">
+                        <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary-700 group-hover:text-primary-900 transition-colors font-serif">
+                          Read
+                          <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                        </span>
                       </div>
                     </div>
 
-                    <h2 className="text-xl font-serif font-semibold text-neutral-950 mb-3 leading-tight group-hover:text-primary-900 transition-colors">
-                      {doc.title}
-                    </h2>
-
-                    <div className="flex flex-wrap gap-4 text-sm text-neutral-600 font-serif mb-4">
-                      <span>{doc.gazetteNumber}</span>
-                      <span>{formatDate(doc.dateEnacted)}</span>
-                    </div>
-
-                    <div className="flex flex-wrap gap-3 text-sm mb-6">
-                      <span className="px-2.5 py-1 bg-neutral-100 border border-neutral-300 text-neutral-700 font-semibold">
-                        {sectionCount} Sections
-                      </span>
-                      <span className="px-2.5 py-1 bg-neutral-100 border border-neutral-300 text-neutral-700 font-semibold">
-                        {doc.schedules.length} Schedules
-                      </span>
-                      <span className="px-2.5 py-1 bg-neutral-100 border border-neutral-300 text-neutral-700 font-semibold">
-                        {doc.definitions.length} Definitions
-                      </span>
-                    </div>
-
-                    <div className="pt-5 border-t border-neutral-300 flex items-center justify-between">
-                      <span className="text-sm font-semibold text-primary-700 group-hover:text-primary-900 transition-colors font-serif">
-                        Read Full Text
-                      </span>
-                      <div className="w-8 h-8 border-2 border-primary-700 group-hover:border-primary-900 group-hover:bg-primary-900 flex items-center justify-center transition-all">
-                        <ArrowRight className="w-4 h-4 text-primary-700 group-hover:text-white transition-colors" />
+                    {/* Mobile row */}
+                    <div className="md:hidden p-5">
+                      <div className="flex items-start justify-between gap-3 mb-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-9 h-9 border border-primary-900 shrink-0 flex items-center justify-center bg-primary-50 group-hover:bg-primary-900 transition-all">
+                            <Icon
+                              className="w-4 h-4 text-primary-900 group-hover:text-white transition-colors"
+                              strokeWidth={1.5}
+                            />
+                          </div>
+                          <span className="text-sm font-serif font-semibold text-neutral-950 group-hover:text-primary-900 transition-colors leading-snug">
+                            {doc.shortTitle}
+                          </span>
+                        </div>
+                        <span className="text-[0.6875rem] uppercase tracking-widest text-primary-800 font-semibold bg-primary-50 border border-primary-200 px-2 py-0.5 shrink-0">
+                          {typeLabels[doc.type]}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-neutral-500 font-serif">
+                          <span>{doc.gazetteNumber}</span>
+                          <span>{formatDate(doc.dateEnacted)}</span>
+                        </div>
+                        <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary-700 group-hover:text-primary-900 transition-colors font-serif">
+                          Read
+                          <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                        </span>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              );
-            })}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </Container>
       </Section>
