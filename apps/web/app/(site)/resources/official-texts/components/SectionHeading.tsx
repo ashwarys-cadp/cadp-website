@@ -33,7 +33,7 @@ export function SectionHeading({
       : `Section ${number}`;
 
   return (
-    <div id={id} className="scroll-mt-8">
+    <div id={id} className="scroll-mt-24">
       <div className="flex items-center gap-2 flex-wrap -ml-7">
         <CopyLinkButton sectionId={id} />
 
