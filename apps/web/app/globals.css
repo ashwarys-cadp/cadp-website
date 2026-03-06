@@ -296,6 +296,34 @@
   list-style-type: lower-roman;
 }
 
+.prose-legal ol[type="a"],
+.prose-legal ol[type="i"] {
+  list-style: none;
+  counter-reset: legal-list;
+}
+
+.prose-legal ol[type="a"] > li {
+  counter-increment: legal-list;
+}
+
+.prose-legal ol[type="a"] > li::before {
+  content: "(" counter(legal-list, lower-alpha) ") ";
+  font-weight: 600;
+}
+
+.prose-legal ol[type="i"] {
+  counter-reset: legal-roman;
+}
+
+.prose-legal ol[type="i"] > li {
+  counter-increment: legal-roman;
+}
+
+.prose-legal ol[type="i"] > li::before {
+  content: "(" counter(legal-roman, lower-roman) ") ";
+  font-weight: 600;
+}
+
 .prose-legal li {
   @apply pl-1;
 }

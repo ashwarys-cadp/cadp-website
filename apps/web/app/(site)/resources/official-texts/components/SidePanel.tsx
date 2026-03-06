@@ -12,7 +12,7 @@ import { CaseLawContent } from './sidepanel/CaseLawContent';
 interface SidePanelProps {
   mode: PanelMode | null;
   onClose: () => void;
-  onNavigateToSection: (sectionId: string) => void;
+  onNavigateToSection: (sectionId: string, documentId?: string) => void;
 }
 
 function PanelContent({
@@ -20,7 +20,7 @@ function PanelContent({
   onNavigateToSection,
 }: {
   mode: PanelMode;
-  onNavigateToSection: (sectionId: string) => void;
+  onNavigateToSection: (sectionId: string, documentId?: string) => void;
 }) {
   switch (mode.type) {
     case 'definition':

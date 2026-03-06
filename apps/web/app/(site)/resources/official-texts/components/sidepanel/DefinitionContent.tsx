@@ -2,7 +2,7 @@ import type { TermDefinition } from '@/data/official-texts/types';
 
 interface DefinitionContentProps {
   term: TermDefinition;
-  onNavigateToSection: (sectionId: string) => void;
+  onNavigateToSection: (sectionId: string, documentId?: string) => void;
 }
 
 export function DefinitionContent({ term, onNavigateToSection }: DefinitionContentProps) {
@@ -50,7 +50,12 @@ export function DefinitionContent({ term, onNavigateToSection }: DefinitionConte
             {term.relatedSections.map((sectionId) => (
               <li key={sectionId}>
                 <button
-                  onClick={() => onNavigateToSection(sectionId)}
+                  onClick={() => {
+                    const docId = sectionId.startsWith('rule-')
+                      ? 'dpdp-rules-2025'
+                      : 'dpdp-act-2023';
+                    onNavigateToSection(sectionId, docId);
+                  }}
                   className="text-primary-700 hover:text-primary-900 font-serif text-sm hover:underline transition-colors"
                 >
                   {sectionId.replace('section-', 'Section ').replace('rule-', 'Rule ')}

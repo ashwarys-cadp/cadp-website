@@ -88,7 +88,11 @@ export function DocumentReader({
     setPanelMode({ type: 'caselaw', sectionId, cases: sectionCases });
   }
 
-  function handleNavigateToSection(sectionId: string) {
+  function handleNavigateToSection(sectionId: string, documentId?: string) {
+    if (documentId && documentId !== doc.id) {
+      window.location.href = `/resources/official-texts/${documentId}#${sectionId}`;
+      return;
+    }
     const el = document.getElementById(sectionId);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -99,7 +103,7 @@ export function DocumentReader({
   return (
     <div className="flex gap-0 xl:gap-8 relative">
       {/* Left: Sticky TOC */}
-      <aside className="hidden xl:block w-[220px] shrink-0">
+      <aside className="hidden xl:block w-[220px] shrink-0 border-r border-neutral-200">
         <div className="sticky top-8 max-h-[calc(100vh-4rem)] overflow-y-auto pr-4">
           <TableOfContents items={toc} />
         </div>

@@ -13,7 +13,7 @@ import {
 interface DocumentSearchProps {
   currentDocument: LegalDocument;
   allDocuments: LegalDocument[];
-  onNavigateToSection: (sectionId: string) => void;
+  onNavigateToSection: (sectionId: string, documentId?: string) => void;
 }
 
 export function DocumentSearch({
@@ -69,7 +69,7 @@ export function DocumentSearch({
   }, []);
 
   function handleSelect(result: SearchResult) {
-    onNavigateToSection(result.sectionId);
+    onNavigateToSection(result.sectionId, result.documentId);
     setIsOpen(false);
     setQuery('');
   }
