@@ -106,7 +106,7 @@ export function DocumentReader({
       {/* Left: Sticky TOC */}
       <aside className="hidden xl:block w-[220px] shrink-0 border-r border-neutral-200">
         <div className="sticky top-8 max-h-[calc(100vh-4rem)] overflow-y-auto pr-4">
-          <TableOfContents items={toc} />
+          <TableOfContents items={toc} documentTitle={doc.shortTitle} />
         </div>
       </aside>
 

@@ -7,13 +7,24 @@ import type { TocItem } from '@/data/official-texts/types';
 
 interface TableOfContentsProps {
   items: TocItem[];
+  documentTitle?: string;
 }
 
-export function TableOfContents({ items }: TableOfContentsProps) {
+export function TableOfContents({ items, documentTitle }: TableOfContentsProps) {
   const [activeId, setActiveId] = useState<string>('');
+  const [showTitle, setShowTitle] = useState(false);
   const [expandedChapters, setExpandedChapters] = useState<Set<string>>(
     () => new Set(items.map((i) => i.id))
   );
+
+  useEffect(() => {
+    function handleScroll() {
+      setShowTitle(window.scrollY > 100);
+    }
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const sectionElements: Element[] = [];
@@ -70,6 +81,11 @@ export function TableOfContents({ items }: TableOfContentsProps) {
 
   return (
     <nav className="text-sm" aria-label="Table of contents">
+      {documentTitle && showTitle && (
+        <div className="text-sm font-serif font-bold text-neutral-900 mb-3 leading-snug">
+          {documentTitle}
+        </div>
+      )}
       <div className="text-xs uppercase tracking-[0.2em] text-accent-700 font-semibold mb-4">
         Contents
       </div>

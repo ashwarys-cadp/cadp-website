@@ -4,6 +4,7 @@ import { Container, Section } from '@/components/ui';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { LegislationJsonLd, WebApplicationJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { generatePageMetadata } from '@/lib/seo/metadata';
+import { formatDate } from '@/lib/utils';
 import {
   loadDocument,
   loadAllDocuments,
@@ -141,7 +142,7 @@ export default async function OfficialTextPage({ params }: PageProps) {
 
               <div className="flex flex-wrap justify-center gap-4 text-sm text-neutral-600 font-serif mb-4">
                 <span>{doc.gazetteNumber}</span>
-                <span>Enacted: {doc.dateEnacted}</span>
+                <span>Enacted: {formatDate(doc.dateEnacted)}</span>
               </div>
 
               <div className="flex flex-wrap justify-center gap-3 text-sm">
