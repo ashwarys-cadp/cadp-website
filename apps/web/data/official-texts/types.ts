@@ -1,5 +1,18 @@
 // apps/web/data/official-texts/types.ts
 
+export interface Corrigendum {
+  id: string;
+  gazetteNumber: string;
+  date: string;
+  description: string;
+  affectedSections: string[];
+}
+
+export interface SectionAmendment {
+  corrigendumId: string;
+  summary: string;
+}
+
 export interface LegalDocument {
   id: string;
   title: string;
@@ -12,6 +25,7 @@ export interface LegalDocument {
   chapters: Chapter[];
   schedules: Schedule[];
   definitions: TermDefinition[];
+  corrigenda: Corrigendum[];
 }
 
 export interface Chapter {
@@ -28,6 +42,7 @@ export interface Section {
   text: string;
   effectiveDate?: string;
   tags: string[];
+  amendments?: SectionAmendment[];
 }
 
 export interface Schedule {
@@ -36,6 +51,7 @@ export interface Schedule {
   title: string;
   text: string;
   tags: string[];
+  amendments?: SectionAmendment[];
 }
 
 export interface TermDefinition {
@@ -88,7 +104,8 @@ export type PanelMode =
   | { type: "definition"; term: TermDefinition }
   | { type: "annotation"; annotation: Annotation }
   | { type: "resources"; sectionId: string; resources: SectionResource[] }
-  | { type: "caselaw"; sectionId: string; cases: CaseReference[] };
+  | { type: "caselaw"; sectionId: string; cases: CaseReference[] }
+  | { type: "amendments"; sectionId: string; amendments: SectionAmendment[]; corrigenda: Corrigendum[] };
 
 // --- Merged term for detection ---
 
