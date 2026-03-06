@@ -8,6 +8,7 @@ import type {
   CaseReference,
   PanelMode,
   MergedTerm,
+  SectionAmendment,
 } from '@/data/official-texts/types';
 import { mergeTerms } from '@/lib/official-texts/terms';
 import { generateToc } from '@/lib/official-texts/utils';
@@ -62,6 +63,18 @@ export function DocumentReader({
     );
   }
 
+  function getAmendmentsForSection(sectionId: string): SectionAmendment[] {
+    for (const chapter of doc.chapters) {
+      for (const section of chapter.sections) {
+        if (section.id === sectionId) return section.amendments ?? [];
+      }
+    }
+    for (const schedule of doc.schedules) {
+      if (schedule.id === sectionId) return schedule.amendments ?? [];
+    }
+    return [];
+  }
+
   const handleTermClick = useCallback(
     (term: MergedTerm) => {
       if (term.kind === 'definition') {
@@ -87,6 +100,16 @@ export function DocumentReader({
   function handleCasesClick(sectionId: string, chapterId?: string) {
     const sectionCases = getCasesForSection(sectionId, chapterId);
     setPanelMode({ type: 'caselaw', sectionId, cases: sectionCases });
+  }
+
+  function handleAmendmentsClick(sectionId: string) {
+    const sectionAmendments = getAmendmentsForSection(sectionId);
+    setPanelMode({
+      type: 'amendments',
+      sectionId,
+      amendments: sectionAmendments,
+      corrigenda: doc.corrigenda,
+    });
   }
 
   function handleNavigateToSection(sectionId: string, documentId?: string) {
@@ -150,12 +173,14 @@ export function DocumentReader({
                   caseCount={
                     cases.filter((c) => c.targetChapter === chapter.id).length
                   }
+                  amendmentCount={0}
                   onResourcesClick={() =>
                     handleResourcesClick(chapter.id, chapter.id)
                   }
                   onCasesClick={() =>
                     handleCasesClick(chapter.id, chapter.id)
                   }
+                  onAmendmentsClick={() => {}}
                 />
               </div>
             )}
@@ -184,12 +209,14 @@ export function DocumentReader({
                       level="section"
                       resourceCount={sectionResources.length}
                       caseCount={sectionCases.length}
+                      amendmentCount={(section.amendments ?? []).length}
                       onResourcesClick={() =>
                         handleResourcesClick(section.id, chapter.id)
                       }
                       onCasesClick={() =>
                         handleCasesClick(section.id, chapter.id)
                       }
+                      onAmendmentsClick={() => handleAmendmentsClick(section.id)}
                     />
                   </div>
                   <SectionRenderer
@@ -250,12 +277,14 @@ export function DocumentReader({
                       level="schedule"
                       resourceCount={scheduleResources.length}
                       caseCount={scheduleCases.length}
+                      amendmentCount={(schedule.amendments ?? []).length}
                       onResourcesClick={() =>
                         handleResourcesClick(schedule.id)
                       }
                       onCasesClick={() =>
                         handleCasesClick(schedule.id)
                       }
+                      onAmendmentsClick={() => handleAmendmentsClick(schedule.id)}
                     />
                   </div>
                   <SectionRenderer
