@@ -157,6 +157,133 @@ export function EventJsonLd({ name, description, url, startDate, endDate, locati
   return <JsonLd data={data} />;
 }
 
+// Legislation Schema
+interface LegislationJsonLdProps {
+  title: string;
+  shortTitle: string;
+  description?: string;
+  type: 'act' | 'rules' | 'notification';
+  gazetteNumber: string;
+  dateEnacted: string;
+  url: string;
+  parentLegislationUrl?: string;
+  parentLegislationName?: string;
+}
+
+const legislationTypeMap: Record<string, string> = {
+  act: 'Act',
+  rules: 'SubordinateLegislation',
+  notification: 'SubordinateLegislation',
+};
+
+export function LegislationJsonLd({
+  title,
+  shortTitle,
+  description,
+  type,
+  gazetteNumber,
+  dateEnacted,
+  url,
+  parentLegislationUrl,
+  parentLegislationName,
+}: LegislationJsonLdProps) {
+  const data: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "Legislation",
+    name: title,
+    alternateName: shortTitle,
+    ...(description && { description }),
+    legislationIdentifier: gazetteNumber,
+    legislationDate: dateEnacted,
+    legislationType: legislationTypeMap[type] || 'Legislation',
+    legislationJurisdiction: {
+      "@type": "Country",
+      name: "India",
+    },
+    inLanguage: "en",
+    url,
+    publisher: {
+      "@type": "GovernmentOrganization",
+      name: "Government of India",
+    },
+    about: {
+      "@type": "Thing",
+      name: "Digital Personal Data Protection",
+    },
+  };
+
+  if (parentLegislationUrl && parentLegislationName) {
+    data.isPartOf = {
+      "@type": "Legislation",
+      name: parentLegislationName,
+      url: parentLegislationUrl,
+    };
+  }
+
+  return <JsonLd data={data} />;
+}
+
+// WebApplication Schema (for interactive reference tools)
+interface WebApplicationJsonLdProps {
+  name: string;
+  description: string;
+  url: string;
+}
+
+export function WebApplicationJsonLd({ name, description, url }: WebApplicationJsonLdProps) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name,
+    description,
+    url,
+    applicationCategory: "ReferenceApplication",
+    operatingSystem: "Web",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "INR",
+    },
+    provider: {
+      "@type": "EducationalOrganization",
+      name: "Centre for Applied Data Protection (CADP)",
+      url: "https://cadp.in",
+    },
+  };
+
+  return <JsonLd data={data} />;
+}
+
+// CollectionPage Schema
+interface CollectionPageJsonLdProps {
+  name: string;
+  description: string;
+  url: string;
+  items: { name: string; url: string }[];
+}
+
+export function CollectionPageJsonLd({ name, description, url, items }: CollectionPageJsonLdProps) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name,
+    description,
+    url,
+    hasPart: items.map((item) => ({
+      "@type": "Legislation",
+      name: item.name,
+      url: item.url,
+    })),
+    isPartOf: {
+      "@type": "WebSite",
+      name: "Centre for Applied Data Protection (CADP)",
+      url: "https://cadp.in",
+    },
+  };
+
+  return <JsonLd data={data} />;
+}
+
 // Breadcrumb Schema
 interface BreadcrumbItem {
   name: string;

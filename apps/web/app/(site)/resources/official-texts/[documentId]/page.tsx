@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Container, Section } from '@/components/ui';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
+import { LegislationJsonLd, WebApplicationJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { generatePageMetadata } from '@/lib/seo/metadata';
 import {
   loadDocument,
@@ -38,15 +39,17 @@ export async function generateMetadata({
   if (!doc) return {};
 
   return generatePageMetadata({
-    title: `${doc.shortTitle} — Full Text`,
-    description: `Read the full text of ${doc.title}. Searchable, with defined term explanations, curated resources, and case law references.`,
+    title: `${doc.shortTitle} Full Text — Interactive Reference`,
+    description: `Interactive research aid for ${doc.title}. Searchable sections with defined term explanations, cross-referenced resources, and case law \u2014 a comprehensive legal reference tool for compliance professionals and researchers.`,
     path: `/resources/official-texts/${documentId}`,
     keywords: [
       doc.shortTitle,
-      'full text',
-      'bare act',
-      'DPDP',
+      `${doc.shortTitle} full text`,
+      `${doc.shortTitle} bare act`,
+      'DPDP research tool',
+      'DPDP interactive reference',
       'data protection India',
+      'legal reference tool',
     ],
   });
 }
@@ -78,6 +81,37 @@ export default async function OfficialTextPage({ params }: PageProps) {
 
   return (
     <>
+      <LegislationJsonLd
+        title={doc.title}
+        shortTitle={doc.shortTitle}
+        description={`Interactive research aid for ${doc.title}. Searchable sections with defined term explanations, cross-referenced resources, and case law.`}
+        type={doc.type}
+        gazetteNumber={doc.gazetteNumber}
+        dateEnacted={doc.dateEnacted}
+        url={`https://cadp.in/resources/official-texts/${doc.id}`}
+        parentLegislationUrl={
+          doc.type !== 'act'
+            ? 'https://cadp.in/resources/official-texts/dpdp-act-2023'
+            : undefined
+        }
+        parentLegislationName={
+          doc.type !== 'act'
+            ? 'The Digital Personal Data Protection Act, 2023'
+            : undefined
+        }
+      />
+      <WebApplicationJsonLd
+        name={`${doc.shortTitle} — Interactive Reference`}
+        description={`Free interactive research tool for ${doc.title}. Search sections, explore defined terms, and access curated resources and case law references.`}
+        url={`https://cadp.in/resources/official-texts/${doc.id}`}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Resources', href: '/resources' },
+          { name: 'Official Texts', href: '/resources/official-texts' },
+          { name: doc.shortTitle, href: `/resources/official-texts/${doc.id}` },
+        ]}
+      />
       <style>{`header { position: relative !important; }`}</style>
       <Section background="white">
         <Container size="wide">

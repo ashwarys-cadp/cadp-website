@@ -3,20 +3,25 @@ import Link from 'next/link';
 import { Scale, BookOpen, FileText, ArrowRight } from 'lucide-react';
 import { Container, Section } from '@/components/ui';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
+import { CollectionPageJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { generatePageMetadata } from '@/lib/seo/metadata';
 import { loadAllDocuments } from '@/lib/official-texts/utils';
 import { formatDate } from '@/lib/utils';
 
 export const metadata: Metadata = generatePageMetadata({
-  title: 'Official Texts — DPDP Act & Rules',
+  title: 'DPDP Act & Rules Full Text — Interactive Legal Reference',
   description:
-    'Read the full text of the Digital Personal Data Protection Act, 2023 and DPDP Rules 2025. Searchable, annotated, with plain-language explanations.',
+    'Interactive research tool for India\u2019s data protection law. Full verbatim text of the DPDP Act 2023 and Rules 2025 with searchable sections, defined term explanations, curated resources, and case law references.',
   path: '/resources/official-texts',
   keywords: [
     'DPDP Act full text',
-    'DPDP Rules full text',
+    'DPDP Rules 2025 full text',
     'bare act DPDP',
     'digital personal data protection act text',
+    'DPDP research tool',
+    'DPDP interactive reference',
+    'data protection India legal reference',
+    'DPDP Act sections',
   ],
 });
 
@@ -40,6 +45,21 @@ export default async function OfficialTextsPage() {
 
   return (
     <>
+      <CollectionPageJsonLd
+        name="DPDP Act & Rules — Interactive Legal Reference"
+        description="Interactive research tool for India's data protection law. Full verbatim text with searchable sections, defined term explanations, curated resources, and case law references."
+        url="https://cadp.in/resources/official-texts"
+        items={documents.map((doc) => ({
+          name: doc.title,
+          url: `https://cadp.in/resources/official-texts/${doc.id}`,
+        }))}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Resources', href: '/resources' },
+          { name: 'Official Texts', href: '/resources/official-texts' },
+        ]}
+      />
       <Section background="white">
         <Container>
           <Breadcrumbs
