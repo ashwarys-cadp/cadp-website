@@ -70,6 +70,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     client.fetch<SanitySlug[]>(newsSlugsQuery).catch(() => []),
   ]);
 
+  // Official texts pages
+  const officialTextsPages: MetadataRoute.Sitemap = [
+    {
+      url: `${BASE_URL}/resources/official-texts/`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/resources/official-texts/dpdp-act-2023/`,
+      lastModified: new Date('2023-08-11'),
+      changeFrequency: 'yearly',
+      priority: 0.9,
+    },
+    {
+      url: `${BASE_URL}/resources/official-texts/dpdp-rules-2025/`,
+      lastModified: new Date('2025-01-03'),
+      changeFrequency: 'yearly',
+      priority: 0.9,
+    },
+  ];
+
   // Static pages with their priorities and change frequencies
   const staticPages: MetadataRoute.Sitemap = [
     {
@@ -208,6 +230,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     ...staticPages,
+    ...officialTextsPages,
     ...staticGuidePages,
     ...dynamicGuidePages,
     ...articlePages,
