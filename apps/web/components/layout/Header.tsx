@@ -23,6 +23,7 @@ const navigation = [
     name: 'Resources',
     href: '/resources',
     children: [
+      { name: 'Official Texts', href: '/resources/official-texts' },
       { name: 'Guides', href: '/resources/guides' },
       { name: 'Articles', href: '/resources/articles' },
       { name: 'White Papers', href: '/resources/white-papers' },
