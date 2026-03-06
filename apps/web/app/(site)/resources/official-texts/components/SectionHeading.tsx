@@ -1,6 +1,5 @@
 'use client';
 
-import { Link2, Scale } from 'lucide-react';
 import { CopyLinkButton } from './CopyLinkButton';
 
 interface SectionHeadingProps {
@@ -34,39 +33,39 @@ export function SectionHeading({
       : `Section ${number}`;
 
   return (
-    <div id={id} className="group flex items-start gap-3 scroll-mt-8">
-      <Tag
-        className={
-          isChapter
-            ? 'text-2xl md:text-3xl font-serif font-bold text-neutral-950'
-            : 'text-lg md:text-xl font-serif font-semibold text-neutral-900'
-        }
-      >
-        <span className="text-primary-700">{prefix}.</span> {title}
-      </Tag>
-
-      <div className="flex items-center gap-1.5 mt-1 shrink-0">
+    <div id={id} className="scroll-mt-8">
+      <div className="flex items-center gap-2 flex-wrap -ml-7">
         <CopyLinkButton sectionId={id} />
+
+        <Tag
+          className={
+            isChapter
+              ? 'text-2xl md:text-3xl font-serif font-bold text-neutral-950'
+              : 'text-lg md:text-xl font-serif font-semibold text-neutral-900'
+          }
+        >
+          <span className="text-primary-700">{prefix}.</span> {title}
+        </Tag>
+
+        {(resourceCount > 0 || caseCount > 0) && (
+          <span className="text-neutral-300 select-none">|</span>
+        )}
 
         {resourceCount > 0 && (
           <button
             onClick={onResourcesClick}
-            className="flex items-center gap-1 px-2 py-1 text-accent-700 hover:text-accent-900 hover:bg-accent-50 transition-colors"
-            title={`${resourceCount} related resource${resourceCount > 1 ? 's' : ''}`}
+            className="text-sm font-serif font-semibold text-accent-700 hover:text-accent-900 hover:underline transition-colors cursor-pointer"
           >
-            <Link2 className="w-3.5 h-3.5" strokeWidth={2} />
-            <span className="text-xs font-semibold">{resourceCount}</span>
+            [{resourceCount} Resource{resourceCount > 1 ? 's' : ''}]
           </button>
         )}
 
         {caseCount > 0 && (
           <button
             onClick={onCasesClick}
-            className="flex items-center gap-1 px-2 py-1 text-primary-600 hover:text-primary-800 hover:bg-primary-50 transition-colors"
-            title={`${caseCount} related case${caseCount > 1 ? 's' : ''}`}
+            className="text-sm font-serif font-semibold text-primary-600 hover:text-primary-800 hover:underline transition-colors cursor-pointer"
           >
-            <Scale className="w-3.5 h-3.5" strokeWidth={2} />
-            <span className="text-xs font-semibold">{caseCount}</span>
+            [{caseCount} Case{caseCount > 1 ? 's' : ''}]
           </button>
         )}
       </div>

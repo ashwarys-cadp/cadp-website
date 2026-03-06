@@ -16,6 +16,7 @@ import { SidePanel } from './SidePanel';
 import { SectionHeading } from './SectionHeading';
 import { SectionRenderer } from './SectionRenderer';
 import { DocumentSearch } from './DocumentSearch';
+import { SectionReferences } from './SectionReferences';
 
 interface DocumentReaderProps {
   document: LegalDocument;
@@ -197,6 +198,16 @@ export function DocumentReader({
                     terms={mergedTerms}
                     onTermClick={handleTermClick}
                   />
+                  <SectionReferences
+                    resources={sectionResources}
+                    cases={sectionCases}
+                    onResourcesClick={() =>
+                      handleResourcesClick(section.id, chapter.id)
+                    }
+                    onCasesClick={() =>
+                      handleCasesClick(section.id, chapter.id)
+                    }
+                  />
                 </div>
               );
             })}
@@ -252,6 +263,16 @@ export function DocumentReader({
                     sectionId={schedule.id}
                     terms={mergedTerms}
                     onTermClick={handleTermClick}
+                  />
+                  <SectionReferences
+                    resources={scheduleResources}
+                    cases={scheduleCases}
+                    onResourcesClick={() =>
+                      handleResourcesClick(schedule.id)
+                    }
+                    onCasesClick={() =>
+                      handleCasesClick(schedule.id)
+                    }
                   />
                 </div>
               );

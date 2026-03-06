@@ -16,7 +16,7 @@ export function CopyLinkButton({ sectionId }: { sectionId: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="opacity-0 group-hover:opacity-100 p-1 text-neutral-400 hover:text-neutral-700 transition-all"
+      className="p-1 text-neutral-300 hover:text-neutral-700 transition-colors"
       title="Copy link to section"
       aria-label="Copy link to section"
     >
