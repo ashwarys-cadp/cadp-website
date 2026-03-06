@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { documentOptions, sectionsByDocument } from './officialTextOptions';
 
 export default defineType({
   name: 'annotation',
@@ -39,19 +40,17 @@ export default defineType({
       title: 'Document',
       type: 'string',
       description: 'Which document this applies to',
-      options: {
-        list: [
-          { title: 'DPDP Act 2023', value: 'dpdp-act-2023' },
-          { title: 'DPDP Rules 2025', value: 'dpdp-rules-2025' },
-        ],
-      },
+      options: { list: documentOptions },
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'targetSection',
       title: 'Target Section',
       type: 'string',
-      description: 'Scope to a specific section (e.g., "section-5"). Leave empty for global.',
+      description: 'Scope to a specific section. Leave empty for global.',
+      options: {
+        list: Object.values(sectionsByDocument).flat(),
+      },
     }),
   ],
   preview: {

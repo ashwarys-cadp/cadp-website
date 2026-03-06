@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { documentOptions, sectionsByDocument, chaptersByDocument } from './officialTextOptions';
 
 export default defineType({
   name: 'caseReference',
@@ -56,25 +57,26 @@ export default defineType({
       name: 'documentId',
       title: 'Document',
       type: 'string',
-      options: {
-        list: [
-          { title: 'DPDP Act 2023', value: 'dpdp-act-2023' },
-          { title: 'DPDP Rules 2025', value: 'dpdp-rules-2025' },
-        ],
-      },
+      options: { list: documentOptions },
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'targetSection',
       title: 'Target Section',
       type: 'string',
-      description: 'Link to a specific section (e.g., "section-8")',
+      description: 'Link to a specific section',
+      options: {
+        list: Object.values(sectionsByDocument).flat(),
+      },
     }),
     defineField({
       name: 'targetChapter',
       title: 'Target Chapter',
       type: 'string',
-      description: 'Link to a whole chapter (e.g., "chapter-3")',
+      description: 'Link to a whole chapter',
+      options: {
+        list: Object.values(chaptersByDocument).flat(),
+      },
     }),
   ],
   preview: {
