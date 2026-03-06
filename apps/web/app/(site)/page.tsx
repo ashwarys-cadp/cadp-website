@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import { Metadata } from "next";
 import {
   Hero,
   ProgrammesOverview,
@@ -8,21 +8,14 @@ import {
   Newsletter,
   TrustSignals,
   AboutCentre,
-} from '@/components/sections';
-import { generatePageMetadata } from '@/lib/seo/metadata';
+} from "@/components/sections";
+import { generatePageMetadata } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: 'Centre for Applied Data Protection',
-  description:
-    'CADP provides expert DPDP Act compliance training, legal advisory, and research. Build your data protection capability today.',
-  path: '/',
-  keywords: [
-    'DPDP Act compliance',
-    'DPDP training',
-    'data protection India',
-    'DPDP advisory',
-    'KLE Law College',
-  ],
+  title: "Centre for Applied Data Protection",
+  description: "CADP provides expert DPDP Act compliance training, legal advisory, and research. Build your data protection capability today.",
+  path: "/",
+  keywords: ["DPDP Act compliance", "DPDP training", "data protection India", "DPDP advisory"],
 });
 
 export default function HomePage() {

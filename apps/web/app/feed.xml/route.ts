@@ -1,14 +1,13 @@
-import { client } from '@/lib/sanity/client';
-import { allNewsQuery, allPostsQuery } from '@/lib/sanity/queries';
-import { getCategoryLabel, getNewsCategoryLabel } from '@/lib/utils';
-import type { NewsArticle, Post } from '@/lib/sanity/types';
+import { client } from "@/lib/sanity/client";
+import { allNewsQuery, allPostsQuery } from "@/lib/sanity/queries";
+import { getCategoryLabel, getNewsCategoryLabel } from "@/lib/utils";
+import type { NewsArticle, Post } from "@/lib/sanity/types";
 
-export const dynamic = 'force-static';
+export const dynamic = "force-static";
 
-const BASE_URL = 'https://cadp.in';
-const FEED_TITLE = 'CADP – Centre for Applied Data Protection';
-const FEED_DESCRIPTION =
-  'Updates on data protection law, DPDP Act compliance, and privacy research from CADP at KLE Law College, Bengaluru.';
+const BASE_URL = "https://cadp.in";
+const FEED_TITLE = "CADP – Centre for Applied Data Protection";
+const FEED_DESCRIPTION = "Updates on data protection law, DPDP Act compliance, and privacy research from CADP.";
 const MAX_ITEMS = 50;
 
 interface FeedItem {
@@ -20,12 +19,7 @@ interface FeedItem {
 }
 
 function escapeXml(str: string): string {
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&apos;');
+  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
 }
 
 function toRfc2822(dateStr: string): string {
@@ -50,9 +44,9 @@ export async function GET() {
   ]);
 
   const newsItems: FeedItem[] = newsArticles.map((article) => ({
-    title: article.title || '(Untitled)',
+    title: article.title || "(Untitled)",
     link: `${BASE_URL}/news/${article.slug.current}/`,
-    description: article.excerpt || '',
+    description: article.excerpt || "",
     pubDate: article.publishedAt,
     category: getNewsCategoryLabel(article.category),
   }));
@@ -60,16 +54,14 @@ export async function GET() {
   const postItems: FeedItem[] = posts
     .filter((post) => post.publishedAt)
     .map((post) => ({
-      title: post.title || '(Untitled)',
+      title: post.title || "(Untitled)",
       link: `${BASE_URL}/resources/articles/${post.slug.current}/`,
-      description: post.excerpt || '',
+      description: post.excerpt || "",
       pubDate: post.publishedAt!,
-      category: post.category ? getCategoryLabel(post.category) : 'Article',
+      category: post.category ? getCategoryLabel(post.category) : "Article",
     }));
 
-  const allItems = [...newsItems, ...postItems]
-    .sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime())
-    .slice(0, MAX_ITEMS);
+  const allItems = [...newsItems, ...postItems].sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime()).slice(0, MAX_ITEMS);
 
   const lastBuildDate = allItems.length > 0 ? toRfc2822(allItems[0].pubDate) : new Date().toUTCString();
 
@@ -82,13 +74,13 @@ export async function GET() {
     <language>en-in</language>
     <lastBuildDate>${lastBuildDate}</lastBuildDate>
     <atom:link href="${BASE_URL}/feed.xml" rel="self" type="application/rss+xml"/>
-${allItems.map(buildItemXml).join('\n')}
+${allItems.map(buildItemXml).join("\n")}
   </channel>
 </rss>`;
 
   return new Response(xml, {
     headers: {
-      'Content-Type': 'application/rss+xml; charset=utf-8',
+      "Content-Type": "application/rss+xml; charset=utf-8",
     },
   });
 }

@@ -44,9 +44,7 @@ export function Footer() {
                   </div>
                 </div>
               </Link>
-              <p className="mt-4 text-sm text-neutral-400 max-w-sm">
-                Expert DPDP Act compliance training, legal advisory, and research publications at KLE Law College, Bengaluru.
-              </p>
+              <p className="mt-4 text-sm text-neutral-400 max-w-sm">Expert DPDP Act compliance training, legal advisory, and research.</p>
               <div className="mt-6 space-y-2">
                 <div className="flex items-center gap-2 text-sm">
                   <Mail className="w-4 h-4" />
@@ -57,7 +55,7 @@ export function Footer() {
                 <div className="flex items-start gap-2 text-sm">
                   <MapPin className="w-4 h-4 mt-0.5" />
                   <span>
-                    KLE Law College,
+                    Sir M. Vishweshwaraiah Layout,
                     <br />
                     Bengaluru, Karnataka 560091
                   </span>

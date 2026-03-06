@@ -1,16 +1,16 @@
-import { Metadata } from 'next';
+import { Metadata } from "next";
 
-const SITE_NAME = 'CADP - Centre for Applied Data Protection';
-const SITE_BRAND = 'CADP';
-const SITE_URL = 'https://cadp.in';
-const DEFAULT_OG_IMAGE = '/og-default.jpg';
+const SITE_NAME = "CADP - Centre for Applied Data Protection";
+const SITE_BRAND = "CADP";
+const SITE_URL = "https://cadp.in";
+const DEFAULT_OG_IMAGE = "/og-default.jpg";
 
 interface PageMetadataProps {
   title: string;
   description: string;
   path: string;
   image?: string;
-  type?: 'website' | 'article';
+  type?: "website" | "article";
   publishedTime?: string;
   modifiedTime?: string;
   authors?: string[];
@@ -23,7 +23,7 @@ export function generatePageMetadata({
   description,
   path,
   image = DEFAULT_OG_IMAGE,
-  type = 'website',
+  type = "website",
   publishedTime,
   modifiedTime,
   authors,
@@ -31,7 +31,7 @@ export function generatePageMetadata({
   noIndex = false,
 }: PageMetadataProps): Metadata {
   const url = `${SITE_URL}${path}`;
-  const imageUrl = image.startsWith('http') ? image : `${SITE_URL}${image}`;
+  const imageUrl = image.startsWith("http") ? image : `${SITE_URL}${image}`;
 
   return {
     title,
@@ -57,17 +57,15 @@ export function generatePageMetadata({
       ...(publishedTime && { publishedTime }),
       ...(modifiedTime && { modifiedTime }),
       ...(authors && { authors }),
-      locale: 'en_IN',
+      locale: "en_IN",
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title,
       description,
       images: [imageUrl],
     },
-    robots: noIndex
-      ? { index: false, follow: false }
-      : { index: true, follow: true },
+    robots: noIndex ? { index: false, follow: false } : { index: true, follow: true },
   };
 }
 
@@ -80,13 +78,13 @@ export function generateArticleMetadata({
   modifiedTime,
   authors,
   keywords,
-}: Omit<PageMetadataProps, 'type'> & { publishedTime: string }): Metadata {
+}: Omit<PageMetadataProps, "type"> & { publishedTime: string }): Metadata {
   return generatePageMetadata({
     title,
     description,
     path,
     image,
-    type: 'article',
+    type: "article",
     publishedTime,
     modifiedTime,
     authors,
@@ -101,33 +99,31 @@ export const defaultMetadata: Metadata = {
     default: SITE_NAME,
     template: `%s | ${SITE_BRAND}`,
   },
-  description:
-    'Centre for Applied Data Protection (CADP) at KLE Law College, Bengaluru - Expert DPDP Act compliance training, legal advisory, and research publications.',
+  description: "Centre for Applied Data Protection (CADP)  - Expert DPDP Act compliance training, legal advisory, and research publications.",
   keywords: [
-    'DPDP Act',
-    'DPDP compliance',
-    'data protection India',
-    'DPDP training',
-    'data protection advisory',
-    'digital personal data protection',
-    'KLE Law College',
-    'Bengaluru',
+    "DPDP Act",
+    "DPDP compliance",
+    "data protection India",
+    "DPDP training",
+    "data protection advisory",
+    "digital personal data protection",
+    "Bengaluru",
   ],
-  authors: [{ name: 'CADP', url: SITE_URL }],
-  creator: 'Centre for Applied Data Protection',
-  publisher: 'Centre for Applied Data Protection',
+  authors: [{ name: "CADP", url: SITE_URL }],
+  creator: "Centre for Applied Data Protection",
+  publisher: "Centre for Applied Data Protection",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   openGraph: {
-    type: 'website',
+    type: "website",
     siteName: SITE_NAME,
-    locale: 'en_IN',
+    locale: "en_IN",
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
   },
   robots: {
     index: true,
@@ -135,9 +131,9 @@ export const defaultMetadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
 };

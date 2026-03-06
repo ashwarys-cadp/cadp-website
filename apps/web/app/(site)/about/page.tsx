@@ -12,7 +12,7 @@ export const metadata: Metadata = generatePageMetadata({
   description:
     "Learn about the Centre for Applied Data Protection. Our mission, team, and commitment to building data protection capability in India.",
   path: "/about",
-  keywords: ["CADP about", "KLE Law College", "data protection centre", "DPDP training institute"],
+  keywords: ["CADP about", "data protection centre", "DPDP training institute"],
 });
 
 // Fallback team members
@@ -102,8 +102,8 @@ export default async function AboutPage() {
               </div>
               <h1 className="text-4xl md:text-5xl font-serif text-neutral-950 mb-6 leading-tight">Centre for Applied Data Protection</h1>
               <p className="text-lg text-neutral-700 leading-relaxed font-serif">
-                The Centre for Applied Data Protection (CADP) at KLE Law College, Bengaluru is dedicated to building India&apos;s data protection
-                capability through research, education, and practical advisory services.
+                The Centre for Applied Data Protection (CADP) is dedicated to building India&apos;s data protection capability through research,
+                education, and practical advisory services.
               </p>
             </div>
           </div>
@@ -333,8 +333,8 @@ export default async function AboutPage() {
 
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-5">Engage with CADP</h2>
               <p className="text-primary-100 text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-serif">
-                Whether for professional training, advisory engagement, or research collaboration,
-                the Centre welcomes inquiries from institutions and organisations.
+                Whether for professional training, advisory engagement, or research collaboration, the Centre welcomes inquiries from institutions and
+                organisations.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

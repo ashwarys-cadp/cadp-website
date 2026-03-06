@@ -7,7 +7,8 @@ import { ContactForm } from "./ContactForm";
 
 export const metadata: Metadata = generatePageMetadata({
   title: "Contact Us",
-  description: "Get in touch with the Centre for Applied Data Protection for DPDP training, compliance advisory, research collaboration, or partnership enquiries.",
+  description:
+    "Get in touch with the Centre for Applied Data Protection for DPDP training, compliance advisory, research collaboration, or partnership enquiries.",
   path: "/contact",
   keywords: ["contact CADP", "DPDP consultation", "data protection inquiry"],
 });
@@ -22,7 +23,7 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Address",
-    content: "KLE Law College, Bengaluru, Karnataka 560091",
+    content: "Sir M Vishweshwaraiah Layout, Bengaluru, Karnataka 560091",
     href: "https://maps.google.com/?q=KLE+Law+College+Bengaluru",
   },
   {

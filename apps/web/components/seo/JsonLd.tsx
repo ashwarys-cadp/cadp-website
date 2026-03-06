@@ -15,7 +15,7 @@ export function OrganizationJsonLd() {
     alternateName: "CADP",
     url: "https://cadp.in",
     logo: "https://cadp.in/logo.png",
-    description: "Expert DPDP Act compliance training, legal advisory, and research publications at KLE Law College, Bengaluru.",
+    description: "Expert DPDP Act compliance training, legal advisory, and research.",
     parentOrganization: {
       "@type": "EducationalOrganization",
       name: "KLE Law College, Bengaluru",
