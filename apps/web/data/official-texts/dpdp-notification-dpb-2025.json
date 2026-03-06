@@ -1,0 +1,43 @@
+{
+  "id": "dpdp-notification-dpb-2025",
+  "title": "Notification regarding Establishment of the Data Protection Board of India",
+  "shortTitle": "DPB Establishment Notification 2025",
+  "type": "notification",
+  "gazetteNumber": "G.S.R. 844(E)",
+  "dateEnacted": "2025-11-13",
+  "dateEffective": "2025-11-13",
+  "preamble": "",
+  "chapters": [
+    {
+      "id": "chapter-1",
+      "number": "",
+      "title": "Notification",
+      "sections": [
+        {
+          "id": "para-1",
+          "number": "1",
+          "title": "Establishment of the Data Protection Board of India",
+          "text": "<p><strong>G.S.R. 844(E).</strong>—In exercise of the powers conferred by sub-sections (1) and (3) of section 18 of the Digital Personal Data Protection Act, 2023 (22 of 2023), the Central Government hereby establishes, the Data Protection Board of India, to exercise the powers conferred on, and to perform the functions assigned to it under the said Act, with effect from the date of publication of this notification in the Official Gazette.</p>",
+          "tags": [
+            "data-protection-board",
+            "section-18",
+            "establishment"
+          ]
+        },
+        {
+          "id": "para-2",
+          "number": "2",
+          "title": "Head Office of the Board",
+          "text": "<p>The head office of the Data Protection Board of India shall be in the National Capital Region of India.</p>",
+          "tags": [
+            "data-protection-board",
+            "head-office"
+          ]
+        }
+      ]
+    }
+  ],
+  "schedules": [],
+  "definitions": [],
+  "corrigenda": []
+}

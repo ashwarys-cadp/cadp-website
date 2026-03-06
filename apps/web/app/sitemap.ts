@@ -96,6 +96,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'yearly',
       priority: 0.9,
     },
+    {
+      url: `${BASE_URL}/resources/official-texts/dpdp-notification-dpb-2025/`,
+      lastModified: new Date('2025-11-13'),
+      changeFrequency: 'yearly',
+      priority: 0.9,
+    },
   ];
 
   // Static pages with their priorities and change frequencies

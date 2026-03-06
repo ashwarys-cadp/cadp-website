@@ -38,7 +38,7 @@ export function generateToc(doc: LegalDocument): TocItem[] {
  * Get all document IDs from local JSON files.
  */
 export function getDocumentIds(): string[] {
-  return ['dpdp-act-2023', 'dpdp-rules-2025', 'dpdp-notification-commencement-2025'];
+  return ['dpdp-act-2023', 'dpdp-rules-2025', 'dpdp-notification-commencement-2025', 'dpdp-notification-dpb-2025'];
 }
 
 /**
