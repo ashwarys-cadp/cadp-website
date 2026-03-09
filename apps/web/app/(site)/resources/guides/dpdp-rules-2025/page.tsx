@@ -16,7 +16,9 @@ import {
   Gavel,
   BookOpen,
   ExternalLink,
+  ListChecks,
 } from "lucide-react";
+import Link from "next/link";
 import { Container, Section, Button } from "@/components/ui";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { ArticleJsonLd } from "@/components/seo/JsonLd";
@@ -749,7 +751,21 @@ export default function DPDPRulesGuidePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <Link
+              href="/resources/guides/dpdp-implementation-tracker/"
+              className="group bg-white border-2 border-neutral-300 p-6 hover:border-primary-600 transition-all duration-300"
+            >
+              <div className="w-12 h-12 border-2 border-primary-600 bg-primary-50 flex items-center justify-center mb-4 group-hover:bg-primary-600 transition-colors">
+                <ListChecks className="w-6 h-6 text-primary-600 group-hover:text-white transition-colors" strokeWidth={1.5} />
+              </div>
+              <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-2">Implementation Tracker</h3>
+              <p className="text-base text-neutral-600 font-serif mb-4">Track the implementation status of every DPDP obligation — see which notifications have been issued and what remains pending</p>
+              <div className="flex items-center text-primary-700 text-sm font-semibold">
+                View Tracker <ArrowRight className="w-4 h-4 ml-2" />
+              </div>
+            </Link>
+
             <a
               href="/resources/guides/dpdp-implementation-roadmap/"
               className="group bg-white border-2 border-neutral-300 p-6 hover:border-primary-600 transition-all duration-300"

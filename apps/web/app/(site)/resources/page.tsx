@@ -1,85 +1,65 @@
-import { Metadata } from 'next';
-import Link from 'next/link';
-import Image from 'next/image';
-import { BookOpen, FileText, Download, ArrowRight } from 'lucide-react';
-import {
-  Container,
-  Section,
-  SectionHeader,
-  Button,
-  Card,
-  Badge,
-} from '@/components/ui';
-import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
-import { Newsletter } from '@/components/sections';
-import { generatePageMetadata } from '@/lib/seo/metadata';
-import {
-  client,
-  urlFor,
-  latestPostsQuery,
-  allWhitePapersQuery,
-  type Post,
-  type WhitePaper,
-} from '@/lib/sanity';
-import { formatDateShort, getCategoryLabel } from '@/lib/utils';
+import { Metadata } from "next";
+import Link from "next/link";
+import { BookOpen, Download, ArrowRight } from "lucide-react";
+import { Container, Section } from "@/components/ui";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { Newsletter } from "@/components/sections";
+import { generatePageMetadata } from "@/lib/seo/metadata";
+import { client, latestPostsQuery, allWhitePapersQuery, type Post, type WhitePaper } from "@/lib/sanity";
+import { formatDateShort, getCategoryLabel } from "@/lib/utils";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: 'Resources',
-  description:
-    'Access comprehensive guides, articles, and white papers on DPDP Act compliance and data protection in India.',
-  path: '/resources',
-  keywords: [
-    'DPDP resources',
-    'data protection guides',
-    'DPDP articles',
-    'compliance resources',
-  ],
+  title: "Resources",
+  description: "Access comprehensive guides, articles, and white papers on DPDP Act compliance and data protection in India.",
+  path: "/resources",
+  keywords: ["DPDP resources", "data protection guides", "DPDP articles", "compliance resources"],
 });
 
 // Static guides data
 const staticGuides = [
   {
-    _id: '1',
-    title: 'DPDP Implementation Roadmap',
-    slug: { current: 'dpdp-implementation-roadmap' },
-    excerpt: 'Comprehensive implementation roadmap for the Digital Personal Data Protection Act 2023 and Rules 2025. Strategic guidance on phased compliance, priority actions, and organizational readiness.',
-    category: 'Implementation',
+    _id: "1",
+    title: "DPDP Implementation Roadmap",
+    slug: { current: "dpdp-implementation-roadmap" },
+    excerpt:
+      "Comprehensive implementation roadmap for the Digital Personal Data Protection Act 2023 and Rules 2025. Strategic guidance on phased compliance, priority actions, and organizational readiness.",
+    category: "Implementation",
   },
   {
-    _id: '3',
-    title: 'DPDP Act Implementation Tracker',
-    slug: { current: 'dpdp-implementation-tracker' },
-    excerpt: 'Track every obligation the government must fulfil under the DPDP Act 2023 and Rules 2025. Updated as new notifications are issued.',
-    category: 'Tracking',
+    _id: "3",
+    title: "DPDP Act Implementation Tracker",
+    slug: { current: "dpdp-implementation-tracker" },
+    excerpt: "Track every obligation the government must fulfil under the DPDP Act 2023 and Rules 2025. Updated as new notifications are issued.",
+    category: "Tracking",
   },
 ];
 
 const fallbackPosts: Post[] = [
   {
-    _id: '1',
-    title: 'DPDP Act Key Provisions Explained',
-    slug: { current: 'dpdp-act-key-provisions-explained' },
-    excerpt: 'A breakdown of the most important DPDP Act provisions.',
-    category: 'dpdp-compliance',
-    publishedAt: '2024-01-20',
+    _id: "1",
+    title: "DPDP Act Key Provisions Explained",
+    slug: { current: "dpdp-act-key-provisions-explained" },
+    excerpt: "A breakdown of the most important DPDP Act provisions.",
+    category: "dpdp-compliance",
+    publishedAt: "2024-01-20",
   },
   {
-    _id: '2',
-    title: 'DPDP vs GDPR: Key Differences',
-    slug: { current: 'dpdp-vs-gdpr-comparison' },
-    excerpt: 'How India\'s DPDP compares to the EU\'s GDPR.',
-    category: 'dpdp-compliance',
-    publishedAt: '2024-01-18',
+    _id: "2",
+    title: "DPDP vs GDPR: Key Differences",
+    slug: { current: "dpdp-vs-gdpr-comparison" },
+    excerpt: "How India's DPDP compares to the EU's GDPR.",
+    category: "dpdp-compliance",
+    publishedAt: "2024-01-18",
   },
 ];
 
 const fallbackWhitePapers: WhitePaper[] = [
   {
-    _id: '1',
-    title: 'DPDP Implementation Roadmap',
-    slug: { current: 'dpdp-implementation-roadmap' },
-    abstract: 'A framework for implementing DPDP Act compliance.',
-    topics: ['Compliance'],
+    _id: "1",
+    title: "DPDP Implementation Roadmap",
+    slug: { current: "dpdp-implementation-roadmap" },
+    abstract: "A framework for implementing DPDP Act compliance.",
+    topics: ["Compliance"],
   },
 ];
 
@@ -115,7 +95,7 @@ export default async function ResourcesPage() {
       {/* Hero */}
       <Section background="white">
         <Container>
-          <Breadcrumbs items={[{ name: 'Resources', href: '/resources' }]} />
+          <Breadcrumbs items={[{ name: "Resources", href: "/resources" }]} />
 
           <div className="mt-8 max-w-4xl mx-auto">
             <div className="mb-8">
@@ -123,12 +103,9 @@ export default async function ResourcesPage() {
                 <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">Research & Publications</div>
                 <div className="h-px w-20 bg-accent-600"></div>
               </div>
-              <h1 className="text-4xl md:text-5xl font-serif text-neutral-950 mb-6 leading-tight">
-                Resources
-              </h1>
+              <h1 className="text-4xl md:text-5xl font-serif text-neutral-950 mb-6 leading-tight">Resources</h1>
               <p className="text-lg text-neutral-700 leading-relaxed font-serif mb-4">
-                Comprehensive guides, articles, and white papers to help you
-                understand and implement DPDP Act compliance.
+                Comprehensive guides, articles, and white papers to help you understand and implement DPDP Act compliance.
               </p>
               <Link
                 href="/resources/publications/"
@@ -180,7 +157,7 @@ export default async function ResourcesPage() {
                       <BookOpen className="w-7 h-7 text-primary-900 group-hover:text-white transition-colors" strokeWidth={1.5} />
                     </div>
                     <div className="text-5xl font-serif text-neutral-200 group-hover:text-accent-600 transition-colors leading-none">
-                      {['I', 'II', 'III'][index] || 'IV'}
+                      {["I", "II", "III"][index] || "IV"}
                     </div>
                   </div>
 
@@ -190,9 +167,7 @@ export default async function ResourcesPage() {
                   </h3>
 
                   {/* Description */}
-                  <p className="text-neutral-700 leading-relaxed font-serif text-[0.9375rem] line-clamp-3">
-                    {guide.excerpt}
-                  </p>
+                  <p className="text-neutral-700 leading-relaxed font-serif text-[0.9375rem] line-clamp-3">{guide.excerpt}</p>
 
                   {/* Learn more arrow */}
                   <div className="mt-6 pt-5 border-t border-neutral-300 flex items-center justify-between">
@@ -249,11 +224,7 @@ export default async function ResourcesPage() {
                         {getCategoryLabel(post.category)}
                       </div>
                     )}
-                    {post.publishedAt && (
-                      <span className="text-xs text-neutral-500 font-serif">
-                        {formatDateShort(post.publishedAt)}
-                      </span>
-                    )}
+                    {post.publishedAt && <span className="text-xs text-neutral-500 font-serif">{formatDateShort(post.publishedAt)}</span>}
                   </div>
 
                   {/* Title */}
@@ -262,9 +233,7 @@ export default async function ResourcesPage() {
                   </h3>
 
                   {/* Excerpt */}
-                  <p className="text-sm text-neutral-700 leading-relaxed font-serif line-clamp-3">
-                    {post.excerpt}
-                  </p>
+                  <p className="text-sm text-neutral-700 leading-relaxed font-serif line-clamp-3">{post.excerpt}</p>
 
                   {/* Read more indicator */}
                   <div className="mt-5 pt-4 border-t border-neutral-200">
@@ -319,13 +288,14 @@ export default async function ResourcesPage() {
                     <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-2 group-hover:text-primary-900 transition-colors">
                       {paper.title}
                     </h3>
-                    <p className="text-sm text-neutral-700 leading-relaxed font-serif line-clamp-2 mb-3">
-                      {paper.abstract}
-                    </p>
+                    <p className="text-sm text-neutral-700 leading-relaxed font-serif line-clamp-2 mb-3">{paper.abstract}</p>
                     {paper.topics && (
                       <div className="flex flex-wrap gap-2 pt-3 border-t border-neutral-200">
                         {paper.topics.slice(0, 3).map((topic) => (
-                          <span key={topic} className="text-[0.6875rem] uppercase tracking-[0.15em] text-neutral-600 font-semibold bg-neutral-100 px-2 py-1 border border-neutral-300">
+                          <span
+                            key={topic}
+                            className="text-[0.6875rem] uppercase tracking-[0.15em] text-neutral-600 font-semibold bg-neutral-100 px-2 py-1 border border-neutral-300"
+                          >
                             {topic}
                           </span>
                         ))}
