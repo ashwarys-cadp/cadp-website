@@ -45,7 +45,13 @@ const staticGuides = [
     excerpt: 'Comprehensive implementation roadmap for the Digital Personal Data Protection Act 2023 and Rules 2025. Strategic guidance on phased compliance, priority actions, and organizational readiness.',
     category: 'Implementation',
   },
-  // Add more guides here as you create them
+  {
+    _id: '3',
+    title: 'DPDP Act Implementation Tracker',
+    slug: { current: 'dpdp-implementation-tracker' },
+    excerpt: 'Track every obligation the government must fulfil under the DPDP Act 2023 and Rules 2025. Updated as new notifications are issued.',
+    category: 'Tracking',
+  },
 ];
 
 const fallbackPosts: Post[] = [
