@@ -47,7 +47,49 @@ patch_document_from_json
     - path: "category"     value: "<one of the values below>"
 ```
 
-**Category values**: `government-orders` | `court-decisions` | `industry-news` | `opinion` | `cadp-announcements`
+**Category values**: See `apps/studio/schemas/documents/newsArticle.ts` (the `category` field's `options.list` array) for the current list.
+
+### 3a. Rewriting the body (when needed)
+
+The `create_documents_from_markdown` tool and `patch_document_from_markdown` both pass content through an AI model that **rewrites your text** and **drops link annotations**. Do not use them when you need exact wording or inline links.
+
+To set the body with precise control, use `patch_document_from_json` with hand-built portable text blocks:
+
+1. **Clear existing body first**: `unset: ["body"]`
+2. **Set new body** with portable text array:
+
+```json
+{
+  "set": [{
+    "path": "body",
+    "value": [
+      {
+        "_type": "block", "_key": "b1", "style": "normal",
+        "markDefs": [],
+        "children": [
+          { "_type": "span", "_key": "s1", "marks": [], "text": "Plain paragraph text." }
+        ]
+      },
+      {
+        "_type": "block", "_key": "b2", "style": "normal",
+        "markDefs": [
+          { "_type": "link", "_key": "lk1", "href": "https://example.com/target" }
+        ],
+        "children": [
+          { "_type": "span", "_key": "s2a", "marks": [], "text": "Text before " },
+          { "_type": "span", "_key": "s2b", "marks": ["lk1"], "text": "linked text" },
+          { "_type": "span", "_key": "s2c", "marks": [], "text": " text after." }
+        ]
+      }
+    ]
+  }]
+}
+```
+
+Use this approach whenever the body needs:
+- **Cross-references** to other CADP articles (inline links)
+- **Exact phrasing** that must not be rewritten
+- **Bold or italic** marks (use `"marks": ["strong"]` or `"marks": ["em"]`)
 
 ### 4. Publish
 
