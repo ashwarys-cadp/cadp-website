@@ -320,7 +320,7 @@ export default function DPDPImplementationTrackerPage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            <a
+            <Link
               href="/resources/guides/dpdp-rules-2025/"
               className="group bg-white border-2 border-neutral-300 p-6 hover:border-primary-600 transition-all duration-300"
             >
@@ -332,9 +332,9 @@ export default function DPDPImplementationTrackerPage() {
               <div className="flex items-center text-primary-700 text-sm font-semibold">
                 Read Guide <ArrowRight className="w-4 h-4 ml-2" />
               </div>
-            </a>
+            </Link>
 
-            <a
+            <Link
               href="/resources/guides/dpdp-implementation-roadmap/"
               className="group bg-white border-2 border-neutral-300 p-6 hover:border-primary-600 transition-all duration-300"
             >
@@ -346,9 +346,9 @@ export default function DPDPImplementationTrackerPage() {
               <div className="flex items-center text-primary-700 text-sm font-semibold">
                 Read Guide <ArrowRight className="w-4 h-4 ml-2" />
               </div>
-            </a>
+            </Link>
 
-            <a
+            <Link
               href="/resources/official-texts/"
               className="group bg-white border-2 border-neutral-300 p-6 hover:border-primary-600 transition-all duration-300"
             >
@@ -360,7 +360,7 @@ export default function DPDPImplementationTrackerPage() {
               <div className="flex items-center text-primary-700 text-sm font-semibold">
                 Browse Texts <ArrowRight className="w-4 h-4 ml-2" />
               </div>
-            </a>
+            </Link>
           </div>
         </Container>
       </Section>
