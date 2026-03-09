@@ -766,7 +766,7 @@ export default function DPDPRulesGuidePage() {
               </div>
             </Link>
 
-            <a
+            <Link
               href="/resources/guides/dpdp-implementation-roadmap/"
               className="group bg-white border-2 border-neutral-300 p-6 hover:border-primary-600 transition-all duration-300"
             >
@@ -778,9 +778,9 @@ export default function DPDPRulesGuidePage() {
               <div className="flex items-center text-primary-700 text-sm font-semibold">
                 Read Guide <ArrowRight className="w-4 h-4 ml-2" />
               </div>
-            </a>
+            </Link>
 
-            <a
+            <Link
               href="/programs-and-initiatives/dpdp-training/"
               className="group bg-white border-2 border-neutral-300 p-6 hover:border-primary-600 transition-all duration-300"
             >
@@ -792,9 +792,9 @@ export default function DPDPRulesGuidePage() {
               <div className="flex items-center text-primary-700 text-sm font-semibold">
                 View Programme <ArrowRight className="w-4 h-4 ml-2" />
               </div>
-            </a>
+            </Link>
 
-            <a
+            <Link
               href="/programs-and-initiatives/compliance-advisory/"
               className="group bg-white border-2 border-neutral-300 p-6 hover:border-primary-600 transition-all duration-300"
             >
@@ -806,7 +806,7 @@ export default function DPDPRulesGuidePage() {
               <div className="flex items-center text-primary-700 text-sm font-semibold">
                 Learn More <ArrowRight className="w-4 h-4 ml-2" />
               </div>
-            </a>
+            </Link>
           </div>
         </Container>
       </Section>
