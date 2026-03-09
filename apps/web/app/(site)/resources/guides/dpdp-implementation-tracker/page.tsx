@@ -7,6 +7,7 @@ import {
   BookOpen,
   ClipboardList,
   Info,
+  Shield,
 } from "lucide-react";
 import { Container, Section, Badge } from "@/components/ui";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
@@ -55,7 +56,7 @@ export default function DPDPImplementationTrackerPage() {
         description="Track every obligation the Indian government must fulfil under the DPDP Act 2023 and Rules 2025. Comprehensive status tracker covering Board setup, consent frameworks, cross-border rules, and more."
         url="https://cadp.in/resources/guides/dpdp-implementation-tracker"
         authorName="Centre for Applied Data Protection (CADP)"
-        publishedAt={tracker.lastUpdated}
+        publishedAt="2026-03-09"
         modifiedAt={tracker.lastUpdated}
       />
 
@@ -319,7 +320,7 @@ export default function DPDPImplementationTrackerPage() {
             <h2 className="text-3xl md:text-4xl font-serif text-neutral-950 mb-6">Related Resources</h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
             <Link
               href="/resources/guides/dpdp-rules-2025/"
               className="group bg-white border-2 border-neutral-300 p-6 hover:border-primary-600 transition-all duration-300"
@@ -359,6 +360,20 @@ export default function DPDPImplementationTrackerPage() {
               <p className="text-base text-neutral-600 font-serif mb-4">Full text of the DPDP Act, Rules, and all Gazette notifications</p>
               <div className="flex items-center text-primary-700 text-sm font-semibold">
                 Browse Texts <ArrowRight className="w-4 h-4 ml-2" />
+              </div>
+            </Link>
+
+            <Link
+              href="/programs-and-initiatives/compliance-advisory/"
+              className="group bg-white border-2 border-neutral-300 p-6 hover:border-primary-600 transition-all duration-300"
+            >
+              <div className="w-12 h-12 border-2 border-primary-600 bg-primary-50 flex items-center justify-center mb-4 group-hover:bg-primary-600 transition-colors">
+                <Shield className="w-6 h-6 text-primary-600 group-hover:text-white transition-colors" strokeWidth={1.5} />
+              </div>
+              <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-2">Compliance Advisory</h3>
+              <p className="text-base text-neutral-600 font-serif mb-4">Expert guidance on navigating DPDP compliance for your organisation</p>
+              <div className="flex items-center text-primary-700 text-sm font-semibold">
+                Learn More <ArrowRight className="w-4 h-4 ml-2" />
               </div>
             </Link>
           </div>
