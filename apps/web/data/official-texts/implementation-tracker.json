@@ -1,0 +1,657 @@
+{
+  "lastUpdated": "2026-03-09",
+  "categories": [
+    {
+      "id": "board-setup",
+      "name": "Data Protection Board Setup",
+      "status": "partial",
+      "items": [
+        {
+          "id": "board-establishment",
+          "requirement": "Establish the Data Protection Board of India",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-18",
+            "label": "Section 18(1)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 844(E)",
+            "date": "2025-11-13",
+            "description": "Data Protection Board of India established with effect from the date of publication of the notification.",
+            "documentId": "dpdp-notification-dpb-2025"
+          }
+        },
+        {
+          "id": "board-headquarters",
+          "requirement": "Notify the headquarters of the Board",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-18",
+            "label": "Section 18(3)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 844(E)",
+            "date": "2025-11-13",
+            "description": "Head office of the Data Protection Board of India to be in the National Capital Region of India.",
+            "documentId": "dpdp-notification-dpb-2025"
+          }
+        },
+        {
+          "id": "board-member-count",
+          "requirement": "Notify the number of Members of the Board besides the Chairperson",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-19",
+            "label": "Section 19(1)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "pending"
+        },
+        {
+          "id": "board-appointment-manner",
+          "requirement": "Prescribe the manner of appointment of Chairperson and other Members",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-19",
+            "label": "Section 19(2)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 846(E)",
+            "date": "2025-11-13",
+            "description": "Rule 17 prescribes Search-cum-Selection Committees for appointment of Chairperson and other Members.",
+            "documentId": "dpdp-rules-2025"
+          }
+        },
+        {
+          "id": "board-search-committee-chairperson",
+          "requirement": "Constitute Search-cum-Selection Committee for appointment of Chairperson",
+          "source": {
+            "document": "dpdp-rules-2025",
+            "sectionId": "rule-17",
+            "label": "Rule 17(1)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "pending"
+        },
+        {
+          "id": "board-search-committee-members",
+          "requirement": "Constitute Search-cum-Selection Committee for appointment of Members other than Chairperson",
+          "source": {
+            "document": "dpdp-rules-2025",
+            "sectionId": "rule-17",
+            "label": "Rule 17(2)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "pending"
+        },
+        {
+          "id": "board-salary-terms",
+          "requirement": "Prescribe salary, allowances and other terms and conditions of service of Chairperson and Members",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-20",
+            "label": "Section 20(1)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 846(E)",
+            "date": "2025-11-13",
+            "description": "Rule 18 and Fifth Schedule prescribe salary (Chairperson: Rs 4,50,000/month; Members: Rs 4,00,000/month) and other terms of service.",
+            "documentId": "dpdp-rules-2025"
+          }
+        },
+        {
+          "id": "board-proceedings-procedure",
+          "requirement": "Prescribe the procedure for meetings, transaction of business and authentication of orders of the Board",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-23",
+            "label": "Section 23(1)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 846(E)",
+            "date": "2025-11-13",
+            "description": "Rule 19 prescribes quorum (one-third), majority voting, casting vote, authentication and inquiry completion timelines.",
+            "documentId": "dpdp-rules-2025"
+          }
+        },
+        {
+          "id": "board-officers-employees",
+          "requirement": "Prescribe terms and conditions of appointment and service of officers and employees of the Board",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-24",
+            "label": "Section 24"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 846(E)",
+            "date": "2025-11-13",
+            "description": "Rule 21 and Sixth Schedule prescribe terms of deputation, gratuity, travelling allowance, medical assistance, leave and other conditions.",
+            "documentId": "dpdp-rules-2025"
+          }
+        },
+        {
+          "id": "board-digital-office",
+          "requirement": "Prescribe techno-legal measures for the Board to function as a digital office",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-28",
+            "label": "Section 28(1)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 846(E)",
+            "date": "2025-11-13",
+            "description": "Rule 20 prescribes that the Board shall function as a digital office and may adopt techno-legal measures for proceedings without physical presence.",
+            "documentId": "dpdp-rules-2025"
+          }
+        },
+        {
+          "id": "board-additional-powers",
+          "requirement": "Prescribe additional matters in respect of which the Board shall have civil court powers",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-28",
+            "label": "Section 28(7)(d)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "consent-management",
+      "name": "Consent Management",
+      "status": "complete",
+      "items": [
+        {
+          "id": "consent-manager-obligations",
+          "requirement": "Prescribe the manner and obligations of a Consent Manager acting on behalf of Data Principals",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-6",
+            "label": "Section 6(8)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 846(E)",
+            "date": "2025-11-13",
+            "description": "Rule 4(3) and Part B of First Schedule prescribe 13 obligations of Consent Managers including interoperability, record-keeping, conflict of interest and audit requirements.",
+            "documentId": "dpdp-rules-2025"
+          }
+        },
+        {
+          "id": "consent-manager-registration",
+          "requirement": "Prescribe the manner of registration of Consent Managers and conditions therefor",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-6",
+            "label": "Section 6(9)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 846(E)",
+            "date": "2025-11-13",
+            "description": "Rule 4(1)-(2) and Part A of First Schedule prescribe registration process and 9 conditions including minimum net worth of Rs 2 crore, technical capacity, and independent certification.",
+            "documentId": "dpdp-rules-2025"
+          }
+        }
+      ]
+    },
+    {
+      "id": "data-fiduciary-obligations",
+      "name": "Data Fiduciary Obligations",
+      "status": "complete",
+      "items": [
+        {
+          "id": "complaint-manner",
+          "requirement": "Prescribe the manner in which a Data Principal may make a complaint to the Board",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-5",
+            "label": "Section 5(1)(iii)/(2)(iii)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 846(E)",
+            "date": "2025-11-13",
+            "description": "Rule 3(c)(iii) requires the notice to include a communication link to the Data Fiduciary's website or app for making a complaint to the Board.",
+            "documentId": "dpdp-rules-2025"
+          }
+        },
+        {
+          "id": "breach-notification-form",
+          "requirement": "Prescribe the form and manner of intimation of personal data breach to the Board and affected Data Principals",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-8",
+            "label": "Section 8(6)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 846(E)",
+            "date": "2025-11-13",
+            "description": "Rule 7 prescribes intimation requirements: without delay to Data Principals (nature, consequences, mitigation measures) and to the Board within 72 hours with detailed information.",
+            "documentId": "dpdp-rules-2025"
+          }
+        },
+        {
+          "id": "data-retention-periods",
+          "requirement": "Prescribe time periods after which specified purpose is deemed no longer served, for different classes of Data Fiduciaries and purposes",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-8",
+            "label": "Section 8(8)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 846(E)",
+            "date": "2025-11-13",
+            "description": "Rule 8 and Third Schedule prescribe 3-year retention periods for e-commerce entities (2 crore+ users), online gaming intermediaries (50 lakh+ users), and social media intermediaries (2 crore+ users).",
+            "documentId": "dpdp-rules-2025"
+          }
+        },
+        {
+          "id": "dpo-contact-info",
+          "requirement": "Prescribe the manner of publishing business contact information of the Data Protection Officer or authorised person",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-8",
+            "label": "Section 8(9)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 846(E)",
+            "date": "2025-11-13",
+            "description": "Rule 9 requires prominent publication on website or app and mention in every response to Data Principal communications.",
+            "documentId": "dpdp-rules-2025"
+          }
+        },
+        {
+          "id": "grievance-response-period",
+          "requirement": "Prescribe the period within which the Data Fiduciary or Consent Manager shall respond to grievances",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-13",
+            "label": "Section 13(2)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 846(E)",
+            "date": "2025-11-13",
+            "description": "Rule 14(3) prescribes a reasonable period not exceeding 90 days for responding to grievances under the grievance redressal system.",
+            "documentId": "dpdp-rules-2025"
+          }
+        }
+      ]
+    },
+    {
+      "id": "significant-data-fiduciary",
+      "name": "Significant Data Fiduciary",
+      "status": "partial",
+      "items": [
+        {
+          "id": "sdf-notification",
+          "requirement": "Notify Data Fiduciaries or classes of Data Fiduciaries as Significant Data Fiduciaries",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-10",
+            "label": "Section 10(1)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "pending"
+        },
+        {
+          "id": "sdf-dpia-matters",
+          "requirement": "Prescribe additional matters comprising the Data Protection Impact Assessment process",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-10",
+            "label": "Section 10(2)(c)(i)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 846(E)",
+            "date": "2025-11-13",
+            "description": "Rule 13(1)-(3) prescribes annual DPIA, audit obligations, reporting to the Board, and due diligence on algorithmic software measures.",
+            "documentId": "dpdp-rules-2025"
+          }
+        },
+        {
+          "id": "sdf-additional-measures",
+          "requirement": "Prescribe other measures that a Significant Data Fiduciary shall undertake",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-10",
+            "label": "Section 10(2)(c)(iii)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 846(E)",
+            "date": "2025-11-13",
+            "description": "Rule 13(3)-(4) prescribes due diligence on algorithmic software and data localization measures for specified personal data.",
+            "documentId": "dpdp-rules-2025"
+          }
+        },
+        {
+          "id": "sdf-data-localization",
+          "requirement": "Specify personal data subject to localization restrictions for Significant Data Fiduciaries, based on committee recommendations",
+          "source": {
+            "document": "dpdp-rules-2025",
+            "sectionId": "rule-13",
+            "label": "Rule 13(4)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "pending"
+        },
+        {
+          "id": "sdf-localization-committee",
+          "requirement": "Constitute the committee to recommend personal data subject to localization restrictions",
+          "source": {
+            "document": "dpdp-rules-2025",
+            "sectionId": "rule-13",
+            "label": "Rule 13(5)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "children-data",
+      "name": "Children's Data Protection",
+      "status": "partial",
+      "items": [
+        {
+          "id": "verifiable-consent-manner",
+          "requirement": "Prescribe the manner of obtaining verifiable consent of parent before processing personal data of a child or person with disability",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-9",
+            "label": "Section 9(1)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 846(E)",
+            "date": "2025-11-13",
+            "description": "Rules 10 and 11 prescribe verifiable consent mechanisms: identity/age verification via reliable data held by Data Fiduciary, voluntarily provided details, or virtual tokens from authorised entities.",
+            "documentId": "dpdp-rules-2025"
+          }
+        },
+        {
+          "id": "children-exemption-classes",
+          "requirement": "Prescribe classes of Data Fiduciaries and purposes exempted from verifiable consent and tracking restrictions for children",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-9",
+            "label": "Section 9(4)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 846(E)",
+            "date": "2025-11-13",
+            "description": "Rule 12 and Fourth Schedule prescribe exemptions: Part A lists 5 classes (healthcare, educational institutions, child care, transport) and Part B lists 6 purposes (statutory functions, government benefits, email, location tracking, content filtering, age verification).",
+            "documentId": "dpdp-rules-2025"
+          }
+        },
+        {
+          "id": "safe-processing-notification",
+          "requirement": "Notify Data Fiduciaries whose processing of children's data is verifiably safe, specifying the age above which consent obligations are relaxed",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-9",
+            "label": "Section 9(5)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "pending"
+        },
+        {
+          "id": "digital-locker-notification",
+          "requirement": "Notify Digital Locker service providers for the purpose of verifiable consent for children's data processing",
+          "source": {
+            "document": "dpdp-rules-2025",
+            "sectionId": "rule-10",
+            "label": "Rule 10(2)(c)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "cross-border-transfer",
+      "name": "Cross-border Data Transfer",
+      "status": "pending",
+      "items": [
+        {
+          "id": "country-restrictions",
+          "requirement": "Notify countries or territories to which transfer of personal data by a Data Fiduciary is restricted",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-16",
+            "label": "Section 16(1)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "pending"
+        },
+        {
+          "id": "transfer-requirements",
+          "requirement": "Specify requirements for making personal data available to foreign States, persons or entities under control of a foreign State",
+          "source": {
+            "document": "dpdp-rules-2025",
+            "sectionId": "rule-15",
+            "label": "Rule 15"
+          },
+          "responsibleBody": "Central Government",
+          "status": "pending"
+        },
+        {
+          "id": "sdf-localization-specification",
+          "requirement": "Specify personal data of Significant Data Fiduciaries subject to localization (no transfer outside India)",
+          "source": {
+            "document": "dpdp-rules-2025",
+            "sectionId": "rule-13",
+            "label": "Rule 13(4)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "exemptions-research",
+      "name": "Exemptions & Research",
+      "status": "partial",
+      "items": [
+        {
+          "id": "legitimate-uses-prescription",
+          "requirement": "Prescribe the subsidies, benefits, services, certificates, licences or permits for which the State may process personal data as a legitimate use",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-7",
+            "label": "Section 7(b)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 846(E)",
+            "date": "2025-11-13",
+            "description": "Rule 5 and Second Schedule prescribe standards for processing by State instrumentalities under Section 7(b), including lawfulness, purpose limitation, data minimization, accuracy and security safeguards.",
+            "documentId": "dpdp-rules-2025"
+          }
+        },
+        {
+          "id": "government-database-notification",
+          "requirement": "Notify databases, registers, books or other documents maintained by the State for the purpose of legitimate use processing",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-7",
+            "label": "Section 7(b)(ii)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "pending"
+        },
+        {
+          "id": "research-standards",
+          "requirement": "Prescribe standards for processing personal data for research, archiving or statistical purposes",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-17",
+            "label": "Section 17(2)(b)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 846(E)",
+            "date": "2025-11-13",
+            "description": "Rule 16 and Second Schedule prescribe standards for research processing: lawfulness, purpose limitation, data minimization, accuracy, retention limits, security safeguards, intimation and accountability.",
+            "documentId": "dpdp-rules-2025"
+          }
+        },
+        {
+          "id": "startup-exemptions",
+          "requirement": "Notify Data Fiduciaries or classes including startups exempted from notice, data accuracy/erasure and SDF obligations",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-17",
+            "label": "Section 17(3)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "rights-of-data-principals",
+      "name": "Rights of Data Principals",
+      "status": "complete",
+      "items": [
+        {
+          "id": "access-request-manner",
+          "requirement": "Prescribe the manner in which a Data Principal may make a request to access information about her personal data",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-11",
+            "label": "Section 11(1)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 846(E)",
+            "date": "2025-11-13",
+            "description": "Rule 14(1)-(2) requires Data Fiduciaries to publish means for exercising rights and accept requests using those means with identifying particulars.",
+            "documentId": "dpdp-rules-2025"
+          }
+        },
+        {
+          "id": "access-additional-info",
+          "requirement": "Prescribe any other information related to personal data and its processing that a Data Principal may access",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-11",
+            "label": "Section 11(1)(c)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 846(E)",
+            "date": "2025-11-13",
+            "description": "Rule 14(1)(a)-(b) prescribes details of means for exercising rights and identifier particulars required for identification under terms of service.",
+            "documentId": "dpdp-rules-2025"
+          }
+        },
+        {
+          "id": "erasure-request-manner",
+          "requirement": "Prescribe the manner in which a Data Principal may make a request for erasure of her personal data",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-12",
+            "label": "Section 12(3)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 846(E)",
+            "date": "2025-11-13",
+            "description": "Rule 14(1)-(2) prescribes a unified mechanism for exercising rights including erasure, via means published by the Data Fiduciary on its website or app.",
+            "documentId": "dpdp-rules-2025"
+          }
+        },
+        {
+          "id": "nomination-manner",
+          "requirement": "Prescribe the manner in which a Data Principal may nominate another individual to exercise her rights in the event of death or incapacity",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-14",
+            "label": "Section 14(1)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 846(E)",
+            "date": "2025-11-13",
+            "description": "Rule 14(4) prescribes nomination via means and particulars required by the Data Fiduciary, in accordance with its terms of service and applicable law.",
+            "documentId": "dpdp-rules-2025"
+          }
+        },
+        {
+          "id": "appeal-form-fee",
+          "requirement": "Prescribe the form, manner and fee for filing an appeal to the Appellate Tribunal",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-29",
+            "label": "Section 29(2)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 846(E)",
+            "date": "2025-11-13",
+            "description": "Rule 22(1)-(2) prescribes digital filing of appeals with fee equivalent to TRAI Act appeal fees, payable via UPI or authorised payment systems, with discretionary reduction or waiver.",
+            "documentId": "dpdp-rules-2025"
+          }
+        },
+        {
+          "id": "appeal-procedure",
+          "requirement": "Prescribe the procedure for dealing with appeals before the Appellate Tribunal",
+          "source": {
+            "document": "dpdp-act-2023",
+            "sectionId": "section-29",
+            "label": "Section 29(8)"
+          },
+          "responsibleBody": "Central Government",
+          "status": "notified",
+          "implementation": {
+            "instrument": "G.S.R. 846(E)",
+            "date": "2025-11-13",
+            "description": "Rule 22(3) prescribes that the Appellate Tribunal shall be guided by principles of natural justice, may regulate its own procedure, and shall function as a digital office with techno-legal measures.",
+            "documentId": "dpdp-rules-2025"
+          }
+        }
+      ]
+    }
+  ]
+}
