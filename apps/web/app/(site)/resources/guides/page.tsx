@@ -34,6 +34,15 @@ const guides = [
     category: 'Implementation',
     publishedAt: '2026-01-30',
   },
+  {
+    id: '3',
+    title: 'DPDP Act Implementation Tracker',
+    slug: 'dpdp-implementation-tracker',
+    excerpt:
+      'Track every obligation the government must fulfil under the DPDP Act 2023 and Rules 2025 — Board setup, consent frameworks, cross-border rules, and more. Updated as new notifications are issued.',
+    category: 'Tracking',
+    publishedAt: '2026-03-09',
+  },
 ];
 
 export default function GuidesPage() {

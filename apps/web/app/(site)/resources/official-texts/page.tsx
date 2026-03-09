@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Scale, BookOpen, FileText, ArrowRight } from 'lucide-react';
+import { Scale, BookOpen, FileText, ArrowRight, ListChecks } from 'lucide-react';
 import { Container, Section } from '@/components/ui';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { CollectionPageJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
@@ -196,6 +196,29 @@ export default async function OfficialTextsPage() {
                 cross-references.
               </p>
             </div>
+          </div>
+
+          {/* Implementation Tracker callout */}
+          <div className="max-w-3xl mx-auto mb-10">
+            <Link
+              href="/resources/guides/dpdp-implementation-tracker/"
+              className="group block border-2 border-primary-200 bg-primary-50 p-5 hover:border-primary-600 transition-all duration-300"
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 border border-primary-900 shrink-0 flex items-center justify-center bg-white group-hover:bg-primary-900 transition-all">
+                  <ListChecks className="w-5 h-5 text-primary-900 group-hover:text-white transition-colors" strokeWidth={1.5} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h2 className="text-sm font-serif font-semibold text-primary-900 mb-1">
+                    Looking for implementation status?
+                  </h2>
+                  <p className="text-sm text-neutral-700 font-serif leading-relaxed">
+                    See our comprehensive DPDP Implementation Tracker for the status of every delegated obligation — which notifications have been issued and what remains pending.
+                  </p>
+                </div>
+                <ArrowRight className="w-4 h-4 text-primary-700 shrink-0 mt-1 group-hover:translate-x-0.5 transition-transform" />
+              </div>
+            </Link>
           </div>
 
           <div className="max-w-3xl mx-auto space-y-10">
