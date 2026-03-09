@@ -30,7 +30,7 @@ Paragraph 2 — legal/regulatory context, relevant DPDP provisions.
 Paragraph 3 — CADP commentary: what this means for organisations, recommended actions.
 ```
 
-The tool auto-generates: `slug`, `excerpt`, `seoTitle`, `seoDescription`, `tags`, and `body` (portable text blocks).
+The tool auto-generates: `slug`, `excerpt`, `seoTitle`, `seoDescription`, `tags`, and `body` (portable text blocks). **Verify the auto-generated values** — `seoTitle` must be at most 70 chars and `seoDescription` at most 170 chars. Override via `patch_document_from_json` if they exceed these limits.
 
 ### 3. Patch required fields
 
