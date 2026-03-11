@@ -7,6 +7,7 @@ interface SectionHeadingProps {
   number: string;
   title: string;
   level: 'chapter' | 'section' | 'schedule';
+  sectionPrefix?: string;
   resourceCount: number;
   caseCount: number;
   onResourcesClick: () => void;
@@ -20,6 +21,7 @@ export function SectionHeading({
   number,
   title,
   level,
+  sectionPrefix,
   resourceCount,
   caseCount,
   onResourcesClick,
@@ -33,8 +35,8 @@ export function SectionHeading({
   const prefix = isChapter
     ? `Chapter ${number}`
     : isSchedule
-      ? `${number} Schedule`
-      : `Section ${number}`;
+      ? `Schedule ${number}`
+      : sectionPrefix ? `${sectionPrefix} ${number}` : number;
 
   return (
     <div id={id} className="scroll-mt-24">

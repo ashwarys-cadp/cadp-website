@@ -72,14 +72,32 @@ export function countSections(doc: LegalDocument): number {
 }
 
 /**
- * Format a section/rule/chapter/schedule ID for display.
- * e.g. "section-7" → "Section 7", "rule-12" → "Rule 12"
+ * Format a section label from its number and the document's sectionPrefix.
+ * e.g. ("7", "Section") → "Section 7", ("12", "Rule") → "Rule 12", ("1", "") → "1"
  */
-export function formatSectionId(id: string): string {
-  return id
-    .replace('section-', 'Section ')
-    .replace('rule-', 'Rule ')
-    .replace('chapter-', 'Chapter ')
-    .replace('schedule-', 'Schedule ')
-    .replace('para-', 'Para ');
+export function formatSectionLabel(number: string, prefix?: string): string {
+  return prefix ? `${prefix} ${number}` : number;
+}
+
+/**
+ * Build a lookup map from section IDs to their display label,
+ * using each document's sectionPrefix as the source of truth.
+ */
+export function buildSectionLabelMap(docs: LegalDocument[]): Map<string, string> {
+  const map = new Map<string, string>();
+  for (const doc of docs) {
+    const prefix = doc.sectionPrefix ?? '';
+    for (const chapter of doc.chapters) {
+      if (chapter.number) {
+        map.set(chapter.id, `Chapter ${chapter.number}`);
+      }
+      for (const section of chapter.sections) {
+        map.set(section.id, formatSectionLabel(section.number, prefix));
+      }
+    }
+    for (const schedule of doc.schedules) {
+      map.set(schedule.id, `Schedule ${schedule.number}`);
+    }
+  }
+  return map;
 }

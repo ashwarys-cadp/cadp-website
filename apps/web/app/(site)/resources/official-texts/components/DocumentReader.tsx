@@ -11,7 +11,7 @@ import type {
   SectionAmendment,
 } from '@/data/official-texts/types';
 import { mergeTerms } from '@/lib/official-texts/terms';
-import { generateToc } from '@/lib/official-texts/utils';
+import { generateToc, buildSectionLabelMap } from '@/lib/official-texts/utils';
 import { TableOfContents } from './TableOfContents';
 import { SidePanel } from './SidePanel';
 import { SectionHeading } from './SectionHeading';
@@ -39,6 +39,7 @@ export function DocumentReader({
   const toc = generateToc(doc);
   const allDefinitions = allDocuments.flatMap((d) => d.definitions);
   const mergedTerms = mergeTerms(allDefinitions, annotations);
+  const sectionLabelMap = buildSectionLabelMap(allDocuments);
 
   // Scroll to hash on mount
   useEffect(() => {
@@ -81,6 +82,7 @@ export function DocumentReader({
         setPanelMode({
           type: 'definition',
           term: term.data as LegalDocument['definitions'][0],
+          sectionLabelMap,
         });
       } else {
         setPanelMode({
@@ -89,24 +91,28 @@ export function DocumentReader({
         });
       }
     },
-    []
+    [sectionLabelMap]
   );
 
   function handleResourcesClick(sectionId: string, chapterId?: string) {
     const sectionResources = getResourcesForSection(sectionId, chapterId);
-    setPanelMode({ type: 'resources', sectionId, resources: sectionResources });
+    const sectionLabel = sectionLabelMap.get(sectionId) ?? sectionId;
+    setPanelMode({ type: 'resources', sectionId, sectionLabel, resources: sectionResources });
   }
 
   function handleCasesClick(sectionId: string, chapterId?: string) {
     const sectionCases = getCasesForSection(sectionId, chapterId);
-    setPanelMode({ type: 'caselaw', sectionId, cases: sectionCases });
+    const sectionLabel = sectionLabelMap.get(sectionId) ?? sectionId;
+    setPanelMode({ type: 'caselaw', sectionId, sectionLabel, cases: sectionCases });
   }
 
   function handleAmendmentsClick(sectionId: string) {
     const sectionAmendments = getAmendmentsForSection(sectionId);
+    const sectionLabel = sectionLabelMap.get(sectionId) ?? sectionId;
     setPanelMode({
       type: 'amendments',
       sectionId,
+      sectionLabel,
       amendments: sectionAmendments,
       corrigenda: doc.corrigenda,
     });
@@ -167,6 +173,7 @@ export function DocumentReader({
                   number={chapter.number}
                   title={chapter.title}
                   level="chapter"
+                  sectionPrefix={doc.sectionPrefix}
                   resourceCount={
                     resources.filter((r) => r.targetChapter === chapter.id).length
                   }
@@ -207,6 +214,7 @@ export function DocumentReader({
                       number={section.number}
                       title={section.title}
                       level="section"
+                      sectionPrefix={doc.sectionPrefix}
                       resourceCount={sectionResources.length}
                       caseCount={sectionCases.length}
                       amendmentCount={(section.amendments ?? []).length}
@@ -275,6 +283,7 @@ export function DocumentReader({
                       number={schedule.number}
                       title={schedule.title}
                       level="schedule"
+                      sectionPrefix={doc.sectionPrefix}
                       resourceCount={scheduleResources.length}
                       caseCount={scheduleCases.length}
                       amendmentCount={(schedule.amendments ?? []).length}

@@ -1,14 +1,13 @@
 import { History } from 'lucide-react';
 import type { SectionAmendment, Corrigendum } from '@/data/official-texts/types';
 import { formatDate } from '@/lib/utils';
-import { formatSectionId } from '@/lib/official-texts/utils';
 
 export function AmendmentsContent({
-  sectionId,
+  sectionLabel,
   amendments,
   corrigenda,
 }: {
-  sectionId: string;
+  sectionLabel: string;
   amendments: SectionAmendment[];
   corrigenda: Corrigendum[];
 }) {
@@ -24,7 +23,7 @@ export function AmendmentsContent({
         Corrections Applied
       </div>
       <div className="text-sm text-neutral-500 font-serif mb-6">
-        {formatSectionId(sectionId)}
+        {sectionLabel}
       </div>
       <div className="space-y-4">
         {sorted.map((amendment, index) => {

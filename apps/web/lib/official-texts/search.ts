@@ -6,6 +6,7 @@ export interface SearchResult {
   sectionId: string;
   sectionNumber: string;
   sectionTitle: string;
+  sectionPrefix: string;
   snippet: string;
 }
 
@@ -20,6 +21,7 @@ export function buildSearchEntries(docs: LegalDocument[]) {
     sectionId: string;
     sectionNumber: string;
     sectionTitle: string;
+    sectionPrefix: string;
     plainText: string;
   }[] = [];
 
@@ -32,6 +34,7 @@ export function buildSearchEntries(docs: LegalDocument[]) {
           sectionId: section.id,
           sectionNumber: section.number,
           sectionTitle: section.title,
+          sectionPrefix: doc.sectionPrefix ?? 'Section',
           plainText: stripHtml(section.text),
         });
       }
@@ -43,6 +46,7 @@ export function buildSearchEntries(docs: LegalDocument[]) {
         sectionId: schedule.id,
         sectionNumber: schedule.number,
         sectionTitle: schedule.title,
+        sectionPrefix: 'Schedule',
         plainText: stripHtml(schedule.text),
       });
     }
@@ -91,6 +95,7 @@ export function searchEntries(
       sectionId: entry.sectionId,
       sectionNumber: entry.sectionNumber,
       sectionTitle: entry.sectionTitle,
+      sectionPrefix: entry.sectionPrefix,
       snippet,
     });
   }

@@ -1,6 +1,5 @@
 import { FileText, BookOpen, ExternalLink } from 'lucide-react';
 import type { SectionResource } from '@/data/official-texts/types';
-import { formatSectionId } from '@/lib/official-texts/utils';
 
 const typeIcons = {
   'cadp-article': FileText,
@@ -14,12 +13,12 @@ const typeLabels = {
   external: 'External',
 };
 
-export function ResourcesContent({ sectionId, resources }: { sectionId: string; resources: SectionResource[] }) {
+export function ResourcesContent({ sectionLabel, resources }: { sectionLabel: string; resources: SectionResource[] }) {
   return (
     <div>
       <div className="text-xs uppercase tracking-[0.2em] text-accent-700 font-semibold mb-3">Related Resources</div>
       <div className="text-sm text-neutral-500 font-serif mb-6">
-        {formatSectionId(sectionId)}
+        {sectionLabel}
       </div>
       <div className="space-y-4">
         {resources.map((resource) => {

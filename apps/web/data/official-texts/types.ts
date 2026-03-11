@@ -21,6 +21,7 @@ export interface LegalDocument {
   gazetteNumber: string;
   dateEnacted: string;
   dateEffective: string;
+  sectionPrefix?: string;
   preamble?: string;
   chapters: Chapter[];
   schedules: Schedule[];
@@ -101,11 +102,11 @@ export interface CaseReference {
 // --- Side Panel discriminated union ---
 
 export type PanelMode =
-  | { type: "definition"; term: TermDefinition }
+  | { type: "definition"; term: TermDefinition; sectionLabelMap: Map<string, string> }
   | { type: "annotation"; annotation: Annotation }
-  | { type: "resources"; sectionId: string; resources: SectionResource[] }
-  | { type: "caselaw"; sectionId: string; cases: CaseReference[] }
-  | { type: "amendments"; sectionId: string; amendments: SectionAmendment[]; corrigenda: Corrigendum[] };
+  | { type: "resources"; sectionId: string; sectionLabel: string; resources: SectionResource[] }
+  | { type: "caselaw"; sectionId: string; sectionLabel: string; cases: CaseReference[] }
+  | { type: "amendments"; sectionId: string; sectionLabel: string; amendments: SectionAmendment[]; corrigenda: Corrigendum[] };
 
 // --- Merged term for detection ---
 

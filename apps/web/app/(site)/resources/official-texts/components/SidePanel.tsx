@@ -25,17 +25,17 @@ function PanelContent({
 }) {
   switch (mode.type) {
     case 'definition':
-      return <DefinitionContent term={mode.term} onNavigateToSection={onNavigateToSection} />;
+      return <DefinitionContent term={mode.term} sectionLabelMap={mode.sectionLabelMap} onNavigateToSection={onNavigateToSection} />;
     case 'annotation':
       return <AnnotationContent annotation={mode.annotation} />;
     case 'resources':
-      return <ResourcesContent sectionId={mode.sectionId} resources={mode.resources} />;
+      return <ResourcesContent sectionLabel={mode.sectionLabel} resources={mode.resources} />;
     case 'caselaw':
-      return <CaseLawContent sectionId={mode.sectionId} cases={mode.cases} />;
+      return <CaseLawContent sectionLabel={mode.sectionLabel} cases={mode.cases} />;
     case 'amendments':
       return (
         <AmendmentsContent
-          sectionId={mode.sectionId}
+          sectionLabel={mode.sectionLabel}
           amendments={mode.amendments}
           corrigenda={mode.corrigenda}
         />

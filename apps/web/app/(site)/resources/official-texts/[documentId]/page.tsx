@@ -5,12 +5,12 @@ import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { LegislationJsonLd, WebApplicationJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { generatePageMetadata } from '@/lib/seo/metadata';
 import { formatDate } from '@/lib/utils';
-import { formatSectionId } from '@/lib/official-texts/utils';
 import {
   loadDocument,
   loadAllDocuments,
   getDocumentIds,
   countSections,
+  buildSectionLabelMap,
 } from '@/lib/official-texts/utils';
 import {
   client,
@@ -74,7 +74,7 @@ async function fetchSanityData(documentId: string) {
   }
 }
 
-function CorrigendaBanner({ corrigenda }: { corrigenda: Corrigendum[] }) {
+function CorrigendaBanner({ corrigenda, sectionLabelMap }: { corrigenda: Corrigendum[]; sectionLabelMap: Map<string, string> }) {
   if (corrigenda.length === 0) return null;
 
   return (
@@ -97,7 +97,7 @@ function CorrigendaBanner({ corrigenda }: { corrigenda: Corrigendum[] }) {
                   href={`#${sectionId}`}
                   className="text-xs font-serif font-semibold text-primary-700 hover:text-primary-900 hover:underline"
                 >
-                  {formatSectionId(sectionId)}
+                  {sectionLabelMap.get(sectionId) ?? sectionId}
                 </a>
               ))}
             </div>
@@ -114,6 +114,7 @@ export default async function OfficialTextPage({ params }: PageProps) {
   if (!doc) notFound();
 
   const allDocuments = await loadAllDocuments();
+  const sectionLabelMap = buildSectionLabelMap(allDocuments);
   const { annotations, resources, cases } = await fetchSanityData(documentId);
 
   return (
@@ -183,7 +184,7 @@ export default async function OfficialTextPage({ params }: PageProps) {
 
               <div className="flex flex-wrap justify-center gap-3 text-sm">
                 <span className="px-2.5 py-1 bg-neutral-100 border border-neutral-300 text-neutral-700 font-semibold">
-                  {countSections(doc)} Sections
+                  {countSections(doc)} {doc.sectionPrefix ? `${doc.sectionPrefix}s` : 'Provisions'}
                 </span>
                 <span className="px-2.5 py-1 bg-neutral-100 border border-neutral-300 text-neutral-700 font-semibold">
                   {doc.schedules.length} Schedules
@@ -195,7 +196,7 @@ export default async function OfficialTextPage({ params }: PageProps) {
             </div>
           </div>
 
-          <CorrigendaBanner corrigenda={doc.corrigenda} />
+          <CorrigendaBanner corrigenda={doc.corrigenda} sectionLabelMap={sectionLabelMap} />
 
           <DocumentReader
             document={doc}

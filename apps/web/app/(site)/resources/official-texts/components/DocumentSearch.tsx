@@ -163,11 +163,9 @@ export function DocumentSearch({
             >
               <div className="flex items-center gap-2 mb-1">
                 <span className="text-sm font-semibold text-primary-700 font-serif">
-                  {result.sectionId.includes('section')
-                    ? `Section ${result.sectionNumber}`
-                    : result.sectionId.includes('rule')
-                      ? `Rule ${result.sectionNumber}`
-                      : `Schedule ${result.sectionNumber}`}
+                  {result.sectionPrefix
+                    ? `${result.sectionPrefix} ${result.sectionNumber}`
+                    : result.sectionNumber}
                 </span>
                 <span className="text-sm text-neutral-500 font-serif">
                   {result.sectionTitle}

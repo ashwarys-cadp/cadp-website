@@ -1,12 +1,12 @@
 import type { TermDefinition } from '@/data/official-texts/types';
-import { formatSectionId } from '@/lib/official-texts/utils';
 
 interface DefinitionContentProps {
   term: TermDefinition;
+  sectionLabelMap: Map<string, string>;
   onNavigateToSection: (sectionId: string, documentId?: string) => void;
 }
 
-export function DefinitionContent({ term, onNavigateToSection }: DefinitionContentProps) {
+export function DefinitionContent({ term, sectionLabelMap, onNavigateToSection }: DefinitionContentProps) {
   return (
     <div>
       <div className="flex items-center gap-2 mb-3">
@@ -32,7 +32,7 @@ export function DefinitionContent({ term, onNavigateToSection }: DefinitionConte
           &ldquo;{term.legalDefinition}&rdquo;
         </blockquote>
         <div className="text-sm text-neutral-500 font-serif mt-2">
-          &mdash; {formatSectionId(term.sourceSection)}({term.clause})
+          &mdash; {sectionLabelMap.get(term.sourceSection) ?? term.sourceSection}({term.clause})
         </div>
       </div>
 
@@ -59,7 +59,7 @@ export function DefinitionContent({ term, onNavigateToSection }: DefinitionConte
                   }}
                   className="text-primary-700 hover:text-primary-900 font-serif text-sm hover:underline transition-colors"
                 >
-                  {formatSectionId(sectionId)}
+                  {sectionLabelMap.get(sectionId) ?? sectionId}
                 </button>
               </li>
             ))}
