@@ -4,19 +4,18 @@ import Image from 'next/image';
 import { PortableText } from '@portabletext/react';
 import {
   Calendar,
-  Clock,
   MapPin,
-  Video,
   ExternalLink,
   User,
-  Ticket,
   Download,
-  HelpCircle,
+  Video,
   ArrowLeft,
 } from 'lucide-react';
-import { Container, Section, Button } from '@/components/ui';
+import { Container, Section } from '@/components/ui';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { EventJsonLd } from '@/components/seo/JsonLd';
+import { EventNav, type EventNavItem } from '@/components/events/EventNav';
+import { EventAgenda } from '@/components/events/EventAgenda';
 import { generatePageMetadata } from '@/lib/seo/metadata';
 import {
   client,
@@ -27,27 +26,12 @@ import {
   type Speaker,
   type Sponsor,
 } from '@/lib/sanity';
-import { formatDate, isUpcoming } from '@/lib/utils';
+import { formatDate, formatDateShort, isUpcoming } from '@/lib/utils';
 
 interface EventPageProps {
   params: Promise<{ slug: string }>;
 }
 
-// ---- Rendering config ----
-
-const SESSION_FORMAT_LABELS: Record<string, string> = {
-  inauguration: 'Inauguration',
-  keynote: 'Keynote',
-  panel: 'Panel',
-  workshop: 'Workshop',
-  discussion: 'Discussion',
-  networking: 'Networking',
-  break: 'Break',
-  valedictory: 'Valedictory',
-  other: 'Session',
-};
-
-// Sponsor tiers in display order.
 const SPONSOR_TIERS: { value: NonNullable<Sponsor['tier']>; label: string }[] = [
   { value: 'knowledge-partner', label: 'Knowledge Partners' },
   { value: 'associate', label: 'Associate Sponsors' },
@@ -55,8 +39,24 @@ const SPONSOR_TIERS: { value: NonNullable<Sponsor['tier']>; label: string }[] = 
   { value: 'other', label: 'Partners' },
 ];
 
-const speakerSubtitle = (s: Speaker) =>
-  [s.title, s.organization].filter(Boolean).join(', ');
+const EVENT_TYPE_LABELS: Record<string, string> = {
+  webinar: 'Webinar',
+  workshop: 'Workshop',
+  conference: 'Conference',
+};
+
+function formatDateRange(start: string, end?: string) {
+  if (!end) return formatDate(start);
+  const s = new Date(start);
+  const e = new Date(end);
+  const sameMonth =
+    s.getMonth() === e.getMonth() && s.getFullYear() === e.getFullYear();
+  if (sameMonth) {
+    const month = s.toLocaleDateString('en-IN', { month: 'long' });
+    return `${s.getDate()}–${e.getDate()} ${month} ${e.getFullYear()}`;
+  }
+  return `${formatDateShort(start)} – ${formatDateShort(end)}`;
+}
 
 const portableTextComponents = {
   marks: {
@@ -65,7 +65,7 @@ const portableTextComponents = {
       return (
         <a
           href={href}
-          className="text-primary-700 underline hover:text-primary-900"
+          className="text-primary-700 underline decoration-accent-400 underline-offset-2 hover:text-primary-900"
           target={href.startsWith('http') ? '_blank' : undefined}
           rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
         >
@@ -76,13 +76,15 @@ const portableTextComponents = {
   },
   block: {
     h2: ({ children }: { children?: React.ReactNode }) => (
-      <h2 className="text-2xl font-serif font-semibold text-neutral-950 mt-10 mb-4">{children}</h2>
+      <h2 className="text-xl md:text-2xl font-serif font-semibold text-neutral-950 mt-9 mb-3 first:mt-0">
+        {children}
+      </h2>
     ),
     h3: ({ children }: { children?: React.ReactNode }) => (
-      <h3 className="text-xl font-serif font-semibold text-neutral-950 mt-8 mb-3">{children}</h3>
+      <h3 className="text-lg font-serif font-semibold text-neutral-950 mt-7 mb-2">{children}</h3>
     ),
     normal: ({ children }: { children?: React.ReactNode }) => (
-      <p className="text-neutral-700 leading-relaxed font-serif mb-4">{children}</p>
+      <p className="text-[1.0625rem] text-neutral-700 leading-[1.8] font-serif mb-5">{children}</p>
     ),
   },
 };
@@ -111,9 +113,7 @@ export async function generateStaticParams() {
   }
 }
 
-export async function generateMetadata({
-  params,
-}: EventPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: EventPageProps): Promise<Metadata> {
   const { slug } = await params;
   const event = await getEvent(slug);
 
@@ -136,58 +136,87 @@ export async function generateMetadata({
   });
 }
 
-// ---- Reusable section heading ----
-function SectionHeading({ eyebrow, title }: { eyebrow: string; title: string }) {
+// ---- Shared bits ----
+
+function EyebrowPill({ children, dark }: { children: React.ReactNode; dark?: boolean }) {
   return (
-    <div className="mb-12">
-      <div className="inline-block mb-4">
-        <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">
-          {eyebrow}
-        </div>
-        <div className="h-px w-20 bg-accent-600"></div>
-      </div>
-      <h2 className="text-3xl md:text-4xl font-serif text-neutral-950">{title}</h2>
+    <div
+      className={`inline-flex items-center gap-2 border px-3 py-1.5 ${
+        dark ? 'border-white/25 bg-white/5' : 'border-neutral-300 bg-white'
+      }`}
+    >
+      <span className="w-1.5 h-1.5 rounded-full bg-accent-500" />
+      <span
+        className={`text-[0.625rem] uppercase tracking-[0.22em] font-semibold ${
+          dark ? 'text-neutral-200' : 'text-primary-900'
+        }`}
+      >
+        {children}
+      </span>
+    </div>
+  );
+}
+
+function SectionHeading({
+  eyebrow,
+  title,
+  intro,
+  center,
+}: {
+  eyebrow: string;
+  title: string;
+  intro?: string;
+  center?: boolean;
+}) {
+  return (
+    <div className={`mb-12 ${center ? 'text-center flex flex-col items-center' : ''}`}>
+      <EyebrowPill>{eyebrow}</EyebrowPill>
+      <h2 className="mt-5 text-3xl md:text-4xl font-serif font-semibold text-neutral-950 leading-tight">
+        {title}
+      </h2>
+      {intro && (
+        <p className="mt-4 text-lg text-neutral-600 font-serif leading-relaxed max-w-2xl">{intro}</p>
+      )}
     </div>
   );
 }
 
 function SpeakerCard({ speaker }: { speaker: Speaker }) {
-  const subtitle = speakerSubtitle(speaker);
   return (
-    <div className="bg-white border-2 border-neutral-300 shadow-sm text-center">
-      <div className="h-1.5 bg-accent-600"></div>
-      <div className="p-6">
-        <div className="w-24 h-24 mx-auto mb-4 relative rounded-full overflow-hidden bg-neutral-100 border-2 border-neutral-300">
-          {speaker.headshot ? (
-            <Image
-              src={urlFor(speaker.headshot).width(160).height(160).url()}
-              alt={speaker.headshot.alt || speaker.name}
-              fill
-              className="object-cover"
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center">
-              <User className="w-8 h-8 text-neutral-400" />
-            </div>
-          )}
-        </div>
-        <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-1">
+    <div className="group">
+      <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-b from-primary-100 to-primary-50 border-2 border-neutral-200 border-b-0">
+        {speaker.headshot ? (
+          <Image
+            src={urlFor(speaker.headshot).width(480).height(600).url()}
+            alt={speaker.headshot.alt || speaker.name}
+            fill
+            className="object-cover"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <User className="w-12 h-12 text-primary-300" strokeWidth={1.25} />
+          </div>
+        )}
+      </div>
+      <div className="bg-white border-2 border-neutral-200 p-5">
+        <div className="h-0.5 w-10 bg-accent-600 mb-3" />
+        <h3 className="font-serif font-semibold text-lg text-neutral-950 leading-snug">
           {speaker.name}
         </h3>
-        {subtitle && (
-          <p className="text-sm text-primary-800 font-semibold uppercase tracking-wide mb-3">
-            {subtitle}
-          </p>
+        {speaker.title && (
+          <p className="text-sm text-neutral-500 font-serif mt-1 leading-snug">{speaker.title}</p>
         )}
-        {speaker.bio && (
-          <p className="text-sm text-neutral-700 leading-relaxed font-serif">{speaker.bio}</p>
+        {speaker.organization && (
+          <p className="text-sm text-primary-900 font-serif font-semibold mt-1">
+            {speaker.organization}
+          </p>
         )}
         {speaker.linkedIn && (
           <a
             href={speaker.linkedIn}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 mt-3 text-xs uppercase tracking-wide text-primary-700 hover:text-primary-900 font-semibold"
+            className="inline-flex items-center gap-1.5 mt-3 text-[0.6875rem] uppercase tracking-[0.15em] text-primary-700 hover:text-primary-900 font-semibold"
           >
             <ExternalLink className="w-3.5 h-3.5" /> LinkedIn
           </a>
@@ -206,14 +235,45 @@ export default async function EventPage({ params }: EventPageProps) {
   }
 
   const upcoming = isUpcoming(event.date);
+  const typeLabel = event.eventType ? EVENT_TYPE_LABELS[event.eventType] : null;
+  const dateRange = formatDateRange(event.date, event.endDate);
+  const venueLabel = event.isOnline ? 'Online' : event.venue?.name || event.location;
+
   const sponsorsByTier = SPONSOR_TIERS.map((tier) => ({
     ...tier,
     items: (event.sponsors || []).filter((s) => (s.tier || 'other') === tier.value),
   })).filter((group) => group.items.length > 0);
 
-  const hasGallery = event.gallery && event.gallery.length > 0;
+  const hasOverview =
+    (event.overview && event.overview.length > 0) ||
+    (event.whoShouldAttend && event.whoShouldAttend.length > 0);
+  const hasAgenda = !!event.agenda && event.agenda.length > 0;
+  const hasSpeakers = !!event.speakers && event.speakers.length > 0;
+  const hasRegistration =
+    (!!event.ticketTiers && event.ticketTiers.length > 0) ||
+    (upcoming && !!event.registrationUrl);
+  const hasVenue = !!event.venue && !!(event.venue.name || event.venue.address);
+  const hasFaqs = !!event.faqs && event.faqs.length > 0;
+  const hasDownloads = !!event.downloads && event.downloads.some((d) => d.url);
+  const hasGallery = !!event.gallery && event.gallery.length > 0;
   const hasPostEvent =
-    !upcoming && (hasGallery || event.recordingsUrl || (event.resources && event.resources.length > 0));
+    !upcoming &&
+    (hasGallery || !!event.recordingsUrl || (!!event.resources && event.resources.length > 0));
+
+  const navItems: EventNavItem[] = [
+    hasOverview && { id: 'overview', label: 'About' },
+    hasAgenda && { id: 'agenda', label: 'Programme' },
+    hasSpeakers && { id: 'speakers', label: 'Speakers' },
+    hasRegistration && { id: 'register', label: 'Register' },
+    sponsorsByTier.length > 0 && { id: 'sponsors', label: 'Partners' },
+    hasVenue && { id: 'venue', label: 'Venue' },
+    hasFaqs && { id: 'faq', label: 'FAQ' },
+    hasPostEvent && { id: 'highlights', label: 'Highlights' },
+  ].filter(Boolean) as EventNavItem[];
+
+  const heroImage = event.featuredImage
+    ? urlFor(event.featuredImage).width(2000).height(1100).url()
+    : null;
 
   return (
     <>
@@ -228,311 +288,211 @@ export default async function EventPage({ params }: EventPageProps) {
         organizer={event.organisedBy}
         offers={event.ticketTiers}
         performers={event.speakers}
-        imageUrl={
-          event.featuredImage
-            ? urlFor(event.featuredImage).width(1200).height(630).url()
-            : undefined
-        }
+        imageUrl={heroImage || undefined}
       />
 
-      {/* Header */}
-      <Section background="white">
-        <Container>
+      {/* Breadcrumb strip */}
+      <div className="bg-neutral-50 border-b border-neutral-200">
+        <Container size="wide" className="py-3">
           <Breadcrumbs
             items={[
               { name: 'Events', href: '/events' },
               { name: event.title, href: `/events/${event.slug.current}` },
             ]}
           />
+        </Container>
+      </div>
 
-          <div className="mt-8 grid lg:grid-cols-3 gap-12">
-            {/* Main Content */}
-            <div className="lg:col-span-2">
-              <div className="flex items-center gap-3 mb-6">
-                {upcoming ? (
-                  <span className="text-[0.6875rem] uppercase tracking-[0.15em] text-green-800 font-semibold bg-green-50 px-2.5 py-1 border border-green-200">
-                    Upcoming
-                  </span>
-                ) : (
-                  <span className="text-[0.6875rem] uppercase tracking-[0.15em] text-neutral-600 font-semibold bg-neutral-100 px-2.5 py-1 border border-neutral-300">
-                    Past Event
-                  </span>
-                )}
-                {event.eventType && (
-                  <span className="text-[0.6875rem] uppercase tracking-[0.15em] text-accent-800 font-semibold bg-accent-50 px-2.5 py-1 border border-accent-200">
-                    {event.eventType}
-                  </span>
-                )}
-                {event.isOnline && (
-                  <span className="text-[0.6875rem] uppercase tracking-[0.15em] text-primary-800 font-semibold bg-primary-50 px-2.5 py-1 border border-primary-200">
-                    Online
-                  </span>
-                )}
-              </div>
+      {/* ============ Hero (dark, left-aligned) ============ */}
+      <section className="relative bg-primary-950 text-white overflow-hidden">
+        {heroImage ? (
+          <>
+            <Image src={heroImage} alt={event.featuredImage?.alt || event.title} fill className="object-cover" priority />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary-950 via-primary-950/90 to-primary-950/55" />
+          </>
+        ) : (
+          <>
+            <div
+              className="absolute inset-0 opacity-[0.06]"
+              style={{
+                backgroundImage:
+                  'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)',
+                backgroundSize: '52px 52px',
+              }}
+            />
+            <div className="absolute -top-32 -right-24 w-[28rem] h-[28rem] rounded-full bg-accent-600/20 blur-3xl" />
+            <div className="absolute -bottom-40 -left-20 w-[26rem] h-[26rem] rounded-full bg-primary-700/40 blur-3xl" />
+          </>
+        )}
+        {/* top accent line */}
+        <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-accent-600 via-accent-400 to-accent-600" />
 
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif text-neutral-950 mb-4 leading-tight">
-                {event.title}
-              </h1>
+        <Container size="wide" className="relative">
+          <div className="max-w-3xl py-20 md:py-28">
+            <div className="flex flex-wrap items-center gap-2.5 mb-6">
+              <EyebrowPill dark>{typeLabel || 'Event'}</EyebrowPill>
+              <span
+                className={`text-[0.625rem] uppercase tracking-[0.18em] font-semibold px-2.5 py-1.5 border ${
+                  upcoming
+                    ? 'text-green-300 border-green-400/40 bg-green-400/10'
+                    : 'text-neutral-300 border-white/20 bg-white/5'
+                }`}
+              >
+                {upcoming ? 'Upcoming' : 'Past Event'}
+              </span>
+            </div>
 
-              {event.theme && (
-                <p className="text-xl text-primary-800 italic font-serif mb-6">{event.theme}</p>
-              )}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold leading-[1.08] text-white text-balance">
+              {event.title}
+            </h1>
 
-              <p className="text-lg text-neutral-700 mb-8 leading-relaxed font-serif">
-                {event.description}
+            {event.theme && (
+              <p className="mt-5 text-xl md:text-2xl text-accent-300 italic font-serif leading-snug max-w-2xl">
+                {event.theme}
               </p>
+            )}
 
-              {event.featuredImage && (
-                <div className="relative aspect-video border-2 border-neutral-300 overflow-hidden">
-                  <Image
-                    src={urlFor(event.featuredImage).width(1200).height(675).url()}
-                    alt={event.featuredImage.alt || event.title}
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                </div>
+            <p className="mt-6 text-lg text-neutral-300 leading-relaxed font-serif max-w-2xl line-clamp-3">
+              {event.description}
+            </p>
+
+            {/* meta row */}
+            <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 text-neutral-200 font-serif">
+              <span className="inline-flex items-center gap-2.5">
+                <Calendar className="w-5 h-5 text-accent-400" strokeWidth={1.5} />
+                {dateRange}
+              </span>
+              {venueLabel && (
+                <span className="inline-flex items-center gap-2.5">
+                  <MapPin className="w-5 h-5 text-accent-400" strokeWidth={1.5} />
+                  {venueLabel}
+                </span>
               )}
             </div>
 
-            {/* Sidebar */}
-            <div>
-              <div className="bg-white border-2 border-neutral-300 shadow-sm sticky top-24">
-                <div className="h-2 bg-accent-600"></div>
-                <div className="p-6">
-                  <div className="mb-6">
-                    <div className="inline-block mb-3">
-                      <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">Details</div>
-                      <div className="h-px w-16 bg-accent-600"></div>
-                    </div>
-                    <h2 className="text-xl font-serif font-semibold text-neutral-950">
-                      Event Information
-                    </h2>
-                  </div>
+            {/* CTAs */}
+            <div className="mt-9 flex flex-col sm:flex-row gap-4">
+              {upcoming && event.registrationUrl && (
+                <a
+                  href={event.registrationUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-8 py-3.5 bg-accent-600 hover:bg-accent-500 text-primary-950 font-semibold font-serif border-2 border-accent-600 transition-colors"
+                >
+                  Register
+                  <ExternalLink className="w-4 h-4 ml-2" />
+                </a>
+              )}
+              {hasAgenda && (
+                <a
+                  href="#agenda"
+                  className="inline-flex items-center justify-center px-8 py-3.5 border-2 border-white/40 text-white hover:bg-white/10 font-semibold font-serif transition-colors"
+                >
+                  View Programme
+                </a>
+              )}
+            </div>
+          </div>
+        </Container>
+      </section>
 
-                  <div className="space-y-5 mb-6 pb-6 border-b border-neutral-200">
-                    <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 border-2 border-primary-900 flex items-center justify-center bg-primary-50 shrink-0">
-                        <Calendar className="w-5 h-5 text-primary-900" strokeWidth={1.5} />
-                      </div>
-                      <div>
-                        <p className="text-xs uppercase tracking-[0.15em] text-primary-800 font-semibold mb-1">Date</p>
-                        <p className="text-neutral-700 font-serif text-sm">
-                          {formatDate(event.date)}
-                          {event.endDate && (
-                            <>
-                              <br />
-                              to {formatDate(event.endDate)}
-                            </>
-                          )}
-                        </p>
-                      </div>
-                    </div>
+      {/* Sticky section nav */}
+      <EventNav items={navItems} />
 
-                    <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 border-2 border-primary-900 flex items-center justify-center bg-primary-50 shrink-0">
-                        {event.isOnline ? (
-                          <Video className="w-5 h-5 text-primary-900" strokeWidth={1.5} />
-                        ) : (
-                          <MapPin className="w-5 h-5 text-primary-900" strokeWidth={1.5} />
-                        )}
-                      </div>
-                      <div>
-                        <p className="text-xs uppercase tracking-[0.15em] text-primary-800 font-semibold mb-1">
-                          {event.isOnline ? 'Format' : 'Location'}
-                        </p>
-                        <p className="text-neutral-700 font-serif text-sm">
-                          {event.venue?.name || event.location}
-                        </p>
-                      </div>
-                    </div>
-
-                    {event.registrationDeadline && upcoming && (
-                      <div className="flex items-start gap-3">
-                        <div className="w-10 h-10 border-2 border-primary-900 flex items-center justify-center bg-primary-50 shrink-0">
-                          <Clock className="w-5 h-5 text-primary-900" strokeWidth={1.5} />
-                        </div>
-                        <div>
-                          <p className="text-xs uppercase tracking-[0.15em] text-primary-800 font-semibold mb-1">
-                            Registration Closes
-                          </p>
-                          <p className="text-neutral-700 font-serif text-sm">
-                            {formatDate(event.registrationDeadline)}
-                          </p>
-                        </div>
-                      </div>
-                    )}
-
-                    {event.ticketTiers && event.ticketTiers.length > 0 && (
-                      <div className="flex items-start gap-3">
-                        <div className="w-10 h-10 border-2 border-primary-900 flex items-center justify-center bg-primary-50 shrink-0">
-                          <Ticket className="w-5 h-5 text-primary-900" strokeWidth={1.5} />
-                        </div>
-                        <div>
-                          <p className="text-xs uppercase tracking-[0.15em] text-primary-800 font-semibold mb-1">
-                            Fees
-                          </p>
-                          <p className="text-neutral-700 font-serif text-sm">
-                            {event.ticketTiers
-                              .map((t) => [t.name, t.price].filter(Boolean).join(': '))
-                              .join(' · ')}
-                          </p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  {upcoming && event.registrationUrl && (
-                    <a
-                      href={event.registrationUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center px-5 py-3 bg-primary-950 text-white font-semibold hover:bg-primary-900 transition-colors font-serif border-2 border-primary-950"
-                    >
-                      Register Now
-                      <ExternalLink className="w-4 h-4 ml-2" />
-                    </a>
-                  )}
-
-                  {!upcoming && (
-                    <p className="text-neutral-500 text-sm text-center font-serif">
-                      This event has ended.
+      {/* ============ About / Overview ============ */}
+      {hasOverview && (
+        <Section background="white" id="overview">
+          <Container>
+            <div className="grid lg:grid-cols-[1.5fr_1fr] gap-12 lg:gap-16 items-start">
+              <div>
+                <EyebrowPill>About</EyebrowPill>
+                <h2 className="mt-5 text-3xl md:text-4xl font-serif font-semibold text-neutral-950 leading-tight">
+                  About the Conference
+                </h2>
+                <div className="mt-7 max-w-2xl">
+                  {event.overview && event.overview.length > 0 ? (
+                    <PortableText value={event.overview} components={portableTextComponents} />
+                  ) : (
+                    <p className="text-[1.0625rem] text-neutral-700 leading-[1.8] font-serif">
+                      {event.description}
                     </p>
                   )}
                 </div>
               </div>
-            </div>
-          </div>
-        </Container>
-      </Section>
 
-      {/* Overview */}
-      {event.overview && event.overview.length > 0 && (
-        <Section background="white">
-          <Container size="narrow">
-            <SectionHeading eyebrow="About" title="Overview" />
-            <div className="max-w-none">
-              <PortableText value={event.overview} components={portableTextComponents} />
-            </div>
-            {event.whoShouldAttend && event.whoShouldAttend.length > 0 && (
-              <div className="mt-10 bg-primary-50 border-2 border-primary-200 p-6">
-                <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-4">
-                  Who Should Attend
-                </h3>
-                <ul className="grid sm:grid-cols-2 gap-2">
-                  {event.whoShouldAttend.map((who, i) => (
-                    <li key={i} className="flex items-start gap-2 text-neutral-700 font-serif text-sm">
-                      <span className="text-accent-600 mt-1">▸</span>
-                      {who}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </Container>
-        </Section>
-      )}
-
-      {/* Agenda */}
-      {event.agenda && event.agenda.length > 0 && (
-        <Section background="gray">
-          <Container>
-            <SectionHeading eyebrow="Programme" title="Agenda" />
-            <div className="space-y-12">
-              {event.agenda.map((day, di) => (
-                <div key={di}>
-                  <div className="flex items-baseline gap-4 mb-6 pb-3 border-b-2 border-neutral-300">
-                    <h3 className="text-2xl font-serif font-semibold text-neutral-950">
-                      {day.label || `Day ${di + 1}`}
-                    </h3>
-                    {day.date && (
-                      <span className="text-sm text-neutral-600 font-serif">
-                        {formatDate(day.date)}
-                      </span>
-                    )}
-                  </div>
-                  <div className="space-y-3">
-                    {(day.sessions || []).map((session, si) => {
-                      const isBreak = session.format === 'break';
-                      const time = [session.startTime, session.endTime].filter(Boolean).join(' – ');
-                      return (
-                        <div
-                          key={si}
-                          className={`grid sm:grid-cols-[140px_1fr] gap-4 p-4 border-2 ${
-                            isBreak
-                              ? 'border-neutral-200 bg-neutral-100/60'
-                              : 'border-neutral-300 bg-white'
-                          }`}
-                        >
-                          <div className="text-sm text-neutral-600 font-serif">
-                            {time && (
-                              <span className="inline-flex items-center gap-1.5">
-                                <Clock className="w-3.5 h-3.5" /> {time}
-                              </span>
-                            )}
+              {event.whoShouldAttend && event.whoShouldAttend.length > 0 && (
+                <aside className="lg:sticky lg:top-44">
+                  <div className="bg-white border-2 border-neutral-200 shadow-sm">
+                    <div className="h-1.5 bg-accent-600" />
+                    <div className="p-6 sm:p-7">
+                      <h3 className="text-lg font-serif font-semibold text-neutral-950">
+                        Who Should Attend
+                      </h3>
+                      <div className="h-px w-12 bg-accent-600 mt-2 mb-6" />
+                      <ul className="space-y-4">
+                        {event.whoShouldAttend.map((who, i) => (
+                          <li key={i} className="flex items-start gap-3.5">
+                            <span className="w-8 h-8 bg-primary-50 border border-primary-200 flex items-center justify-center shrink-0">
+                              <User className="w-4 h-4 text-primary-900" strokeWidth={1.5} />
+                            </span>
+                            <span className="text-[0.9375rem] text-neutral-700 font-serif leading-snug pt-1">
+                              {who}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                      {event.organisedBy && (
+                        <div className="mt-7 pt-6 border-t border-neutral-200">
+                          <div className="text-[0.625rem] uppercase tracking-[0.2em] text-accent-700 font-semibold mb-1.5">
+                            Organised By
                           </div>
-                          <div>
-                            <div className="flex flex-wrap items-center gap-2 mb-1">
-                              {session.format && session.format !== 'other' && (
-                                <span
-                                  className={`text-[0.625rem] uppercase tracking-[0.15em] font-semibold px-2 py-0.5 border ${
-                                    isBreak
-                                      ? 'text-neutral-500 border-neutral-300 bg-neutral-100'
-                                      : 'text-accent-800 border-accent-200 bg-accent-50'
-                                  }`}
-                                >
-                                  {SESSION_FORMAT_LABELS[session.format] || session.format}
-                                </span>
-                              )}
-                              {session.room && (
-                                <span className="text-xs text-neutral-500 font-serif">
-                                  {session.room}
-                                </span>
-                              )}
-                            </div>
-                            <p
-                              className={`font-serif ${
-                                isBreak
-                                  ? 'text-neutral-600 text-sm'
-                                  : 'text-neutral-950 font-semibold'
-                              }`}
-                            >
-                              {session.title}
-                            </p>
-                            {session.description && (
-                              <p className="text-sm text-neutral-700 font-serif mt-1 leading-relaxed">
-                                {session.description}
-                              </p>
-                            )}
-                            {session.speakers && session.speakers.length > 0 && (
-                              <p className="text-sm text-primary-800 font-serif mt-2">
-                                {session.speakers
-                                  .map((s) => {
-                                    const sub = speakerSubtitle(s);
-                                    return sub ? `${s.name} (${sub})` : s.name;
-                                  })
-                                  .join(', ')}
-                              </p>
-                            )}
-                          </div>
+                          <p className="text-sm text-neutral-700 font-serif leading-snug">
+                            {event.organisedBy}
+                          </p>
                         </div>
-                      );
-                    })}
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                </aside>
+              )}
             </div>
           </Container>
         </Section>
       )}
 
-      {/* Speakers */}
-      {event.speakers && event.speakers.length > 0 && (
-        <Section background="white">
+      {/* ============ Agenda ============ */}
+      {hasAgenda && (
+        <Section background="gray" id="agenda">
           <Container>
-            <SectionHeading eyebrow="Featured Speakers" title="Speakers" />
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {event.speakers.map((speaker, i) => (
+            <SectionHeading
+              eyebrow="Programme"
+              title="Conference Agenda"
+              intro="Two days of keynotes, panels, and working sessions — from what the law requires to how compliance actually gets built."
+              center
+            />
+            <EventAgenda days={event.agenda!} />
+          </Container>
+        </Section>
+      )}
+
+      {/* ============ Speakers ============ */}
+      {hasSpeakers && (
+        <Section background="white" id="speakers">
+          <Container>
+            <div className="grid lg:grid-cols-[1.3fr_1fr] gap-8 items-end mb-12">
+              <div>
+                <EyebrowPill>Featured Speakers</EyebrowPill>
+                <h2 className="mt-5 text-3xl md:text-4xl lg:text-5xl font-serif font-semibold text-neutral-950 leading-tight">
+                  Meet the practitioners building DPDP compliance
+                </h2>
+              </div>
+              <p className="text-lg text-neutral-600 font-serif leading-relaxed">
+                A curated lineup of compliance, legal, and data-protection leaders bringing
+                real-world practice to the stage.
+              </p>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {event.speakers!.map((speaker, i) => (
                 <SpeakerCard key={speaker._id || i} speaker={speaker} />
               ))}
             </div>
@@ -540,81 +500,82 @@ export default async function EventPage({ params }: EventPageProps) {
         </Section>
       )}
 
-      {/* Registration / Ticket tiers */}
-      {event.ticketTiers && event.ticketTiers.length > 0 && (
-        <Section background="gray">
+      {/* ============ Registration ============ */}
+      {hasRegistration && (
+        <Section background="gray" id="register">
           <Container>
-            <SectionHeading eyebrow="Attend" title="Registration" />
-            {event.registrationNote && (
-              <p className="text-neutral-700 font-serif mb-8 max-w-2xl">{event.registrationNote}</p>
-            )}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {event.ticketTiers.map((tier, i) => (
-                <div key={i} className="bg-white border-2 border-neutral-300 shadow-sm">
-                  <div className="h-1.5 bg-accent-600"></div>
-                  <div className="p-6">
-                    <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-2">
-                      {tier.name}
-                    </h3>
-                    {tier.price && (
-                      <p className="text-2xl font-serif text-primary-900 mb-3">{tier.price}</p>
-                    )}
-                    {tier.includes && (
-                      <p className="text-sm text-neutral-700 font-serif leading-relaxed whitespace-pre-line">
-                        {tier.includes}
-                      </p>
-                    )}
+            <SectionHeading eyebrow="Attend" title="Registration" intro={event.registrationNote} />
+            {event.ticketTiers && event.ticketTiers.length > 0 && (
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {event.ticketTiers.map((tier, i) => (
+                  <div key={i} className="bg-white border-2 border-neutral-200 shadow-sm flex flex-col">
+                    <div className="h-1.5 bg-accent-600" />
+                    <div className="p-7 flex flex-col h-full">
+                      <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-2">{tier.name}</h3>
+                      {tier.price && (
+                        <p className="text-3xl font-serif text-primary-900 mb-4 tnum">{tier.price}</p>
+                      )}
+                      {tier.includes && (
+                        <p className="text-sm text-neutral-600 font-serif leading-relaxed whitespace-pre-line">
+                          {tier.includes}
+                        </p>
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
             {upcoming && event.registrationUrl && (
               <div className="mt-10">
-                <Button href={event.registrationUrl} variant="primary">
+                <a
+                  href={event.registrationUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-8 py-3.5 bg-primary-900 hover:bg-primary-800 text-white font-semibold font-serif border-2 border-primary-950 transition-colors"
+                >
                   Register Now
                   <ExternalLink className="w-4 h-4 ml-2" />
-                </Button>
+                </a>
               </div>
             )}
           </Container>
         </Section>
       )}
 
-      {/* Sponsors */}
+      {/* ============ Sponsors (dark) ============ */}
       {sponsorsByTier.length > 0 && (
-        <Section background="white">
+        <Section background="primary" id="sponsors">
           <Container>
-            <SectionHeading eyebrow="Supported By" title="Sponsors & Partners" />
-            <div className="space-y-10">
+            <div className="text-center mb-14">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold text-white">
+                Sponsors &amp; Partners
+              </h2>
+              <div className="h-0.5 w-16 bg-accent-500 mx-auto mt-5" />
+            </div>
+            <div className="space-y-12 max-w-4xl mx-auto">
               {sponsorsByTier.map((group) => (
                 <div key={group.value}>
-                  <h3 className="text-sm uppercase tracking-[0.15em] text-primary-800 font-semibold mb-4">
-                    {group.label}
-                  </h3>
-                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="text-center mb-6">
+                    <div className="text-xs uppercase tracking-[0.25em] text-neutral-300 font-semibold">
+                      {group.label}
+                    </div>
+                    <div className="h-0.5 w-8 bg-accent-500 mx-auto mt-2" />
+                  </div>
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                     {group.items.map((sponsor, i) => {
-                      const inner = (
-                        <>
-                          {sponsor.logo ? (
-                            <div className="relative h-16 mb-3">
-                              <Image
-                                src={urlFor(sponsor.logo).height(120).url()}
-                                alt={sponsor.logo.alt || sponsor.name}
-                                fill
-                                className="object-contain object-left"
-                              />
-                            </div>
-                          ) : (
-                            <h4 className="text-lg font-serif font-semibold text-neutral-950 mb-2">
-                              {sponsor.name}
-                            </h4>
-                          )}
-                          {sponsor.blurb && (
-                            <p className="text-sm text-neutral-700 font-serif leading-relaxed">
-                              {sponsor.blurb}
-                            </p>
-                          )}
-                        </>
+                      const inner = sponsor.logo ? (
+                        <div className="relative h-12 w-full">
+                          <Image
+                            src={urlFor(sponsor.logo).height(96).url()}
+                            alt={sponsor.logo.alt || sponsor.name}
+                            fill
+                            className="object-contain"
+                          />
+                        </div>
+                      ) : (
+                        <span className="text-lg font-serif font-semibold text-primary-900 text-center">
+                          {sponsor.name}
+                        </span>
                       );
                       return sponsor.url ? (
                         <a
@@ -622,12 +583,15 @@ export default async function EventPage({ params }: EventPageProps) {
                           href={sponsor.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="block bg-white border-2 border-neutral-300 p-6 hover:border-primary-400 transition-colors"
+                          className="flex items-center justify-center bg-white border border-white/10 p-8 min-h-28 hover:opacity-90 transition-opacity"
                         >
                           {inner}
                         </a>
                       ) : (
-                        <div key={i} className="bg-white border-2 border-neutral-300 p-6">
+                        <div
+                          key={i}
+                          className="flex items-center justify-center bg-white border border-white/10 p-8 min-h-28"
+                        >
                           {inner}
                         </div>
                       );
@@ -640,59 +604,68 @@ export default async function EventPage({ params }: EventPageProps) {
         </Section>
       )}
 
-      {/* Venue */}
-      {event.venue && (event.venue.name || event.venue.address) && (
-        <Section background="gray">
-          <Container size="narrow">
+      {/* ============ Venue ============ */}
+      {hasVenue && (
+        <Section background="white" id="venue">
+          <Container>
             <SectionHeading eyebrow="Getting There" title="Venue" />
-            <div className="bg-white border-2 border-neutral-300 p-6">
-              {event.venue.name && (
-                <h3 className="text-lg font-serif font-semibold text-neutral-950 mb-2">
-                  {event.venue.name}
-                </h3>
-              )}
-              {event.venue.address && (
-                <p className="text-neutral-700 font-serif whitespace-pre-line mb-2">
-                  {event.venue.address}
-                </p>
-              )}
-              {event.venue.directions && (
-                <p className="text-sm text-neutral-600 font-serif whitespace-pre-line mb-4">
-                  {event.venue.directions}
-                </p>
-              )}
-              {event.venue.mapUrl && (
-                <a
-                  href={event.venue.mapUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm text-primary-700 hover:text-primary-900 font-semibold"
-                >
-                  <MapPin className="w-4 h-4" /> View on map
-                </a>
-              )}
+            <div className="bg-white border-2 border-neutral-200 shadow-sm max-w-3xl">
+              <div className="h-1.5 bg-accent-600" />
+              <div className="p-7 sm:p-8 flex items-start gap-5">
+                <div className="w-12 h-12 border-2 border-primary-900 flex items-center justify-center bg-primary-50 shrink-0">
+                  <MapPin className="w-5 h-5 text-primary-900" strokeWidth={1.5} />
+                </div>
+                <div>
+                  {event.venue!.name && (
+                    <h3 className="text-xl font-serif font-semibold text-neutral-950 mb-1">
+                      {event.venue!.name}
+                    </h3>
+                  )}
+                  {event.venue!.address && (
+                    <p className="text-neutral-700 font-serif whitespace-pre-line leading-relaxed">
+                      {event.venue!.address}
+                    </p>
+                  )}
+                  {event.venue!.directions && (
+                    <p className="text-sm text-neutral-500 font-serif whitespace-pre-line mt-3 leading-relaxed">
+                      {event.venue!.directions}
+                    </p>
+                  )}
+                  {event.venue!.mapUrl && (
+                    <a
+                      href={event.venue!.mapUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 mt-4 text-sm text-primary-700 hover:text-primary-900 font-semibold font-serif"
+                    >
+                      <MapPin className="w-4 h-4" /> View on map
+                    </a>
+                  )}
+                </div>
+              </div>
             </div>
           </Container>
         </Section>
       )}
 
-      {/* FAQs */}
-      {event.faqs && event.faqs.length > 0 && (
-        <Section background="white">
+      {/* ============ FAQ ============ */}
+      {hasFaqs && (
+        <Section background="gray" id="faq">
           <Container size="narrow">
-            <SectionHeading eyebrow="Questions" title="FAQs" />
-            <div className="space-y-4">
-              {event.faqs.map((faq, i) => (
-                <details key={i} className="group border-2 border-neutral-300 bg-white">
-                  <summary className="flex items-center justify-between gap-4 p-5 cursor-pointer list-none">
-                    <span className="font-serif font-semibold text-neutral-950 flex items-start gap-2">
-                      <HelpCircle className="w-5 h-5 text-accent-600 shrink-0 mt-0.5" />
+            <SectionHeading eyebrow="Questions" title="Frequently Asked Questions" center />
+            <div className="border-t border-neutral-300">
+              {event.faqs!.map((faq, i) => (
+                <details key={i} className="group border-b border-neutral-300">
+                  <summary className="flex items-center justify-between gap-6 py-5 cursor-pointer list-none">
+                    <span className="font-serif text-lg text-neutral-900 leading-snug">
                       {faq.question}
                     </span>
-                    <span className="text-accent-600 text-xl group-open:rotate-45 transition-transform">+</span>
+                    <span className="text-2xl leading-none text-accent-600 group-open:rotate-45 transition-transform shrink-0">
+                      +
+                    </span>
                   </summary>
                   {faq.answer && (
-                    <p className="px-5 pb-5 pl-12 text-neutral-700 font-serif leading-relaxed">
+                    <p className="pb-6 pr-10 text-neutral-600 font-serif leading-relaxed">
                       {faq.answer}
                     </p>
                   )}
@@ -703,13 +676,13 @@ export default async function EventPage({ params }: EventPageProps) {
         </Section>
       )}
 
-      {/* Downloads */}
-      {event.downloads && event.downloads.length > 0 && (
-        <Section background="gray">
+      {/* ============ Downloads ============ */}
+      {hasDownloads && (
+        <Section background="white">
           <Container size="narrow">
             <SectionHeading eyebrow="Materials" title="Downloads" />
             <div className="grid sm:grid-cols-2 gap-4">
-              {event.downloads
+              {event.downloads!
                 .filter((d) => d.url)
                 .map((d, i) => (
                   <a
@@ -717,9 +690,9 @@ export default async function EventPage({ params }: EventPageProps) {
                     href={d.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 bg-white border-2 border-neutral-300 p-5 hover:border-primary-400 transition-colors"
+                    className="flex items-center gap-3 bg-white border-2 border-neutral-200 p-5 hover:border-primary-400 transition-colors"
                   >
-                    <Download className="w-5 h-5 text-primary-800 shrink-0" />
+                    <Download className="w-5 h-5 text-primary-800 shrink-0" strokeWidth={1.5} />
                     <span className="font-serif text-neutral-950">{d.title || 'Download'}</span>
                   </a>
                 ))}
@@ -728,17 +701,17 @@ export default async function EventPage({ params }: EventPageProps) {
         </Section>
       )}
 
-      {/* Post-event resources */}
+      {/* ============ Post-event ============ */}
       {hasPostEvent && (
-        <Section background="white">
+        <Section background="gray" id="highlights">
           <Container>
             <SectionHeading eyebrow="After the Event" title="Highlights & Resources" />
             {hasGallery && (
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-10">
                 {event.gallery!.map((img, i) => (
-                  <div key={i} className="relative aspect-video border-2 border-neutral-300 overflow-hidden">
+                  <div key={i} className="relative aspect-video border-2 border-neutral-200 overflow-hidden">
                     <Image
-                      src={urlFor(img).width(600).height(338).url()}
+                      src={urlFor(img).width(640).height(360).url()}
                       alt={img.alt || `${event.title} photo ${i + 1}`}
                       fill
                       className="object-cover"
@@ -749,34 +722,46 @@ export default async function EventPage({ params }: EventPageProps) {
             )}
             <div className="flex flex-wrap gap-4">
               {event.recordingsUrl && (
-                <Button href={event.recordingsUrl} variant="outline">
+                <a
+                  href={event.recordingsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-7 py-3 border-2 border-primary-900 text-primary-900 hover:bg-primary-900 hover:text-white font-semibold font-serif transition-colors"
+                >
                   <Video className="w-4 h-4 mr-2" /> Watch Recordings
-                </Button>
+                </a>
               )}
               {(event.resources || [])
                 .map((r) => ({ ...r, link: r.url || r.fileUrl }))
                 .filter((r) => r.link)
                 .map((r, i) => (
-                  <Button key={i} href={r.link!} variant="outline">
+                  <a
+                    key={i}
+                    href={r.link!}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center px-7 py-3 border-2 border-primary-900 text-primary-900 hover:bg-primary-900 hover:text-white font-semibold font-serif transition-colors"
+                  >
                     <Download className="w-4 h-4 mr-2" /> {r.title || 'Resource'}
-                  </Button>
+                  </a>
                 ))}
             </div>
           </Container>
         </Section>
       )}
 
-      {/* Back to Events */}
-      <Section background="gray">
-        <Container>
-          <div className="flex justify-center">
-            <Button href="/events/" variant="outline">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to All Events
-            </Button>
-          </div>
+      {/* Back to events */}
+      <div className="bg-neutral-50 border-t border-neutral-200">
+        <Container className="py-8">
+          <a
+            href="/events/"
+            className="inline-flex items-center text-sm font-serif font-semibold text-neutral-600 hover:text-primary-900 transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to All Events
+          </a>
         </Container>
-      </Section>
+      </div>
     </>
   );
 }

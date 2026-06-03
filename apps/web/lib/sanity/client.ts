@@ -6,7 +6,9 @@ export const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'your-project-id',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   apiVersion: '2024-01-01',
-  useCdn: true,
+  // Static export: all fetches run at build time, so the CDN adds no runtime
+  // benefit and can serve stale data right after a publish. Always fetch fresh.
+  useCdn: false,
 });
 
 const builder = imageUrlBuilder(client);
