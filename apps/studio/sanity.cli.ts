@@ -6,4 +6,7 @@ export default defineCliConfig({
     dataset: process.env.SANITY_STUDIO_DATASET || 'production',
   },
   studioHost: 'cadp',
+  deployment: {
+    appId: 'qr3ubdeqymt93g7udsfomdz6',
+  },
 });

@@ -144,3 +144,13 @@ Each cluster has:
 - Programme page with CTA (in `/programs-and-initiatives/`)
 
 Internal linking: Pillars link to 8-12 related pieces, articles link to 5-8.
+
+## Sanity CRM via MCP
+
+- For CRM or CMS changes through MCP, read the relevant schema first in `apps/studio/schemas/documents/`. Do not guess field names, enum values, reference targets, or required fields.
+- Use `patch_document_from_json` for precise updates, reference fields, enum fields, dates, `siteSettings`, and portable text that needs exact wording or inline links.
+- Use `create_documents_from_markdown` only when AI rewriting is acceptable. Always verify generated `slug`, `excerpt`, SEO fields, and any required fields it may miss.
+- Publish only after validation. Use the document id without the `drafts.` prefix.
+- Homepage featured content is controlled through `siteSettings.homepageFeaturedContent`. Allowed reference targets are `post`, `whitePaper`, `event`, and `newsArticle`.
+- Schema changes require Studio redeploy. From `apps/studio/`, deploy with `npx sanity deploy --yes`.
+- For news publishing specifically, follow `docs/guides/publishing-news-via-mcp.md`.
