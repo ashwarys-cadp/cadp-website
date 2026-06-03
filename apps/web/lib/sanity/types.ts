@@ -108,21 +108,100 @@ export interface TeamMember {
   order?: number;
 }
 
+export interface Speaker {
+  _id?: string;
+  name: string;
+  title?: string;
+  organization?: string;
+  bio?: string;
+  headshot?: SanityImage;
+  linkedIn?: string;
+}
+
+export interface EventSession {
+  startTime?: string;
+  endTime?: string;
+  format?: string;
+  title: string;
+  description?: string;
+  room?: string;
+  speakers?: Speaker[];
+}
+
+export interface AgendaDay {
+  label?: string;
+  date?: string;
+  sessions?: EventSession[];
+}
+
+export interface Sponsor {
+  name: string;
+  tier?: 'knowledge-partner' | 'associate' | 'exhibitor' | 'other';
+  url?: string;
+  blurb?: string;
+  logo?: SanityImage;
+}
+
+export interface TicketTier {
+  name?: string;
+  price?: string;
+  includes?: string;
+}
+
+export interface EventFaq {
+  question?: string;
+  answer?: string;
+}
+
+export interface EventVenue {
+  name?: string;
+  address?: string;
+  mapUrl?: string;
+  directions?: string;
+}
+
+export interface EventDownload {
+  title?: string;
+  url?: string;
+}
+
+export interface EventResource {
+  title?: string;
+  url?: string;
+  fileUrl?: string;
+}
+
 export interface Event {
   _id: string;
   title: string;
   slug: { current: string };
+  eventType?: 'webinar' | 'workshop' | 'conference';
+  theme?: string;
   description: string;
+  overview?: PortableTextBlock[];
   date: string;
   endDate?: string;
   location?: string;
   isOnline?: boolean;
   registrationUrl?: string;
+  registrationDeadline?: string;
+  registrationNote?: string;
+  ticketTiers?: TicketTier[];
   isFeatured?: boolean;
   seoTitle?: string;
   seoDescription?: string;
   featuredImage?: SanityImage;
-  speakers?: TeamMember[];
+  speakers?: Speaker[];
+  agenda?: AgendaDay[];
+  sponsors?: Sponsor[];
+  venue?: EventVenue;
+  whoShouldAttend?: string[];
+  organisedBy?: string;
+  faqs?: EventFaq[];
+  downloads?: EventDownload[];
+  gallery?: SanityImage[];
+  recordingsUrl?: string;
+  resources?: EventResource[];
 }
 
 export interface NewsArticle {

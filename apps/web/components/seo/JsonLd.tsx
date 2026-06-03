@@ -119,9 +119,56 @@ interface EventJsonLdProps {
   location?: string;
   isOnline?: boolean;
   imageUrl?: string;
+  organizer?: string;
+  offers?: { name?: string; price?: string }[];
+  performers?: { name: string; title?: string; organization?: string }[];
 }
 
-export function EventJsonLd({ name, description, url, startDate, endDate, location, isOnline, imageUrl }: EventJsonLdProps) {
+// Extract a numeric price (in INR) from a free-text price string like "₹1,500" or "Free".
+function parsePrice(price?: string): { value: string; isFree: boolean } | null {
+  if (!price) return null;
+  if (/free/i.test(price)) return { value: '0', isFree: true };
+  const digits = price.replace(/[^0-9.]/g, '');
+  return digits ? { value: digits, isFree: false } : null;
+}
+
+export function EventJsonLd({
+  name,
+  description,
+  url,
+  startDate,
+  endDate,
+  location,
+  isOnline,
+  imageUrl,
+  organizer,
+  offers,
+  performers,
+}: EventJsonLdProps) {
+  const offerData = (offers || [])
+    .map((tier) => {
+      const parsed = parsePrice(tier.price);
+      if (!parsed) return null;
+      return {
+        "@type": "Offer",
+        name: tier.name,
+        price: parsed.value,
+        priceCurrency: "INR",
+        url,
+        availability: "https://schema.org/InStock",
+      };
+    })
+    .filter(Boolean);
+
+  const performerData = (performers || []).map((p) => ({
+    "@type": "Person",
+    name: p.name,
+    jobTitle: p.title,
+    ...(p.organization
+      ? { worksFor: { "@type": "Organization", name: p.organization } }
+      : {}),
+  }));
+
   const data = {
     "@context": "https://schema.org",
     "@type": "Event",
@@ -149,9 +196,11 @@ export function EventJsonLd({ name, description, url, startDate, endDate, locati
         },
     organizer: {
       "@type": "Organization",
-      name: "Centre for Applied Data Protection (CADP)",
+      name: organizer || "Centre for Applied Data Protection (CADP)",
       url: "https://cadp.in",
     },
+    ...(offerData.length > 0 ? { offers: offerData } : {}),
+    ...(performerData.length > 0 ? { performer: performerData } : {}),
   };
 
   return <JsonLd data={data} />;

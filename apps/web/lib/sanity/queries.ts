@@ -229,6 +229,7 @@ export const allEventsQuery = groq`
     _id,
     title,
     slug,
+    eventType,
     description,
     date,
     endDate,
@@ -248,6 +249,7 @@ export const upcomingEventsQuery = groq`
     _id,
     title,
     slug,
+    eventType,
     description,
     date,
     endDate,
@@ -267,6 +269,7 @@ export const featuredEventQuery = groq`
     _id,
     title,
     slug,
+    eventType,
     description,
     date,
     endDate,
@@ -279,8 +282,9 @@ export const featuredEventQuery = groq`
     },
     speakers[]->{
       name,
-      role,
-      image
+      title,
+      organization,
+      headshot
     }
   }
 `;
@@ -290,12 +294,18 @@ export const eventBySlugQuery = groq`
     _id,
     title,
     slug,
+    eventType,
+    theme,
     description,
+    overview,
     date,
     endDate,
     location,
     isOnline,
     registrationUrl,
+    registrationDeadline,
+    registrationNote,
+    ticketTiers,
     seoTitle,
     seoDescription,
     featuredImage {
@@ -303,11 +313,60 @@ export const eventBySlugQuery = groq`
       alt
     },
     speakers[]->{
+      _id,
       name,
-      role,
+      title,
+      organization,
       bio,
-      image,
+      headshot,
       linkedIn
+    },
+    agenda[] {
+      label,
+      date,
+      sessions[] {
+        startTime,
+        endTime,
+        format,
+        title,
+        description,
+        room,
+        speakers[]->{
+          _id,
+          name,
+          title,
+          organization,
+          headshot
+        }
+      }
+    },
+    sponsors[] {
+      name,
+      tier,
+      url,
+      blurb,
+      logo {
+        asset->,
+        alt
+      }
+    },
+    venue,
+    whoShouldAttend,
+    organisedBy,
+    faqs,
+    "downloads": downloads[] {
+      title,
+      "url": file.asset->url
+    },
+    "gallery": gallery[] {
+      asset->,
+      alt
+    },
+    recordingsUrl,
+    "resources": resources[] {
+      title,
+      url,
+      "fileUrl": file.asset->url
     }
   }
 `;

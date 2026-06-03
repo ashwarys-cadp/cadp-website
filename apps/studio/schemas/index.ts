@@ -3,6 +3,7 @@ import post from './documents/post';
 import whitePaper from './documents/whitePaper';
 import service from './documents/service';
 import teamMember from './documents/teamMember';
+import speaker from './documents/speaker';
 import event from './documents/event';
 import siteSettings from './documents/siteSettings';
 import newsArticle from './documents/newsArticle';
@@ -17,6 +18,7 @@ export const schemaTypes = [
   whitePaper,
   service,
   teamMember,
+  speaker,
   event,
   siteSettings,
   newsArticle,
