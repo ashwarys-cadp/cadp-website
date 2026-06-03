@@ -125,6 +125,26 @@ export const allWhitePapersQuery = groq`
   }
 `;
 
+export const latestWhitePapersQuery = groq`
+  *[_type == "whitePaper"] | order(publishedAt desc) [0...$limit] {
+    _type,
+    _id,
+    title,
+    slug,
+    abstract,
+    topics,
+    publishedAt,
+    featuredImage {
+      asset->,
+      alt
+    },
+    authors[]->{
+      name,
+      image
+    }
+  }
+`;
+
 export const whitePaperBySlugQuery = groq`
   *[_type == "whitePaper" && slug.current == $slug][0] {
     _id,
@@ -390,6 +410,25 @@ export const allNewsQuery = groq`
   }
 `;
 
+export const latestNewsQuery = groq`
+  *[_type == "newsArticle"] | order(publishedAt desc) [0...$limit] {
+    _type,
+    _id,
+    title,
+    slug,
+    excerpt,
+    sourceUrl,
+    sourceName,
+    category,
+    tags,
+    publishedAt,
+    featuredImage {
+      asset->,
+      alt
+    }
+  }
+`;
+
 export const newsBySlugQuery = groq`
   *[_type == "newsArticle" && slug.current == $slug][0] {
     _id,
@@ -423,7 +462,33 @@ export const siteSettingsQuery = groq`
     address,
     phone,
     socialLinks,
-    footerText
+    footerText,
+    homepageFeaturedContent->{
+      _type,
+      _id,
+      title,
+      slug,
+      excerpt,
+      abstract,
+      description,
+      category,
+      eventType,
+      publishedAt,
+      date,
+      endDate,
+      location,
+      isOnline,
+      sourceName,
+      sourceUrl,
+      author->{
+        _id,
+        name
+      },
+      authors[]->{
+        _id,
+        name
+      }
+    }
   }
 `;
 

@@ -238,6 +238,48 @@
 
 /* Utility classes */
 @layer utilities {
+  @keyframes hero-dot-pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.08);
+      opacity: 0.92;
+    }
+  }
+
+  @keyframes hero-dot-ripple {
+    0% {
+      transform: scale(0.7);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(3);
+      opacity: 0;
+    }
+  }
+
+  .hero-live-dot {
+    position: relative;
+    display: inline-block;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 9999px;
+    background: theme('colors.accent.700');
+    animation: hero-dot-pulse 1.8s ease-in-out infinite;
+  }
+
+  .hero-live-dot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid theme('colors.accent.700');
+    animation: hero-dot-ripple 1.8s ease-out infinite;
+  }
+
   .text-balance {
     text-wrap: balance;
   }

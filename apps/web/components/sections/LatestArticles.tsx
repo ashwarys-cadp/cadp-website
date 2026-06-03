@@ -34,11 +34,29 @@ const fallbackPosts = [
     category: 'training',
     publishedAt: '2024-01-15',
   },
+  {
+    _id: '4',
+    title: 'Building Internal DPDP Governance for Educational Institutions',
+    slug: { current: 'building-internal-dpdp-governance-educational-institutions' },
+    excerpt:
+      'A practical framework for colleges and universities to structure consent, notice, retention, and grievance workflows under the DPDP Act.',
+    category: 'advisory',
+    publishedAt: '2024-01-12',
+  },
+  {
+    _id: '5',
+    title: 'Children’s Data and Verifiable Consent Under the DPDP Rules',
+    slug: { current: 'childrens-data-verifiable-consent-dpdp-rules' },
+    excerpt:
+      'Key operational issues institutions should address when handling children’s data, parental consent, and age-gating obligations.',
+    category: 'legal-updates',
+    publishedAt: '2024-01-10',
+  },
 ];
 
 async function getPosts(): Promise<Post[]> {
   try {
-    const posts = await client.fetch<Post[]>(latestPostsQuery, { limit: 4 });
+    const posts = await client.fetch<Post[]>(latestPostsQuery, { limit: 5 });
     return posts.length > 0 ? posts : fallbackPosts as Post[];
   } catch {
     return fallbackPosts as Post[];

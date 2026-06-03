@@ -29,6 +29,7 @@ export interface Author {
 }
 
 export interface Post {
+  _type?: 'post';
   _id: string;
   title: string;
   slug: { current: string };
@@ -51,6 +52,7 @@ export interface Post {
 }
 
 export interface WhitePaper {
+  _type?: 'whitePaper';
   _id: string;
   title: string;
   slug: { current: string };
@@ -172,6 +174,7 @@ export interface EventResource {
 }
 
 export interface Event {
+  _type?: 'event';
   _id: string;
   title: string;
   slug: { current: string };
@@ -205,6 +208,7 @@ export interface Event {
 }
 
 export interface NewsArticle {
+  _type?: 'newsArticle';
   _id: string;
   title: string;
   slug: { current: string };
@@ -241,6 +245,24 @@ export interface SiteSettings {
     youtube?: string;
   };
   footerText?: string;
+  homepageFeaturedContent?: HomepageFeaturedContent;
+}
+
+export type HomepageFeaturedContent = Post | WhitePaper | Event | NewsArticle;
+
+export interface HomepageHeroItem {
+  id: string;
+  kind: 'post' | 'whitePaper' | 'event' | 'newsArticle';
+  title: string;
+  summary: string;
+  href: string;
+  displayLabel: string;
+  displayDate?: string;
+  sortDate: string;
+  sourceName?: string;
+  authorName?: string;
+  location?: string;
+  isOnline?: boolean;
 }
 
 export interface Announcement {

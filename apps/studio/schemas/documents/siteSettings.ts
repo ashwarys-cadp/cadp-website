@@ -67,6 +67,18 @@ export default defineType({
       type: 'text',
       rows: 2,
     }),
+    defineField({
+      name: 'homepageFeaturedContent',
+      title: 'Homepage Featured Content',
+      type: 'reference',
+      description: 'Optional manual featured item for the homepage hero.',
+      to: [
+        { type: 'post' },
+        { type: 'whitePaper' },
+        { type: 'event' },
+        { type: 'newsArticle' },
+      ],
+    }),
   ],
   preview: {
     prepare() {

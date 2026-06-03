@@ -42,6 +42,11 @@ export function getNewsCategoryLabel(category: string): string {
     'industry-news': 'Industry News',
     opinion: 'Opinion',
     'cadp-announcements': 'CADP Announcements',
+    'policy-and-regulation': 'Policy',
+    legislation: 'Legislation',
+    enforcement: 'Enforcement',
+    international: 'International',
+    litigation: 'Litigation',
   };
   return labels[category] || category;
 }

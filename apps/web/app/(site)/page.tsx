@@ -23,11 +23,11 @@ export default function HomePage() {
     <>
       <Hero />
       <AboutCentre />
-      <LatestArticles />
-      <FeaturedGuides />
-      <UpcomingEvents />
       <ProgrammesOverview />
+      <FeaturedGuides />
       <TrustSignals />
+      <LatestArticles />
+      <UpcomingEvents />
       <Newsletter />
     </>
   );
