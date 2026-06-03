@@ -38,15 +38,22 @@ function formatTime(t?: string) {
 
 const speakerSubtitle = (s: Speaker) => [s.title, s.organization].filter(Boolean).join(', ');
 
-export function EventAgenda({ days }: { days: AgendaDay[] }) {
+export function EventAgenda({
+  days,
+  align = 'center',
+}: {
+  days: AgendaDay[];
+  align?: 'left' | 'center';
+}) {
   const [active, setActive] = useState(0);
   const day = days[active] ?? days[0];
+  const isLeftAligned = align === 'left';
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className={`max-w-4xl ${isLeftAligned ? '' : 'mx-auto'}`}>
       {/* Day switcher */}
       {days.length > 1 && (
-        <div className="flex justify-center mb-12">
+        <div className={`flex ${isLeftAligned ? 'justify-start' : 'justify-center'} mb-12`}>
           <div className="inline-flex border-2 border-neutral-300 bg-white">
             {days.map((d, i) => {
               const isActive = i === active;
@@ -78,7 +85,11 @@ export function EventAgenda({ days }: { days: AgendaDay[] }) {
       )}
 
       {days.length === 1 && day?.date && (
-        <p className="text-center text-sm uppercase tracking-[0.18em] text-accent-700 font-semibold mb-10">
+        <p
+          className={`text-sm uppercase tracking-[0.18em] text-accent-700 font-semibold mb-10 ${
+            isLeftAligned ? 'text-left' : 'text-center'
+          }`}
+        >
           {formatDate(day.date)}
         </p>
       )}

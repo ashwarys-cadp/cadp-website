@@ -236,6 +236,7 @@ export default async function EventPage({ params }: EventPageProps) {
 
   const upcoming = isUpcoming(event.date);
   const typeLabel = event.eventType ? EVENT_TYPE_LABELS[event.eventType] : null;
+  const isConference = event.eventType === 'conference';
   const dateRange = formatDateRange(event.date, event.endDate);
   const venueLabel = event.isOnline ? 'Online' : event.venue?.name || event.location;
 
@@ -468,9 +469,9 @@ export default async function EventPage({ params }: EventPageProps) {
               eyebrow="Programme"
               title="Conference Agenda"
               intro="Two days of keynotes, panels, and working sessions — from what the law requires to how compliance actually gets built."
-              center
+              center={!isConference}
             />
-            <EventAgenda days={event.agenda!} />
+            <EventAgenda days={event.agenda!} align={isConference ? 'left' : 'center'} />
           </Container>
         </Section>
       )}
