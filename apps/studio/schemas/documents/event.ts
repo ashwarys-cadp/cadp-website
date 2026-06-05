@@ -251,6 +251,13 @@ export default defineType({
 
     // ---------- Registration ----------
     defineField({
+      name: 'registerInterestUrl',
+      title: 'Register Interest URL',
+      type: 'url',
+      group: 'registration',
+      description: 'Google Form URL for interest registration. Shown when Registration URL is not set.',
+    }),
+    defineField({
       name: 'registrationUrl',
       title: 'Registration URL',
       type: 'url',

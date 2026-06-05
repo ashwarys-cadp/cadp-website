@@ -37,7 +37,7 @@ export function EventNav({ items }: { items: EventNavItem[] }) {
   return (
     <div className="sticky top-24 z-40 bg-white/95 backdrop-blur-sm border-y border-neutral-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <nav className="flex items-center gap-7 overflow-x-auto no-scrollbar -mb-px">
+        <nav className="flex justify-center items-center gap-7 overflow-x-auto no-scrollbar -mb-px">
           {items.map((item) => {
             const isActive = active === item.id;
             return (

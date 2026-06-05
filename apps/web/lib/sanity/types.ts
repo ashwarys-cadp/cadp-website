@@ -186,6 +186,7 @@ export interface Event {
   endDate?: string;
   location?: string;
   isOnline?: boolean;
+  registerInterestUrl?: string;
   registrationUrl?: string;
   registrationDeadline?: string;
   registrationNote?: string;

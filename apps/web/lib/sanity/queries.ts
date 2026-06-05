@@ -322,6 +322,7 @@ export const eventBySlugQuery = groq`
     endDate,
     location,
     isOnline,
+    registerInterestUrl,
     registrationUrl,
     registrationDeadline,
     registrationNote,

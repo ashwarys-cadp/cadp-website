@@ -236,7 +236,6 @@ export default async function EventPage({ params }: EventPageProps) {
 
   const upcoming = isUpcoming(event.date);
   const typeLabel = event.eventType ? EVENT_TYPE_LABELS[event.eventType] : null;
-  const isConference = event.eventType === 'conference';
   const dateRange = formatDateRange(event.date, event.endDate);
   const venueLabel = event.isOnline ? 'Online' : event.venue?.name || event.location;
 
@@ -250,6 +249,7 @@ export default async function EventPage({ params }: EventPageProps) {
     (event.whoShouldAttend && event.whoShouldAttend.length > 0);
   const hasAgenda = !!event.agenda && event.agenda.length > 0;
   const hasSpeakers = !!event.speakers && event.speakers.length > 0;
+  const hasRegisterInterest = upcoming && !!event.registerInterestUrl && !event.registrationUrl;
   const hasRegistration =
     (!!event.ticketTiers && event.ticketTiers.length > 0) ||
     (upcoming && !!event.registrationUrl);
@@ -265,6 +265,7 @@ export default async function EventPage({ params }: EventPageProps) {
     hasOverview && { id: 'overview', label: 'About' },
     hasAgenda && { id: 'agenda', label: 'Programme' },
     hasSpeakers && { id: 'speakers', label: 'Speakers' },
+    hasRegisterInterest && { id: 'register-interest', label: 'Register Interest' },
     hasRegistration && { id: 'register', label: 'Register' },
     sponsorsByTier.length > 0 && { id: 'sponsors', label: 'Partners' },
     hasVenue && { id: 'venue', label: 'Venue' },
@@ -304,7 +305,7 @@ export default async function EventPage({ params }: EventPageProps) {
         </Container>
       </div>
 
-      {/* ============ Hero (dark, left-aligned) ============ */}
+      {/* ============ Hero (dark, center-aligned) ============ */}
       <section className="relative bg-primary-950 text-white overflow-hidden">
         {heroImage ? (
           <>
@@ -329,8 +330,8 @@ export default async function EventPage({ params }: EventPageProps) {
         <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-accent-600 via-accent-400 to-accent-600" />
 
         <Container size="wide" className="relative">
-          <div className="max-w-3xl py-20 md:py-28">
-            <div className="flex flex-wrap items-center gap-2.5 mb-6">
+          <div className="py-20 md:py-28 text-center flex flex-col items-center">
+            <div className="flex flex-wrap justify-center items-center gap-2.5 mb-6">
               <EyebrowPill dark>{typeLabel || 'Event'}</EyebrowPill>
               <span
                 className={`text-[0.625rem] uppercase tracking-[0.18em] font-semibold px-2.5 py-1.5 border ${
@@ -343,7 +344,7 @@ export default async function EventPage({ params }: EventPageProps) {
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold leading-[1.08] text-white text-balance">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold leading-[1.08] text-white text-balance max-w-4xl">
               {event.title}
             </h1>
 
@@ -358,7 +359,7 @@ export default async function EventPage({ params }: EventPageProps) {
             </p>
 
             {/* meta row */}
-            <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 text-neutral-200 font-serif">
+            <div className="mt-8 flex flex-wrap justify-center items-center gap-x-8 gap-y-3 text-neutral-200 font-serif">
               <span className="inline-flex items-center gap-2.5">
                 <Calendar className="w-5 h-5 text-accent-400" strokeWidth={1.5} />
                 {dateRange}
@@ -372,7 +373,7 @@ export default async function EventPage({ params }: EventPageProps) {
             </div>
 
             {/* CTAs */}
-            <div className="mt-9 flex flex-col sm:flex-row gap-4">
+            <div className="mt-9 flex flex-col sm:flex-row justify-center gap-4">
               {upcoming && event.registrationUrl && (
                 <a
                   href={event.registrationUrl}
@@ -382,6 +383,14 @@ export default async function EventPage({ params }: EventPageProps) {
                 >
                   Register
                   <ExternalLink className="w-4 h-4 ml-2" />
+                </a>
+              )}
+              {hasRegisterInterest && (
+                <a
+                  href="#register-interest"
+                  className="inline-flex items-center justify-center px-8 py-3.5 bg-accent-600 hover:bg-accent-500 text-primary-950 font-semibold font-serif border-2 border-accent-600 transition-colors"
+                >
+                  Register Your Interest
                 </a>
               )}
               {hasAgenda && (
@@ -403,60 +412,47 @@ export default async function EventPage({ params }: EventPageProps) {
       {/* ============ About / Overview ============ */}
       {hasOverview && (
         <Section background="white" id="overview">
-          <Container>
-            <div className="grid lg:grid-cols-[1.5fr_1fr] gap-12 lg:gap-16 items-start">
-              <div>
-                <EyebrowPill>About</EyebrowPill>
-                <h2 className="mt-5 text-3xl md:text-4xl font-serif font-semibold text-neutral-950 leading-tight">
-                  About the Conference
-                </h2>
-                <div className="mt-7 max-w-2xl">
-                  {event.overview && event.overview.length > 0 ? (
-                    <PortableText value={event.overview} components={portableTextComponents} />
-                  ) : (
-                    <p className="text-[1.0625rem] text-neutral-700 leading-[1.8] font-serif">
-                      {event.description}
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              {event.whoShouldAttend && event.whoShouldAttend.length > 0 && (
-                <aside className="lg:sticky lg:top-44">
-                  <div className="bg-white border-2 border-neutral-200 shadow-sm">
-                    <div className="h-1.5 bg-accent-600" />
-                    <div className="p-6 sm:p-7">
-                      <h3 className="text-lg font-serif font-semibold text-neutral-950">
-                        Who Should Attend
-                      </h3>
-                      <div className="h-px w-12 bg-accent-600 mt-2 mb-6" />
-                      <ul className="space-y-4">
-                        {event.whoShouldAttend.map((who, i) => (
-                          <li key={i} className="flex items-start gap-3.5">
-                            <span className="w-8 h-8 bg-primary-50 border border-primary-200 flex items-center justify-center shrink-0">
-                              <User className="w-4 h-4 text-primary-900" strokeWidth={1.5} />
-                            </span>
-                            <span className="text-[0.9375rem] text-neutral-700 font-serif leading-snug pt-1">
-                              {who}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                      {event.organisedBy && (
-                        <div className="mt-7 pt-6 border-t border-neutral-200">
-                          <div className="text-[0.625rem] uppercase tracking-[0.2em] text-accent-700 font-semibold mb-1.5">
-                            Organised By
-                          </div>
-                          <p className="text-sm text-neutral-700 font-serif leading-snug">
-                            {event.organisedBy}
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </aside>
+          <Container size="narrow">
+            <div className="text-center">
+              <EyebrowPill>About</EyebrowPill>
+              <h2 className="mt-5 text-3xl md:text-4xl font-serif font-semibold text-neutral-950 leading-tight">
+                About the Conference
+              </h2>
+            </div>
+            <div className="mt-8">
+              {event.overview && event.overview.length > 0 ? (
+                <PortableText value={event.overview} components={portableTextComponents} />
+              ) : (
+                <p className="text-[1.0625rem] text-neutral-700 leading-[1.8] font-serif">
+                  {event.description}
+                </p>
               )}
             </div>
+
+            {event.whoShouldAttend && event.whoShouldAttend.length > 0 && (
+              <div className="mt-14 pt-12 border-t border-neutral-200">
+                <div className="text-center mb-10">
+                  <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">Audience</div>
+                  <div className="h-px w-16 bg-accent-600 mx-auto mb-4" />
+                  <h3 className="text-2xl font-serif font-semibold text-neutral-950">Who Should Attend</h3>
+                </div>
+                <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+                  {event.whoShouldAttend.map((who, i) => (
+                    <div key={i} className="flex items-center gap-3 bg-neutral-50 border border-neutral-200 px-5 py-4">
+                      <span className="w-7 h-7 bg-primary-900 flex items-center justify-center shrink-0">
+                        <User className="w-3.5 h-3.5 text-white" strokeWidth={1.5} />
+                      </span>
+                      <span className="text-sm text-neutral-700 font-serif leading-snug">{who}</span>
+                    </div>
+                  ))}
+                </div>
+                {event.organisedBy && (
+                  <p className="mt-8 text-center text-sm text-neutral-500 font-serif">
+                    Organised by {event.organisedBy}
+                  </p>
+                )}
+              </div>
+            )}
           </Container>
         </Section>
       )}
@@ -469,9 +465,9 @@ export default async function EventPage({ params }: EventPageProps) {
               eyebrow="Programme"
               title="Conference Agenda"
               intro="Two days of keynotes, panels, and working sessions — from what the law requires to how compliance actually gets built."
-              center={!isConference}
+              center
             />
-            <EventAgenda days={event.agenda!} align={isConference ? 'left' : 'center'} />
+            <EventAgenda days={event.agenda!} align="center" />
           </Container>
         </Section>
       )}
@@ -497,6 +493,40 @@ export default async function EventPage({ params }: EventPageProps) {
                 <SpeakerCard key={speaker._id || i} speaker={speaker} />
               ))}
             </div>
+          </Container>
+        </Section>
+      )}
+
+      {/* ============ Register Interest ============ */}
+      {hasRegisterInterest && (
+        <Section background="gray" id="register-interest">
+          <Container size="narrow">
+            <SectionHeading
+              eyebrow="Attend"
+              title="Register Your Interest"
+              intro="Registration opens soon. Register your interest now to be prioritised when registrations go live."
+              center
+            />
+            <iframe
+              src={event.registerInterestUrl!}
+              title="Register Interest Form"
+              width="100%"
+              height="1300"
+              className="block border-0"
+            >
+              Loading form…
+            </iframe>
+            <p className="mt-4 text-center text-sm text-neutral-500 font-serif">
+              Having trouble with the form?{' '}
+              <a
+                href={event.registerInterestUrl!}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary-700 hover:text-primary-900 underline underline-offset-2"
+              >
+                Open it in a new tab
+              </a>
+            </p>
           </Container>
         </Section>
       )}
@@ -609,8 +639,8 @@ export default async function EventPage({ params }: EventPageProps) {
       {hasVenue && (
         <Section background="white" id="venue">
           <Container>
-            <SectionHeading eyebrow="Getting There" title="Venue" />
-            <div className="bg-white border-2 border-neutral-200 shadow-sm max-w-3xl">
+            <SectionHeading eyebrow="Getting There" title="Venue" center />
+            <div className="bg-white border-2 border-neutral-200 shadow-sm max-w-3xl mx-auto">
               <div className="h-1.5 bg-accent-600" />
               <div className="p-7 sm:p-8 flex items-start gap-5">
                 <div className="w-12 h-12 border-2 border-primary-900 flex items-center justify-center bg-primary-50 shrink-0">
