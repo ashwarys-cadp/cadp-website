@@ -15,39 +15,11 @@ export const metadata: Metadata = generatePageMetadata({
   keywords: ['DPDP events', 'data protection workshops', 'compliance conferences'],
 });
 
-// Fallback events
-const fallbackEvents: Event[] = [
-  {
-    _id: '1',
-    title: 'DPDP Act Compliance Conference 2026',
-    slug: { current: 'dpdp-conference-2026' },
-    description:
-      'Join industry leaders and legal experts for a comprehensive exploration of DPDP Act compliance strategies.',
-    date: '2026-06-15T09:00:00Z',
-    endDate: '2026-06-16T17:00:00Z',
-    location: 'KLE Law College, Bengaluru',
-    isOnline: false,
-    isFeatured: true,
-  },
-  {
-    _id: '2',
-    title: 'Webinar: DPDP Implementation Best Practices',
-    slug: { current: 'webinar-dpdp-implementation' },
-    description:
-      'Learn practical strategies for implementing DPDP compliance in your organisation.',
-    date: '2026-03-10T14:00:00Z',
-    location: 'Online',
-    isOnline: true,
-    isFeatured: false,
-  },
-];
-
 async function getEvents(): Promise<Event[]> {
   try {
-    const events = await client.fetch<Event[]>(allEventsQuery);
-    return events.length > 0 ? events : fallbackEvents;
+    return await client.fetch<Event[]>(allEventsQuery);
   } catch {
-    return fallbackEvents;
+    return [];
   }
 }
 
@@ -258,6 +230,26 @@ export default async function EventsPage() {
                   </div>
                 </Link>
               ))}
+            </div>
+          </Container>
+        </Section>
+      )}
+
+      {/* Empty state */}
+      {allEvents.length === 0 && (
+        <Section background="gray">
+          <Container size="narrow">
+            <div className="border-2 border-neutral-300 bg-white p-10 md:p-14 text-center shadow-sm">
+              <div className="w-12 h-12 mx-auto mb-6 border-2 border-neutral-300 flex items-center justify-center bg-neutral-50">
+                <Calendar className="w-6 h-6 text-neutral-500" strokeWidth={1.5} />
+              </div>
+              <h2 className="text-2xl md:text-3xl font-serif text-neutral-950 mb-4">
+                No events scheduled at the moment
+              </h2>
+              <p className="text-neutral-700 leading-relaxed font-serif">
+                Our next workshops and conferences will be announced here. Write to us if
+                you would like to be notified.
+              </p>
             </div>
           </Container>
         </Section>

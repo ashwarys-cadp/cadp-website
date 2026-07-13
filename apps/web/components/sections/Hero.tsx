@@ -81,20 +81,6 @@ const fallbackNews: NewsArticle[] = [
   },
 ];
 
-const fallbackEvents: Event[] = [
-  {
-    _type: "event",
-    _id: "event-fallback-1",
-    title: "Webinar — DPDP Implementation Best Practices",
-    slug: { current: "webinar-dpdp-implementation-best-practices" },
-    eventType: "webinar",
-    description: "A practical webinar on implementation sequencing, governance controls, and internal readiness under the DPDP regime.",
-    date: "2026-03-10T14:00:00Z",
-    location: "Online",
-    isOnline: true,
-  },
-];
-
 const missionPoints = [
   {
     icon: GraduationCap,
@@ -258,7 +244,7 @@ async function getHeroItems() {
     ...(news.length ? news : fallbackNews).map(normalizeNewsArticle),
     ...(posts.length ? posts : fallbackPosts).map(normalizePost),
     ...(papers.length ? papers : fallbackWhitePapers).map(normalizeWhitePaper),
-    ...(events.length ? events.slice(0, 3) : fallbackEvents).map(normalizeEvent),
+    ...events.slice(0, 3).map(normalizeEvent),
   ]);
 
   const manualFeatured = normalizeFeaturedContent(settings?.homepageFeaturedContent);

@@ -4,39 +4,11 @@ import { Container, Section, SectionHeader, Button, Badge } from '@/components/u
 import { client, upcomingEventsQuery, type Event } from '@/lib/sanity';
 import { formatDate, formatDateShort } from '@/lib/utils';
 
-// Fallback events for when Sanity is not connected
-const fallbackEvents = [
-  {
-    _id: '1',
-    title: 'DPDP Act Compliance Conference 2026',
-    slug: { current: 'dpdp-conference-2026' },
-    description:
-      'Join industry leaders and legal experts for a comprehensive exploration of DPDP Act compliance strategies.',
-    date: '2026-06-15T09:00:00Z',
-    endDate: '2026-06-16T17:00:00Z',
-    location: 'KLE Law College, Bengaluru',
-    isOnline: false,
-    isFeatured: true,
-  },
-  {
-    _id: '2',
-    title: 'Webinar: DPDP Implementation Best Practices',
-    slug: { current: 'webinar-dpdp-implementation' },
-    description:
-      'Learn practical strategies for implementing DPDP compliance in your organisation.',
-    date: '2026-03-10T14:00:00Z',
-    location: 'Online',
-    isOnline: true,
-    isFeatured: false,
-  },
-];
-
 async function getEvents(): Promise<Event[]> {
   try {
-    const events = await client.fetch<Event[]>(upcomingEventsQuery);
-    return events.length > 0 ? events : fallbackEvents as Event[];
+    return await client.fetch<Event[]>(upcomingEventsQuery);
   } catch {
-    return fallbackEvents as Event[];
+    return [];
   }
 }
 
