@@ -447,7 +447,17 @@ export const newsBySlugQuery = groq`
     seoDescription,
     featuredImage {
       asset->,
-      alt
+      alt,
+      caption
+    },
+    gallery[] {
+      _key,
+      asset->,
+      hotspot,
+      crop,
+      alt,
+      caption,
+      display
     }
   }
 `;

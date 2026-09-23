@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ExternalLink, ArrowLeft } from 'lucide-react';
 import { PortableText } from '@portabletext/react';
 import { Container, Section, Button, Badge } from '@/components/ui';
+import { NewsGallery } from '@/components/sections';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { generateArticleMetadata } from '@/lib/seo/metadata';
 import { JsonLd } from '@/components/seo/JsonLd';
@@ -105,6 +106,8 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
     notFound();
   }
 
+  const featuredDims = article.featuredImage?.asset?.metadata?.dimensions;
+
   return (
     <>
       {/* NewsArticle JSON-LD */}
@@ -193,18 +196,32 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
         <Section background="white" className="pt-10 md:pt-12 pb-0 md:pb-0">
           <Container size="narrow">
             <figure>
-              <div className="relative aspect-[16/9] overflow-hidden border border-neutral-200">
-                <Image
-                  src={urlFor(article.featuredImage)
-                    .width(1200)
-                    .height(675)
-                    .url()}
-                  alt={article.featuredImage.alt || article.title}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
+              {/* Panoramic shots (e.g. group photos) keep their shape; everything else fills 16:9 */}
+              {(featuredDims?.aspectRatio ?? 0) > 16 / 9 ? (
+                <div className="overflow-hidden border border-neutral-200">
+                  <Image
+                    src={urlFor(article.featuredImage).width(1600).url()}
+                    alt={article.featuredImage.alt || article.title}
+                    width={featuredDims!.width}
+                    height={featuredDims!.height}
+                    className="w-full h-auto"
+                    priority
+                  />
+                </div>
+              ) : (
+                <div className="relative aspect-[16/9] overflow-hidden border border-neutral-200">
+                  <Image
+                    src={urlFor(article.featuredImage)
+                      .width(1200)
+                      .height(675)
+                      .url()}
+                    alt={article.featuredImage.alt || article.title}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+              )}
               {article.featuredImage.caption && (
                 <figcaption className="mt-3 text-sm text-neutral-500 font-serif italic">
                   {article.featuredImage.caption}
@@ -230,7 +247,21 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
               </p>
             )}
           </div>
+        </Container>
+      </Section>
 
+      {/* ── Photo Gallery ── */}
+      {article.gallery && article.gallery.length > 0 && (
+        <Section background="white" className="pt-0 md:pt-0">
+          <Container>
+            <NewsGallery images={article.gallery} />
+          </Container>
+        </Section>
+      )}
+
+      {/* flow-root stops the first child's top margin collapsing out and exposing the page background */}
+      <Section background="white" className="pt-0 md:pt-0 flow-root">
+        <Container size="narrow">
           {/* ── Tags ── */}
           {article.tags && article.tags.length > 0 && (
             <div className="mt-14 pt-6 border-t border-neutral-200">

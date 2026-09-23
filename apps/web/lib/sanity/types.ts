@@ -5,6 +5,9 @@ export interface SanityImage {
     _ref: string;
     _type: string;
     url?: string;
+    metadata?: {
+      dimensions?: { width: number; height: number; aspectRatio: number };
+    };
   };
   alt?: string;
   caption?: string;
@@ -224,6 +227,12 @@ export interface NewsArticle {
   seoTitle?: string;
   seoDescription?: string;
   featuredImage?: SanityImage;
+  gallery?: NewsGalleryImage[];
+}
+
+export interface NewsGalleryImage extends SanityImage {
+  _key: string;
+  display?: 'full' | 'half';
 }
 
 export interface SiteSettings {

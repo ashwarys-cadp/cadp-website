@@ -129,7 +129,53 @@ export default defineType({
           type: 'string',
           title: 'Alternative Text',
         },
+        {
+          name: 'caption',
+          type: 'string',
+          title: 'Caption',
+        },
       ],
+    }),
+    defineField({
+      name: 'gallery',
+      title: 'Photo Gallery',
+      type: 'array',
+      description:
+        'Optional photos shown after the body, for event reports. Half-width photos pair up side by side.',
+      of: [
+        {
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Alternative Text',
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: 'caption',
+              type: 'string',
+              title: 'Caption',
+            },
+            {
+              name: 'display',
+              type: 'string',
+              title: 'Width',
+              options: {
+                list: [
+                  { title: 'Full width', value: 'full' },
+                  { title: 'Half width', value: 'half' },
+                ],
+                layout: 'radio',
+                direction: 'horizontal',
+              },
+              initialValue: 'full',
+            },
+          ],
+        },
+      ],
+      options: { layout: 'grid' },
     }),
     defineField({
       name: 'seoTitle',
