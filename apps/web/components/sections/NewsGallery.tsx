@@ -43,7 +43,7 @@ function GalleryFigure({ image, paired }: { image: NewsGalleryImage; paired: boo
             alt={alt}
             width={dims?.width ?? 2000}
             height={dims?.height ?? 1333}
-            sizes="(min-width: 1152px) 1152px, 100vw"
+            sizes="(min-width: 896px) 896px, 100vw"
             className="w-full h-auto"
           />
         </div>

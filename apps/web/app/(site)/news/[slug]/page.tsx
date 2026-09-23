@@ -253,7 +253,7 @@ export default async function NewsArticlePage({ params }: NewsPageProps) {
       {/* ── Photo Gallery ── */}
       {article.gallery && article.gallery.length > 0 && (
         <Section background="white" className="pt-0 md:pt-0">
-          <Container>
+          <Container size="narrow">
             <NewsGallery images={article.gallery} />
           </Container>
         </Section>
