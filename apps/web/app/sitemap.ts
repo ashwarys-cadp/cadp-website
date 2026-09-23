@@ -62,6 +62,10 @@ const staticGuides = [
     slug: 'dpdp-implementation-tracker',
     lastModified: '2026-03-09',
   },
+  {
+    slug: 'dpdp-training-for-organisations',
+    lastModified: '2026-09-24',
+  },
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

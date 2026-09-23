@@ -43,6 +43,15 @@ const guides = [
     category: 'Tracking',
     publishedAt: '2026-03-09',
   },
+  {
+    id: '4',
+    title: 'DPDP Act Training for Organisations',
+    slug: 'dpdp-training-for-organisations',
+    excerpt:
+      'Who in your organisation needs DPDP Act training, what each role should learn, and how to schedule it before the core obligations apply on 13 May 2027.',
+    category: 'Training',
+    publishedAt: '2026-09-24',
+  },
 ];
 
 export default function GuidesPage() {
