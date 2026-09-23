@@ -85,11 +85,13 @@ const portableTextComponents = {
       children: React.ReactNode;
     }) => {
       const href = value?.href || '#';
+      // Links to our own pages stay in the same tab
+      const external = href.startsWith('http') && !href.startsWith('https://cadp.in');
       return (
         <a
           href={href}
-          target={href.startsWith('http') ? '_blank' : undefined}
-          rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+          target={external ? '_blank' : undefined}
+          rel={external ? 'noopener noreferrer' : undefined}
         >
           {children}
         </a>

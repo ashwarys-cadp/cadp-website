@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   GraduationCap,
   Users,
@@ -245,6 +246,51 @@ export default function DPDPTrainingPage() {
               </div>
             ))}
           </div>
+        </Container>
+      </Section>
+
+      {/* Recently Delivered */}
+      <Section background="white">
+        <Container size="narrow">
+          <div className="inline-block mb-6">
+            <div className="text-xs uppercase tracking-[0.25em] text-accent-700 font-semibold mb-2">
+              Recently Delivered
+            </div>
+            <div className="h-px w-24 bg-accent-600"></div>
+          </div>
+
+          <Link
+            href="/news/dpdp-workshop-kle-degree-college-nagarabhavi/"
+            className="group block border-2 border-neutral-300 hover:border-accent-600 transition-all duration-300 shadow-sm hover:shadow-lg"
+          >
+            <div className="overflow-hidden border-b border-neutral-200">
+              <Image
+                src="https://cdn.sanity.io/images/k540fk8h/production/17192e56d84ec9b9666edd6807fe2f2af71414a9-2400x1029.jpg?w=1200"
+                alt="Resource persons and participants after the DPDP workshop at KLE Degree College, Nagarabhavi."
+                width={2400}
+                height={1029}
+                sizes="(min-width: 896px) 896px, 100vw"
+                className="w-full h-auto"
+              />
+            </div>
+            <div className="p-8">
+              <div className="text-sm text-primary-800 font-semibold uppercase tracking-wide mb-3">
+                September 2026 · Workshop
+              </div>
+              <h2 className="text-2xl md:text-3xl font-serif font-semibold text-neutral-950 mb-4">
+                DPDP workshop for the leadership of KLE Degree College, Nagarabhavi
+              </h2>
+              <p className="text-neutral-700 leading-relaxed font-serif mb-6">
+                Principals, programme coordinators and senior administrators followed a
+                student&apos;s data through the college year, from admission to breach
+                response. Participants rated the workshop 4.67 out of 5.
+              </p>
+              <span className="inline-flex items-center gap-2 text-sm font-serif font-semibold text-primary-700 group-hover:text-primary-900 transition-colors">
+                Read the workshop report
+                <ArrowRight className="w-4 h-4" />
+              </span>
+            </div>
+          </Link>
         </Container>
       </Section>
 
