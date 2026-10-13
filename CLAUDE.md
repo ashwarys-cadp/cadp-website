@@ -1,5 +1,7 @@
 # CADP - Centre for Applied Data Protection
 
+Project folder (status, action items, meetings): ~/Projects/kle/cadp. This repo holds the code only.
+
 ## Project Overview
 
 Static website for the Centre for Applied Data Protection (CADP) at KLE Law College, Bengaluru. The site provides information about DPDP Act compliance training, legal advisory, and research publications.
