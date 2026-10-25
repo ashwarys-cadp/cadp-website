@@ -110,6 +110,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'yearly',
       priority: 0.9,
     },
+    {
+      url: `${BASE_URL}/resources/official-texts/dpdp-order-removal-of-difficulties-2026/`,
+      lastModified: new Date('2026-10-06'),
+      changeFrequency: 'yearly',
+      priority: 0.9,
+    },
   ];
 
   // Static pages with their priorities and change frequencies

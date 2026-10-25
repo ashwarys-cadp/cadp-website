@@ -156,7 +156,7 @@ export function DocumentReader({
             <div className="text-xs uppercase tracking-[0.2em] text-accent-700 font-semibold mb-3">
               Preamble
             </div>
-            <p className="font-serif text-neutral-700 leading-relaxed italic">
+            <p className="font-serif text-neutral-700 leading-relaxed italic whitespace-pre-line">
               {doc.preamble}
             </p>
           </div>

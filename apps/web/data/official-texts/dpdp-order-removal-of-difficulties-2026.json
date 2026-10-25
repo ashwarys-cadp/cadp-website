@@ -1,0 +1,49 @@
+{
+  "id": "dpdp-order-removal-of-difficulties-2026",
+  "title": "Digital Personal Data Protection (Removal of Difficulties) Order, 2026",
+  "shortTitle": "Removal of Difficulties Order 2026",
+  "type": "notification",
+  "sectionPrefix": "",
+  "gazetteNumber": "S.O. 5458(E)",
+  "dateEnacted": "2026-10-06",
+  "dateEffective": "2026-10-06",
+  "preamble": "S.O. 5458(E).—Whereas, sub-section (1) of section 9 of the Digital Personal Data Protection Act, 2023 (22 of 2023) (hereinafter referred to as the said Act) provides that the Data Fiduciary shall, before processing any personal data of a child or a person with disability who has a lawful guardian obtain verifiable consent of the parent of such child or the lawful guardian, as the case may be, in such manner as may be prescribed;\n\nAnd whereas, the omission of the preposition “of” before the expression “a person with disability” creates a disjunction between “any personal data of a child” and the expression “a person with disability,” thereby obscuring the intended parallelism between the two categories and the clarity of legal intent;\n\nAnd whereas, clause (b) of sub-section (2) of section 10 of the said Act mandates that the Significant Data Fiduciary shall appoint an independent data auditor to carry out data audit, while sub-clause (ii) of clause (c) thereof mandates the carrying out of periodic audit by the Significant Data Fiduciaries;\n\nAnd whereas, the repetition of the word “audit” creates interpretive ambiguity regarding the scope of both categories of audit and a need has been felt to clarify the scope of the compliance obligation and prevent inconsistent application by regulatory or supervisory authorities, and in keeping with the object of the said Act, clarify that both references to audit are intended to refer to a “data protection audit” or “data audit”;\n\nAnd whereas, sub-section (1) of section 43 of the said Act, provides that if any difficulty arises in giving effect to the provisions of this Act, the Central Government may, by order published in the Official Gazette, make such provisions not inconsistent with the provisions of this Act as may appear to it to be necessary or expedient for removing the difficulty;\n\nAnd whereas, there is a need to remove the difficulties identified in the said sections, which are textual, editorial in nature and for the purposes of giving effect to the provisions of the said Act, and for the said purposes to rectify the anomalies in the provisions of sub-section (1) of section 9 and sub-clause (ii) of clause (c) of sub-section (2) of section 10 of the said Act in accordance with the legislative intent;\n\nNow, therefore, in exercise of the powers conferred by sub-section (1) of section 43 of the Digital Personal Data Protection Act, 2023 (22 of 2023), the Central Government hereby makes the following Order, namely: -",
+  "chapters": [
+    {
+      "id": "chapter-1",
+      "number": "",
+      "title": "Order",
+      "sections": [
+        {
+          "id": "para-1",
+          "number": "1",
+          "title": "Short title and commencement",
+          "text": "<p>(<strong>1</strong>) This Order may be called the Digital Personal Data Protection (Removal of Difficulties) Order, 2026.</p><p>(<strong>2</strong>) It shall come into force on the date of its publication in the Official Gazette.</p>",
+          "tags": [
+            "short-title",
+            "commencement",
+            "section-43"
+          ]
+        },
+        {
+          "id": "para-2",
+          "number": "2",
+          "title": "Substitutions in sections 9 and 10 of the Act",
+          "text": "<p>In the said Act,—</p><ol type=\"i\"><li>in section 9, in sub-section (1), for the words “ child or a person with disability,” the words “child or of a person with disability ”shall be substituted;</li><li>in section 10, in sub-section (2), in clause (c), in sub-clause (ii), for the word “audit”, the words “data audit” shall be substituted;</li></ol><p>[F. No. AA-11038/8/2025-CL&amp;ES]</p><p>AJIT KUMAR, Jt. Secy.</p>",
+          "tags": [
+            "removal-of-difficulties",
+            "amends-section-9",
+            "amends-section-10",
+            "verifiable-consent",
+            "person-with-disability",
+            "significant-data-fiduciary",
+            "data-audit"
+          ]
+        }
+      ]
+    }
+  ],
+  "schedules": [],
+  "definitions": [],
+  "corrigenda": []
+}
